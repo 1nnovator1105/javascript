@@ -1,0 +1,21 @@
+{
+  "name": "monorepo-nextjs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Monorepo with Next.js and TypeScript",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "yarn workspace web dev",
+    "build": "yarn workspaces run build",
+    "start": "yarn workspace web start",
+    "lint": "yarn workspaces run lint",
+    "type-check": "yarn workspaces run type-check"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "packageManager": "yarn@4.0.0"
+}

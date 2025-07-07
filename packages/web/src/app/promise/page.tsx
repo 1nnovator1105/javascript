@@ -45,135 +45,46 @@ const blockOptions: Block[] = [
 const EventLoopVisualizer: React.FC<{
   visualState: VisualizationState;
 }> = ({ visualState }) => {
-  const containerStyle = {
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr",
-    gridTemplateRows: "1fr 1fr",
-    gap: "16px",
-    height: "500px",
-    margin: "20px 0",
-  };
-
-  const queueStyle = {
-    background: "linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)",
-    borderRadius: "12px",
-    padding: "16px",
-    border: "2px solid #cbd5e1",
-    position: "relative" as const,
-    overflow: "hidden",
-  };
-
-  const titleStyle = {
-    fontSize: "16px",
-    fontWeight: "600" as const,
-    marginBottom: "12px",
-    display: "flex",
-    alignItems: "center",
-    gap: "8px",
-  };
-
-  const itemStyle = {
-    background: "#ffffff",
-    padding: "8px 12px",
-    borderRadius: "6px",
-    margin: "4px 0",
-    border: "1px solid #e2e8f0",
-    fontSize: "14px",
-    fontFamily: "'JetBrains Mono', monospace",
-    animation: visualState.isRunning ? "slideIn 0.3s ease-out" : "none",
-    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-  };
-
-  const emptyStyle = {
-    color: "#9ca3af",
-    fontStyle: "italic" as const,
-    textAlign: "center" as const,
-    padding: "20px",
-    fontSize: "14px",
-  };
-
   return (
     <div>
-      <style jsx>{`
-        @keyframes slideIn {
-          from {
-            opacity: 0;
-            transform: translateX(-20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-        @keyframes pulse {
-          0%,
-          100% {
-            transform: scale(1);
-          }
-          50% {
-            transform: scale(1.05);
-          }
-        }
-        .active-queue {
-          animation: pulse 1.5s infinite;
-          border-color: #3b82f6 !important;
-          box-shadow: 0 0 20px rgba(59, 130, 246, 0.3) !important;
-        }
-      `}</style>
-
-      <div
-        style={{
-          background: "#1f2937",
-          color: "#f9fafb",
-          padding: "16px",
-          borderRadius: "8px",
-          marginBottom: "16px",
-          textAlign: "center",
-          fontSize: "16px",
-          fontWeight: "600",
-        }}
-      >
+      <div className="bg-gray-800 text-gray-50 p-4 rounded-lg mb-4 text-center text-base font-semibold">
         🎯 현재 단계: {visualState.currentStep}
       </div>
 
-      <div style={containerStyle}>
+      <div className="grid gap-3 md:gap-4 my-4 md:my-5 grid-cols-1 md:grid-cols-2 grid-rows-4 md:grid-rows-2 h-auto md:h-[700px]">
         {/* Call Stack */}
         <div
-          style={{
-            ...queueStyle,
-            background:
-              visualState.callStack.length > 0
-                ? "linear-gradient(135deg, #fef3c7 0%, #fbbf24 100%)"
-                : queueStyle.background,
-          }}
-          className={visualState.callStack.length > 0 ? "active-queue" : ""}
+          className={`
+          bg-gradient-to-br from-slate-50 to-slate-200 rounded-xl p-4 border-2 border-slate-300 relative overflow-hidden
+          ${
+            visualState.callStack.length > 0
+              ? "bg-gradient-to-br from-amber-100 to-amber-400 border-amber-500 animate-pulse shadow-lg shadow-amber-500/30"
+              : ""
+          }
+        `}
         >
-          <div style={{ ...titleStyle, color: "#92400e" }}>
+          <div className="text-base font-semibold mb-3 flex items-center gap-2 text-amber-800">
             📚 Call Stack
-            <span
-              style={{
-                fontSize: "12px",
-                background: "#fbbf24",
-                color: "white",
-                padding: "2px 6px",
-                borderRadius: "4px",
-              }}
-            >
+            <span className="text-xs bg-amber-500 text-white px-2 py-1 rounded">
               {visualState.callStack.length}
             </span>
           </div>
           {visualState.callStack.length === 0 ? (
-            <div style={emptyStyle}>비어있음</div>
+            <div className="text-gray-400 italic text-center p-5 text-sm">
+              비어있음
+            </div>
           ) : (
             visualState.callStack.map((item, idx) => (
               <div
                 key={idx}
-                style={{
-                  ...itemStyle,
-                  background: "#fbbf24",
-                  color: "white",
-                  fontWeight: "600",
-                }}
+                className={`
+                  bg-amber-500 text-white font-semibold px-3 py-2 rounded-md my-1 border border-slate-200 text-sm font-mono shadow-sm
+                  ${
+                    visualState.isRunning
+                      ? "animate-[slideIn_0.3s_ease-out]"
+                      : ""
+                  }
+                `}
               >
                 {item}
               </div>
@@ -183,40 +94,37 @@ const EventLoopVisualizer: React.FC<{
 
         {/* Web APIs */}
         <div
-          style={{
-            ...queueStyle,
-            background:
-              visualState.webApis.length > 0
-                ? "linear-gradient(135deg, #ddd6fe 0%, #8b5cf6 100%)"
-                : queueStyle.background,
-          }}
-          className={visualState.webApis.length > 0 ? "active-queue" : ""}
+          className={`
+          bg-gradient-to-br from-slate-50 to-slate-200 rounded-xl p-4 border-2 border-slate-300 relative overflow-hidden
+          ${
+            visualState.webApis.length > 0
+              ? "bg-gradient-to-br from-violet-100 to-violet-500 border-violet-500 animate-pulse shadow-lg shadow-violet-500/30"
+              : ""
+          }
+        `}
         >
-          <div style={{ ...titleStyle, color: "#6b21a8" }}>
+          <div className="text-base font-semibold mb-3 flex items-center gap-2 text-violet-800">
             🌐 Web APIs
-            <span
-              style={{
-                fontSize: "12px",
-                background: "#8b5cf6",
-                color: "white",
-                padding: "2px 6px",
-                borderRadius: "4px",
-              }}
-            >
+            <span className="text-xs bg-violet-500 text-white px-2 py-1 rounded">
               {visualState.webApis.length}
             </span>
           </div>
           {visualState.webApis.length === 0 ? (
-            <div style={emptyStyle}>비어있음</div>
+            <div className="text-gray-400 italic text-center p-5 text-sm">
+              비어있음
+            </div>
           ) : (
             visualState.webApis.map((item, idx) => (
               <div
                 key={idx}
-                style={{
-                  ...itemStyle,
-                  background: "#8b5cf6",
-                  color: "white",
-                }}
+                className={`
+                  bg-violet-500 text-white px-3 py-2 rounded-md my-1 border border-slate-200 text-sm font-mono shadow-sm
+                  ${
+                    visualState.isRunning
+                      ? "animate-[slideIn_0.3s_ease-out]"
+                      : ""
+                  }
+                `}
               >
                 {item}
               </div>
@@ -226,45 +134,38 @@ const EventLoopVisualizer: React.FC<{
 
         {/* Microtask Queue */}
         <div
-          style={{
-            ...queueStyle,
-            background:
-              visualState.microtaskQueue.length > 0
-                ? "linear-gradient(135deg, #bbf7d0 0%, #10b981 100%)"
-                : queueStyle.background,
-          }}
-          className={
-            visualState.microtaskQueue.length > 0 ? "active-queue" : ""
+          className={`
+          bg-gradient-to-br from-slate-50 to-slate-200 rounded-xl p-4 border-2 border-slate-300 relative overflow-hidden
+          ${
+            visualState.microtaskQueue.length > 0
+              ? "bg-gradient-to-br from-emerald-100 to-emerald-500 border-emerald-500 animate-pulse shadow-lg shadow-emerald-500/30"
+              : ""
           }
+        `}
         >
-          <div style={{ ...titleStyle, color: "#065f46" }}>
+          <div className="text-base font-semibold mb-3 flex items-center gap-2 text-emerald-800">
             🟢 Microtask Queue
-            <span
-              style={{
-                fontSize: "12px",
-                background: "#10b981",
-                color: "white",
-                padding: "2px 6px",
-                borderRadius: "4px",
-              }}
-            >
+            <span className="text-xs bg-emerald-500 text-white px-2 py-1 rounded">
               {visualState.microtaskQueue.length}
             </span>
-            <span style={{ fontSize: "12px", color: "#059669" }}>
-              (높은 우선순위)
-            </span>
+            <span className="text-xs text-emerald-600">(높은 우선순위)</span>
           </div>
           {visualState.microtaskQueue.length === 0 ? (
-            <div style={emptyStyle}>비어있음</div>
+            <div className="text-gray-400 italic text-center p-5 text-sm">
+              비어있음
+            </div>
           ) : (
             visualState.microtaskQueue.map((item, idx) => (
               <div
                 key={idx}
-                style={{
-                  ...itemStyle,
-                  background: "#10b981",
-                  color: "white",
-                }}
+                className={`
+                  bg-emerald-500 text-white px-3 py-2 rounded-md my-1 border border-slate-200 text-sm font-mono shadow-sm
+                  ${
+                    visualState.isRunning
+                      ? "animate-[slideIn_0.3s_ease-out]"
+                      : ""
+                  }
+                `}
               >
                 {item}
               </div>
@@ -274,43 +175,38 @@ const EventLoopVisualizer: React.FC<{
 
         {/* Task Queue */}
         <div
-          style={{
-            ...queueStyle,
-            background:
-              visualState.taskQueue.length > 0
-                ? "linear-gradient(135deg, #bfdbfe 0%, #3b82f6 100%)"
-                : queueStyle.background,
-          }}
-          className={visualState.taskQueue.length > 0 ? "active-queue" : ""}
+          className={`
+          bg-gradient-to-br from-slate-50 to-slate-200 rounded-xl p-4 border-2 border-slate-300 relative overflow-hidden
+          ${
+            visualState.taskQueue.length > 0
+              ? "bg-gradient-to-br from-blue-100 to-blue-500 border-blue-500 animate-pulse shadow-lg shadow-blue-500/30"
+              : ""
+          }
+        `}
         >
-          <div style={{ ...titleStyle, color: "#1e40af" }}>
+          <div className="text-base font-semibold mb-3 flex items-center gap-2 text-blue-800">
             🔵 Task Queue
-            <span
-              style={{
-                fontSize: "12px",
-                background: "#3b82f6",
-                color: "white",
-                padding: "2px 6px",
-                borderRadius: "4px",
-              }}
-            >
+            <span className="text-xs bg-blue-500 text-white px-2 py-1 rounded">
               {visualState.taskQueue.length}
             </span>
-            <span style={{ fontSize: "12px", color: "#2563eb" }}>
-              (낮은 우선순위)
-            </span>
+            <span className="text-xs text-blue-600">(낮은 우선순위)</span>
           </div>
           {visualState.taskQueue.length === 0 ? (
-            <div style={emptyStyle}>비어있음</div>
+            <div className="text-gray-400 italic text-center p-5 text-sm">
+              비어있음
+            </div>
           ) : (
             visualState.taskQueue.map((item, idx) => (
               <div
                 key={idx}
-                style={{
-                  ...itemStyle,
-                  background: "#3b82f6",
-                  color: "white",
-                }}
+                className={`
+                  bg-blue-500 text-white px-3 py-2 rounded-md my-1 border border-slate-200 text-sm font-mono shadow-sm
+                  ${
+                    visualState.isRunning
+                      ? "animate-[slideIn_0.3s_ease-out]"
+                      : ""
+                  }
+                `}
               >
                 {item}
               </div>
@@ -320,23 +216,9 @@ const EventLoopVisualizer: React.FC<{
       </div>
 
       {/* Event Loop 화살표 */}
-      <div
-        style={{
-          textAlign: "center",
-          margin: "20px 0",
-          padding: "16px",
-          background:
-            "linear-gradient(90deg, #f3f4f6 0%, #e5e7eb 50%, #f3f4f6 100%)",
-          borderRadius: "8px",
-          border: "2px dashed #9ca3af",
-        }}
-      >
-        <div
-          style={{ fontSize: "18px", fontWeight: "600", marginBottom: "8px" }}
-        >
-          🔄 Event Loop
-        </div>
-        <div style={{ fontSize: "14px", color: "#6b7280" }}>
+      <div className="text-center my-5 p-4 bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100 rounded-lg border-2 border-dashed border-gray-400">
+        <div className="text-lg font-semibold mb-2">🔄 Event Loop</div>
+        <div className="text-sm text-gray-500">
           Call Stack이 비면 → Microtask Queue 우선 처리 → Task Queue 처리
         </div>
       </div>
@@ -631,125 +513,43 @@ const BlockEventLoopSimulator: React.FC = () => {
     console.log("=== 실제 코드 실행 완료 (결과는 위에서 확인) ===");
   };
 
-  const buttonStyles = {
-    base: {
-      padding: "12px 16px",
-      borderRadius: "8px",
-      cursor: "pointer" as const,
-      fontSize: "14px",
-      fontWeight: "500" as const,
-      transition: "all 0.2s ease",
-      border: "none",
-    },
-    codeBlock: {
-      background: "#f8fafc",
-      color: "#374151",
-      border: "2px solid #e2e8f0",
-      fontFamily: "'JetBrains Mono', 'SF Mono', monospace",
-    },
-    primary: {
-      background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-      color: "white",
-      boxShadow: "0 4px 12px rgba(102, 126, 234, 0.3)",
-    },
-    success: {
-      background: "linear-gradient(135deg, #10b981 0%, #059669 100%)",
-      color: "white",
-      boxShadow: "0 4px 12px rgba(16, 185, 129, 0.3)",
-    },
-    secondary: {
-      background: "#f3f4f6",
-      color: "#374151",
-      border: "2px solid #e5e7eb",
-    },
+  // Tailwind 버튼 클래스들
+  const buttonClasses = {
+    base: "px-4 py-3 rounded-lg cursor-pointer text-sm font-medium transition-all duration-200 border",
+    codeBlock:
+      "bg-slate-50 text-gray-700 border-2 border-slate-200 font-mono hover:bg-slate-100 hover:border-gray-400 hover:-translate-y-0.5 hover:shadow-lg",
+    primary:
+      "bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg shadow-indigo-500/30 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-indigo-500/40",
+    success:
+      "bg-gradient-to-r from-emerald-500 to-green-600 text-white shadow-lg shadow-emerald-500/30 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-emerald-500/40",
+    secondary:
+      "bg-gray-100 text-gray-700 border-2 border-gray-200 hover:bg-gray-200 hover:border-gray-300 hover:-translate-y-0.5",
+    disabled:
+      "opacity-60 cursor-not-allowed hover:transform-none hover:shadow-none",
   };
 
   return (
-    <div
-      style={{
-        fontFamily:
-          "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif",
-        padding: "24px",
-        maxWidth: "1600px",
-        margin: "0 auto",
-        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-        minHeight: "100vh",
-      }}
-    >
-      <div
-        style={{
-          background: "rgba(255, 255, 255, 0.95)",
-          borderRadius: "16px",
-          padding: "32px",
-          boxShadow: "0 20px 40px rgba(0, 0, 0, 0.1)",
-          backdropFilter: "blur(10px)",
-        }}
-      >
-        <div style={{ textAlign: "center", marginBottom: "32px" }}>
-          <h1
-            style={{
-              fontSize: "32px",
-              fontWeight: "700",
-              background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              margin: "0 0 8px 0",
-            }}
-          >
+    <div className="font-sans min-h-screen mx-auto bg-gradient-to-br from-indigo-500 to-purple-600 p-4 md:p-6 max-w-full md:max-w-7xl">
+      <div className="bg-white/95 backdrop-blur-lg shadow-2xl rounded-xl md:rounded-2xl p-5 md:p-8">
+        <div className="text-center mb-8">
+          <h1 className="font-bold bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent mb-2 text-2xl md:text-3xl">
             🧱 JavaScript 이벤트 루프 시뮬레이터
           </h1>
-          <p
-            style={{
-              color: "#6b7280",
-              fontSize: "16px",
-              margin: 0,
-              fontWeight: "400",
-            }}
-          >
+          <p className="text-gray-500 font-normal m-0 text-sm md:text-base">
             비동기 처리 순서를 시각적으로 학습해보세요
           </p>
         </div>
 
-        <div style={{ marginBottom: "24px" }}>
-          <h3
-            style={{
-              color: "#374151",
-              marginBottom: "16px",
-              fontSize: "18px",
-              fontWeight: "600",
-            }}
-          >
+        <div className="mb-6">
+          <h3 className="text-gray-700 mb-4 text-lg font-semibold">
             📦 코드 블록 추가
           </h3>
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: "12px",
-            }}
-          >
+          <div className="flex flex-wrap gap-2 md:gap-3">
             {blockOptions.map((block, idx) => (
               <button
                 key={idx}
                 onClick={() => addBlock(block)}
-                style={{
-                  ...buttonStyles.base,
-                  ...buttonStyles.codeBlock,
-                }}
-                onMouseEnter={(e) => {
-                  const target = e.currentTarget;
-                  target.style.background = "#e2e8f0";
-                  target.style.borderColor = "#9ca3af";
-                  target.style.transform = "translateY(-2px)";
-                  target.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.1)";
-                }}
-                onMouseLeave={(e) => {
-                  const target = e.currentTarget;
-                  target.style.background = "#f8fafc";
-                  target.style.borderColor = "#e2e8f0";
-                  target.style.transform = "translateY(0)";
-                  target.style.boxShadow = "none";
-                }}
+                className={`${buttonClasses.base} ${buttonClasses.codeBlock}`}
               >
                 {block.label}
               </button>
@@ -757,280 +557,138 @@ const BlockEventLoopSimulator: React.FC = () => {
           </div>
         </div>
 
-        <div style={{ marginBottom: "24px" }}>
-          <h3
-            style={{
-              color: "#374151",
-              marginBottom: "16px",
-              fontSize: "18px",
-              fontWeight: "600",
-            }}
-          >
+        <div className="mb-6">
+          <h3 className="text-gray-700 mb-4 text-lg font-semibold">
             📝 구성된 코드 블록
           </h3>
-          <div
-            style={{
-              background: "#f9fafb",
-              borderRadius: "8px",
-              padding: "16px",
-              border: "1px solid #e5e7eb",
-              minHeight: "60px",
-            }}
-          >
+          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200 min-h-[60px]">
             {codeBlocks.length === 0 ? (
-              <div
-                style={{
-                  color: "#9ca3af",
-                  fontStyle: "italic",
-                  textAlign: "center",
-                  padding: "20px",
-                }}
-              >
+              <div className="text-gray-400 italic text-center p-5">
                 위에서 코드 블록을 선택해서 추가해보세요
               </div>
             ) : (
               codeBlocks.map((block, i) => (
                 <div
                   key={i}
-                  style={{
-                    marginBottom: "8px",
-                    padding: "8px 12px",
-                    background: "#ffffff",
-                    borderRadius: "6px",
-                    border: "1px solid #e5e7eb",
-                    fontFamily: "'JetBrains Mono', 'SF Mono', monospace",
-                    fontSize: "14px",
-                  }}
+                  className="mb-2 px-3 py-2 bg-white rounded-md border border-gray-200 font-mono text-sm"
                 >
-                  <span style={{ color: "#6b7280" }}>{i + 1}.</span>{" "}
-                  {block.label}
+                  <span className="text-gray-500">{i + 1}.</span> {block.label}
                 </div>
               ))
             )}
           </div>
         </div>
 
-        <div style={{ marginBottom: "32px" }}>
-          <h3
-            style={{
-              color: "#374151",
-              marginBottom: "16px",
-              fontSize: "18px",
-              fontWeight: "600",
-            }}
-          >
+        <div className="mb-8">
+          <h3 className="text-gray-700 mb-4 text-lg font-semibold">
             🎮 실행 제어
           </h3>
-          <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+          <div className="flex gap-3 flex-wrap">
             <button
               onClick={runSimulation}
               disabled={visualState.isRunning}
-              style={{
-                ...buttonStyles.base,
-                ...buttonStyles.primary,
-                opacity: visualState.isRunning ? 0.6 : 1,
-                cursor: visualState.isRunning ? "not-allowed" : "pointer",
-              }}
-              onMouseEnter={(e) => {
-                if (!visualState.isRunning) {
-                  const target = e.currentTarget;
-                  target.style.transform = "translateY(-2px)";
-                  target.style.boxShadow =
-                    "0 6px 20px rgba(102, 126, 234, 0.4)";
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (!visualState.isRunning) {
-                  const target = e.currentTarget;
-                  target.style.transform = "translateY(0)";
-                  target.style.boxShadow =
-                    "0 4px 12px rgba(102, 126, 234, 0.3)";
-                }
-              }}
+              className={`
+                ${buttonClasses.base} ${buttonClasses.primary}
+                ${visualState.isRunning ? buttonClasses.disabled : ""}
+              `}
             >
               ▶ 시각화 시뮬레이션 실행
             </button>
             <button
               onClick={runActualCode}
-              style={{ ...buttonStyles.base, ...buttonStyles.success }}
-              onMouseEnter={(e) => {
-                const target = e.currentTarget;
-                target.style.transform = "translateY(-2px)";
-                target.style.boxShadow = "0 6px 20px rgba(16, 185, 129, 0.4)";
-              }}
-              onMouseLeave={(e) => {
-                const target = e.currentTarget;
-                target.style.transform = "translateY(0)";
-                target.style.boxShadow = "0 4px 12px rgba(16, 185, 129, 0.3)";
-              }}
+              className={`${buttonClasses.base} ${buttonClasses.success}`}
             >
               🚀 실제 코드 실행 (콘솔 확인)
             </button>
             <button
               onClick={reset}
-              style={{ ...buttonStyles.base, ...buttonStyles.secondary }}
-              onMouseEnter={(e) => {
-                const target = e.currentTarget;
-                target.style.background = "#e5e7eb";
-                target.style.borderColor = "#d1d5db";
-                target.style.transform = "translateY(-2px)";
-              }}
-              onMouseLeave={(e) => {
-                const target = e.currentTarget;
-                target.style.background = "#f3f4f6";
-                target.style.borderColor = "#e5e7eb";
-                target.style.transform = "translateY(0)";
-              }}
+              className={`${buttonClasses.base} ${buttonClasses.secondary}`}
             >
               🔄 초기화
             </button>
           </div>
         </div>
 
-        {/* 이벤트 루프 시각화 컴포넌트 */}
-        <div style={{ marginBottom: "24px" }}>
-          <h3
-            style={{
-              color: "#374151",
-              marginBottom: "16px",
-              fontSize: "18px",
-              fontWeight: "600",
-            }}
-          >
-            🎭 이벤트 루프 실시간 시각화
-          </h3>
-          <EventLoopVisualizer visualState={visualState} />
-        </div>
-
-        <div style={{ display: "flex", gap: "20px", marginBottom: "24px" }}>
-          <div style={{ flex: 1 }}>
-            <h4
-              style={{
-                color: "#374151",
-                marginBottom: "12px",
-                fontSize: "16px",
-                fontWeight: "600",
-              }}
-            >
-              🖥 시뮬레이션 로그
-            </h4>
-            <div
-              style={{
-                background: "#111",
-                color: "#0f0",
-                padding: "16px",
-                minHeight: "200px",
-                maxHeight: "300px",
-                overflowY: "auto",
-                fontFamily: "'JetBrains Mono', 'SF Mono', monospace",
-                borderRadius: "8px",
-                fontSize: "14px",
-                lineHeight: "1.5",
-              }}
-            >
-              {log.map((line, idx) => (
-                <div key={idx} style={{ marginBottom: "4px" }}>
-                  {line}
-                </div>
-              ))}
-            </div>
+        {/* 메인 레이아웃: 좌측 시각화, 우측 로그 */}
+        <div className="flex flex-col md:flex-row gap-4 md:gap-6 mb-6">
+          {/* 좌측: 이벤트 루프 시각화 */}
+          <div className="w-full md:flex-[1.2] md:min-w-[650px]">
+            <h3 className="text-gray-700 mb-4 text-lg font-semibold">
+              🎭 이벤트 루프 실시간 시각화
+            </h3>
+            <EventLoopVisualizer visualState={visualState} />
           </div>
 
-          <div style={{ flex: 1 }}>
-            <h4
-              style={{
-                color: "#374151",
-                marginBottom: "12px",
-                fontSize: "16px",
-                fontWeight: "600",
-              }}
-            >
-              📄 실제 Console 출력 순서
-            </h4>
-            <div
-              style={{
-                background: "#2d3748",
-                color: "#e2e8f0",
-                padding: "16px",
-                minHeight: "200px",
-                maxHeight: "300px",
-                overflowY: "auto",
-                fontFamily: "'JetBrains Mono', 'SF Mono', monospace",
-                borderRadius: "8px",
-                fontSize: "14px",
-                lineHeight: "1.5",
-              }}
-            >
-              {actualConsoleOutput.length === 0 ? (
-                <div style={{ color: "#a0aec0", fontStyle: "italic" }}>
-                  시뮬레이션을 실행하면 실제 출력 순서가 여기에 표시됩니다
-                </div>
-              ) : (
-                actualConsoleOutput.map((output, idx) => (
-                  <div key={idx} style={{ marginBottom: "4px" }}>
-                    <span style={{ color: "#90cdf4" }}>console.log:</span>{" "}
-                    <span style={{ color: "#68d391" }}>
-                      &quot;{output}&quot;
-                    </span>
+          {/* 우측: 로그 영역 */}
+          <div className="flex flex-col w-full md:flex-1 md:min-w-[450px] gap-3 md:gap-5">
+            {/* 시뮬레이션 로그 */}
+            <div className="flex-1 flex flex-col">
+              <h4 className="text-gray-700 mb-3 text-base font-semibold">
+                🖥 시뮬레이션 로그
+              </h4>
+              <div className="bg-gray-900 text-green-400 rounded-lg border-2 border-green-500 overflow-y-auto font-mono leading-tight flex-1 flex flex-col p-3 md:p-4 h-[200px] md:h-[280px] text-xs md:text-sm">
+                {log.length === 0 ? (
+                  <div className="text-green-300 italic text-center pt-10">
+                    시뮬레이션을 실행하면 단계별 로그가 여기에 표시됩니다
                   </div>
-                ))
-              )}
+                ) : (
+                  log.map((line, idx) => (
+                    <div key={idx} className="mb-1">
+                      {line}
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
+
+            {/* Console 출력 */}
+            <div className="flex-1 flex flex-col">
+              <h4 className="text-gray-700 mb-3 text-base font-semibold">
+                📄 실제 Console 출력 순서
+              </h4>
+              <div className="bg-gray-700 text-gray-200 rounded-lg border-2 border-blue-500 overflow-y-auto font-mono leading-tight flex-1 flex flex-col p-3 md:p-4 h-[200px] md:h-[280px] text-xs md:text-sm">
+                {actualConsoleOutput.length === 0 ? (
+                  <div className="text-gray-400 italic text-center pt-10">
+                    시뮬레이션을 실행하면 실제 출력 순서가 여기에 표시됩니다
+                  </div>
+                ) : (
+                  actualConsoleOutput.map((output, idx) => (
+                    <div key={idx} className="mb-1">
+                      <span className="text-sky-300">console.log:</span>{" "}
+                      <span className="text-green-300">
+                        &quot;{output}&quot;
+                      </span>
+                    </div>
+                  ))
+                )}
+              </div>
             </div>
           </div>
         </div>
 
-        <div
-          style={{
-            padding: "20px",
-            background: "#f0f9ff",
-            borderRadius: "12px",
-            border: "1px solid #e0f2fe",
-          }}
-        >
-          <h5
-            style={{
-              margin: "0 0 12px 0",
-              color: "#0c4a6e",
-              fontSize: "16px",
-              fontWeight: "600",
-            }}
-          >
+        <div className="p-5 bg-sky-50 rounded-xl border border-sky-200">
+          <h5 className="m-0 mb-3 text-sky-900 text-base font-semibold">
             💡 사용법
           </h5>
-          <ul
-            style={{
-              margin: "0 0 16px 0",
-              paddingLeft: "20px",
-              color: "#075985",
-            }}
-          >
-            <li style={{ marginBottom: "8px" }}>
+          <ul className="m-0 mb-4 pl-5 text-sky-800">
+            <li className="mb-2">
               <strong>시각화 시뮬레이션:</strong> 이벤트 루프의 Call Stack,
               Queue들의 실시간 동작을 확인
             </li>
-            <li style={{ marginBottom: "8px" }}>
+            <li className="mb-2">
               <strong>실제 코드 실행:</strong> 브라우저 콘솔(F12)에서 진짜 실행
               결과와 비교
             </li>
-            <li style={{ marginBottom: "8px" }}>
+            <li className="mb-2">
               <strong>큐 우선순위:</strong> Microtask Queue가 Task Queue보다
               높은 우선순위를 가짐
             </li>
-            <li style={{ marginBottom: "8px" }}>
+            <li className="mb-2">
               <strong>시각적 피드백:</strong> 활성화된 큐는 하이라이트와
               애니메이션으로 표시
             </li>
           </ul>
-          <div
-            style={{
-              padding: "12px",
-              background: "#bfdbfe",
-              borderRadius: "6px",
-              fontSize: "14px",
-              color: "#1e40af",
-              fontWeight: "500",
-            }}
-          >
+          <div className="p-3 bg-blue-200 rounded-md text-sm text-blue-800 font-medium">
             🎯 핵심: Call Stack → Microtask Queue → Task Queue 순서로 처리됩니다
           </div>
         </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import StudyPageLayout from "../../components/StudyPageLayout";
 
 interface Block {
   type: "sync" | "task" | "microtask" | "await";
@@ -529,171 +530,162 @@ const BlockEventLoopSimulator: React.FC = () => {
   };
 
   return (
-    <div className="font-sans min-h-screen mx-auto bg-gradient-to-br from-indigo-500 to-purple-600 p-4 md:p-6 max-w-full">
-      <div className="bg-white/95 backdrop-blur-lg shadow-2xl rounded-xl md:rounded-2xl p-5 md:p-8">
-        <div className="text-center mb-8">
-          <h1 className="font-bold bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent mb-2 text-2xl md:text-3xl">
-            🧱 JavaScript 이벤트 루프 시뮬레이터
-          </h1>
-          <p className="text-gray-500 font-normal m-0 text-sm md:text-base">
-            비동기 처리 순서를 시각적으로 학습해보세요
-          </p>
-        </div>
-
-        <div className="mb-6">
-          <h3 className="text-gray-700 mb-4 text-lg font-semibold">
-            📦 코드 블록 추가
-          </h3>
-          <div className="flex flex-wrap gap-2 md:gap-3">
-            {blockOptions.map((block, idx) => (
-              <button
-                key={idx}
-                onClick={() => addBlock(block)}
-                className={`${buttonClasses.base} ${buttonClasses.codeBlock}`}
-              >
-                {block.label}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className="mb-6">
-          <h3 className="text-gray-700 mb-4 text-lg font-semibold">
-            📝 구성된 코드 블록
-          </h3>
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200 min-h-[60px]">
-            {codeBlocks.length === 0 ? (
-              <div className="text-gray-400 italic text-center p-5">
-                위에서 코드 블록을 선택해서 추가해보세요
-              </div>
-            ) : (
-              codeBlocks.map((block, i) => (
-                <div
-                  key={i}
-                  className="mb-2 px-3 py-2 bg-white rounded-md border border-gray-200 font-mono text-sm"
-                >
-                  <span className="text-gray-500">{i + 1}.</span> {block.label}
-                </div>
-              ))
-            )}
-          </div>
-        </div>
-
-        <div className="mb-8">
-          <h3 className="text-gray-700 mb-4 text-lg font-semibold">
-            🎮 실행 제어
-          </h3>
-          <div className="flex gap-3 flex-wrap">
+    <StudyPageLayout
+      title="🧱 JavaScript 이벤트 루프 시뮬레이터"
+      subtitle="비동기 처리 순서를 시각적으로 학습해보세요"
+      maxWidth="full"
+    >
+      <div className="mb-6">
+        <h3 className="text-gray-700 mb-4 text-lg font-semibold">
+          📦 코드 블록 추가
+        </h3>
+        <div className="flex flex-wrap gap-2 md:gap-3">
+          {blockOptions.map((block, idx) => (
             <button
-              onClick={runSimulation}
-              disabled={visualState.isRunning}
-              className={`
+              key={idx}
+              onClick={() => addBlock(block)}
+              className={`${buttonClasses.base} ${buttonClasses.codeBlock}`}
+            >
+              {block.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="mb-6">
+        <h3 className="text-gray-700 mb-4 text-lg font-semibold">
+          📝 구성된 코드 블록
+        </h3>
+        <div className="bg-gray-50 rounded-lg p-4 border border-gray-200 min-h-[60px]">
+          {codeBlocks.length === 0 ? (
+            <div className="text-gray-400 italic text-center p-5">
+              위에서 코드 블록을 선택해서 추가해보세요
+            </div>
+          ) : (
+            codeBlocks.map((block, i) => (
+              <div
+                key={i}
+                className="mb-2 px-3 py-2 bg-white rounded-md border border-gray-200 font-mono text-sm"
+              >
+                <span className="text-gray-500">{i + 1}.</span> {block.label}
+              </div>
+            ))
+          )}
+        </div>
+      </div>
+
+      <div className="mb-8">
+        <h3 className="text-gray-700 mb-4 text-lg font-semibold">
+          🎮 실행 제어
+        </h3>
+        <div className="flex gap-3 flex-wrap">
+          <button
+            onClick={runSimulation}
+            disabled={visualState.isRunning}
+            className={`
                 ${buttonClasses.base} ${buttonClasses.primary}
                 ${visualState.isRunning ? buttonClasses.disabled : ""}
               `}
-            >
-              ▶ 시각화 시뮬레이션 실행
-            </button>
-            <button
-              onClick={runActualCode}
-              className={`${buttonClasses.base} ${buttonClasses.success}`}
-            >
-              🚀 실제 코드 실행 (콘솔 확인)
-            </button>
-            <button
-              onClick={reset}
-              className={`${buttonClasses.base} ${buttonClasses.secondary}`}
-            >
-              🔄 초기화
-            </button>
-          </div>
+          >
+            ▶ 시각화 시뮬레이션 실행
+          </button>
+          <button
+            onClick={runActualCode}
+            className={`${buttonClasses.base} ${buttonClasses.success}`}
+          >
+            🚀 실제 코드 실행 (콘솔 확인)
+          </button>
+          <button
+            onClick={reset}
+            className={`${buttonClasses.base} ${buttonClasses.secondary}`}
+          >
+            🔄 초기화
+          </button>
+        </div>
+      </div>
+
+      {/* 메인 레이아웃: 좌측 시각화, 우측 로그 */}
+      <div className="flex flex-col md:flex-row gap-4 md:gap-6 mb-6">
+        {/* 좌측: 이벤트 루프 시각화 */}
+        <div className="w-full md:flex-[1.2] md:min-w-[650px]">
+          <h3 className="text-gray-700 mb-4 text-lg font-semibold">
+            🎭 이벤트 루프 실시간 시각화
+          </h3>
+          <EventLoopVisualizer visualState={visualState} />
         </div>
 
-        {/* 메인 레이아웃: 좌측 시각화, 우측 로그 */}
-        <div className="flex flex-col md:flex-row gap-4 md:gap-6 mb-6">
-          {/* 좌측: 이벤트 루프 시각화 */}
-          <div className="w-full md:flex-[1.2] md:min-w-[650px]">
-            <h3 className="text-gray-700 mb-4 text-lg font-semibold">
-              🎭 이벤트 루프 실시간 시각화
-            </h3>
-            <EventLoopVisualizer visualState={visualState} />
-          </div>
-
-          {/* 우측: 로그 영역 */}
-          <div className="flex flex-col w-full md:flex-1 md:min-w-[450px] gap-3 md:gap-5">
-            {/* 시뮬레이션 로그 */}
-            <div className="flex-1 flex flex-col">
-              <h4 className="text-gray-700 mb-3 text-base font-semibold">
-                🖥 시뮬레이션 로그
-              </h4>
-              <div className="bg-gray-900 text-green-400 rounded-lg border-2 border-green-500 overflow-y-auto font-mono leading-tight flex-1 flex flex-col p-3 md:p-4 h-[200px] md:h-[280px] text-xs md:text-sm">
-                {log.length === 0 ? (
-                  <div className="text-green-300 italic text-center pt-10">
-                    시뮬레이션을 실행하면 단계별 로그가 여기에 표시됩니다
+        {/* 우측: 로그 영역 */}
+        <div className="flex flex-col w-full md:flex-1 md:min-w-[450px] gap-3 md:gap-5">
+          {/* 시뮬레이션 로그 */}
+          <div className="flex-1 flex flex-col">
+            <h4 className="text-gray-700 mb-3 text-base font-semibold">
+              🖥 시뮬레이션 로그
+            </h4>
+            <div className="bg-gray-900 text-green-400 rounded-lg border-2 border-green-500 overflow-y-auto font-mono leading-tight flex-1 flex flex-col p-3 md:p-4 h-[200px] md:h-[280px] text-xs md:text-sm">
+              {log.length === 0 ? (
+                <div className="text-green-300 italic text-center pt-10">
+                  시뮬레이션을 실행하면 단계별 로그가 여기에 표시됩니다
+                </div>
+              ) : (
+                log.map((line, idx) => (
+                  <div key={idx} className="mb-1">
+                    {line}
                   </div>
-                ) : (
-                  log.map((line, idx) => (
-                    <div key={idx} className="mb-1">
-                      {line}
-                    </div>
-                  ))
-                )}
-              </div>
-            </div>
-
-            {/* Console 출력 */}
-            <div className="flex-1 flex flex-col">
-              <h4 className="text-gray-700 mb-3 text-base font-semibold">
-                📄 실제 Console 출력 순서
-              </h4>
-              <div className="bg-gray-700 text-gray-200 rounded-lg border-2 border-blue-500 overflow-y-auto font-mono leading-tight flex-1 flex flex-col p-3 md:p-4 h-[200px] md:h-[280px] text-xs md:text-sm">
-                {actualConsoleOutput.length === 0 ? (
-                  <div className="text-gray-400 italic text-center pt-10">
-                    시뮬레이션을 실행하면 실제 출력 순서가 여기에 표시됩니다
-                  </div>
-                ) : (
-                  actualConsoleOutput.map((output, idx) => (
-                    <div key={idx} className="mb-1">
-                      <span className="text-sky-300">console.log:</span>{" "}
-                      <span className="text-green-300">
-                        &quot;{output}&quot;
-                      </span>
-                    </div>
-                  ))
-                )}
-              </div>
+                ))
+              )}
             </div>
           </div>
-        </div>
 
-        <div className="p-5 bg-sky-50 rounded-xl border border-sky-200">
-          <h5 className="m-0 mb-3 text-sky-900 text-base font-semibold">
-            💡 사용법
-          </h5>
-          <ul className="m-0 mb-4 pl-5 text-sky-800">
-            <li className="mb-2">
-              <strong>시각화 시뮬레이션:</strong> 이벤트 루프의 Call Stack,
-              Queue들의 실시간 동작을 확인
-            </li>
-            <li className="mb-2">
-              <strong>실제 코드 실행:</strong> 브라우저 콘솔(F12)에서 진짜 실행
-              결과와 비교
-            </li>
-            <li className="mb-2">
-              <strong>큐 우선순위:</strong> Microtask Queue가 Task Queue보다
-              높은 우선순위를 가짐
-            </li>
-            <li className="mb-2">
-              <strong>시각적 피드백:</strong> 활성화된 큐는 하이라이트와
-              애니메이션으로 표시
-            </li>
-          </ul>
-          <div className="p-3 bg-blue-200 rounded-md text-sm text-blue-800 font-medium">
-            🎯 핵심: Call Stack → Microtask Queue → Task Queue 순서로 처리됩니다
+          {/* Console 출력 */}
+          <div className="flex-1 flex flex-col">
+            <h4 className="text-gray-700 mb-3 text-base font-semibold">
+              📄 실제 Console 출력 순서
+            </h4>
+            <div className="bg-gray-700 text-gray-200 rounded-lg border-2 border-blue-500 overflow-y-auto font-mono leading-tight flex-1 flex flex-col p-3 md:p-4 h-[200px] md:h-[280px] text-xs md:text-sm">
+              {actualConsoleOutput.length === 0 ? (
+                <div className="text-gray-400 italic text-center pt-10">
+                  시뮬레이션을 실행하면 실제 출력 순서가 여기에 표시됩니다
+                </div>
+              ) : (
+                actualConsoleOutput.map((output, idx) => (
+                  <div key={idx} className="mb-1">
+                    <span className="text-sky-300">console.log:</span>{" "}
+                    <span className="text-green-300">&quot;{output}&quot;</span>
+                  </div>
+                ))
+              )}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+
+      <div className="p-5 bg-sky-50 rounded-xl border border-sky-200">
+        <h5 className="m-0 mb-3 text-sky-900 text-base font-semibold">
+          💡 사용법
+        </h5>
+        <ul className="m-0 mb-4 pl-5 text-sky-800">
+          <li className="mb-2">
+            <strong>시각화 시뮬레이션:</strong> 이벤트 루프의 Call Stack,
+            Queue들의 실시간 동작을 확인
+          </li>
+          <li className="mb-2">
+            <strong>실제 코드 실행:</strong> 브라우저 콘솔(F12)에서 진짜 실행
+            결과와 비교
+          </li>
+          <li className="mb-2">
+            <strong>큐 우선순위:</strong> Microtask Queue가 Task Queue보다 높은
+            우선순위를 가짐
+          </li>
+          <li className="mb-2">
+            <strong>시각적 피드백:</strong> 활성화된 큐는 하이라이트와
+            애니메이션으로 표시
+          </li>
+        </ul>
+        <div className="p-3 bg-blue-200 rounded-md text-sm text-blue-800 font-medium">
+          🎯 핵심: Call Stack → Microtask Queue → Task Queue 순서로 처리됩니다
+        </div>
+      </div>
+    </StudyPageLayout>
   );
 };
 

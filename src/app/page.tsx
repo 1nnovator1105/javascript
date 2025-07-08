@@ -23,6 +23,15 @@ export default function Home() {
       topics: ["Event Loop", "Call Stack", "Queue"],
       icon: "⚡",
     },
+    {
+      title: "🔍 JavaScript Scope & Closure",
+      description:
+        "클로저와 스코프 체인을 통한 변수 캡처 메커니즘을 시각적 시뮬레이터로 학습",
+      path: "/closure",
+      difficulty: "중급",
+      topics: ["Closure", "Scope", "Variable Capture", "React State"],
+      icon: "🎯",
+    },
   ];
 
   const getDifficultyColor = (difficulty: string) => {
@@ -54,6 +63,7 @@ export default function Home() {
             <h3 className="font-medium mb-2">📚 학습 순서 추천</h3>
             <ol className="list-decimal list-inside space-y-1">
               <li>병렬 Promise 응답 순서 (기초)</li>
+              <li>JavaScript Scope & Closure (중급)</li>
               <li>JavaScript 이벤트 루프 (심화)</li>
             </ol>
           </div>

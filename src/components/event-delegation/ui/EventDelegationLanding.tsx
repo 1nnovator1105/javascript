@@ -733,7 +733,7 @@ const EventDelegationLanding = () => {
               ⚡ 실험 2: Bubbling 전파
             </h4>
             <ol className="text-sm text-red-700 space-y-1 list-decimal list-inside">
-              <li>"Bubbling만" 모드 선택</li>
+              <li>&quot;Bubbling만&quot; 모드 선택</li>
               <li>Todo 아이템 클릭</li>
               <li>이벤트 로그에서 Bubbling 단계만 확인</li>
               <li>하이라이트 애니메이션 관찰</li>
@@ -744,7 +744,7 @@ const EventDelegationLanding = () => {
               🔄 실험 3: Capturing + Bubbling
             </h4>
             <ol className="text-sm text-red-700 space-y-1 list-decimal list-inside">
-              <li>"Capturing + Bubbling" 모드 선택</li>
+              <li>&quot;Capturing + Bubbling&quot; 모드 선택</li>
               <li>Todo 아이템 클릭</li>
               <li>3단계 전파 과정 관찰</li>
               <li>각 단계별 로그와 하이라이트 확인</li>

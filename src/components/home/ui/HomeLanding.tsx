@@ -29,6 +29,20 @@ const HomeLanding = () => {
       topics: ["Closure", "Scope", "Variable Capture", "React State"],
       icon: "🎯",
     },
+    {
+      title: "🎯 Event Delegation & 이벤트 위임",
+      description:
+        "효율적인 이벤트 처리와 DOM 이벤트 전파 메커니즘을 인터랙티브 시뮬레이터로 학습",
+      path: "/event-delegation",
+      difficulty: "중급",
+      topics: [
+        "Event Delegation",
+        "Event Bubbling",
+        "Performance",
+        "DOM Management",
+      ],
+      icon: "🎪",
+    },
   ];
 
   const getDifficultyColor = (difficulty: string) => {
@@ -57,6 +71,7 @@ const HomeLanding = () => {
             <ol className="list-decimal list-inside space-y-1">
               <li>병렬 Promise 응답 순서 (기초)</li>
               <li>JavaScript Scope & Closure (중급)</li>
+              <li>Event Delegation & 이벤트 위임 (중급)</li>
               <li>JavaScript 이벤트 루프 (심화)</li>
             </ol>
           </div>

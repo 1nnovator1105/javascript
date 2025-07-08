@@ -269,6 +269,12 @@ const EventDelegationLanding = () => {
       : "";
   };
 
+  const getButtonHighlightClass = (elementName: string) => {
+    return highlightedElement === elementName
+      ? "ring-4 ring-yellow-400 ring-opacity-75 animate-pulse shadow-lg shadow-yellow-400/50"
+      : "";
+  };
+
   const getDelegationModeColor = (mode: "individual" | "delegation") => {
     return delegationMode === mode
       ? "bg-blue-500 text-white"
@@ -473,7 +479,7 @@ const EventDelegationLanding = () => {
                   />
                   <button
                     onClick={addTodo}
-                    className={`px-4 py-2 bg-green-500 text-white rounded-lg text-sm font-medium hover:bg-green-600 transition-colors ${getHighlightClass(
+                    className={`px-4 py-2 bg-green-500 text-white rounded-lg text-sm font-medium hover:bg-green-600 transition-all duration-200 ${getButtonHighlightClass(
                       "추가 버튼"
                     )}`}
                   >
@@ -497,11 +503,11 @@ const EventDelegationLanding = () => {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3 flex-1">
                         <button
-                          className={`complete-btn w-5 h-5 rounded border-2 flex items-center justify-center text-xs ${
+                          className={`complete-btn w-5 h-5 rounded border-2 flex items-center justify-center text-xs transition-all duration-200 ${
                             todo.completed
                               ? "bg-green-500 border-green-500 text-white"
                               : "border-gray-300 hover:border-green-400"
-                          } ${getHighlightClass("완료 버튼")}`}
+                          } ${getButtonHighlightClass("완료 버튼")}`}
                           onClick={
                             delegationMode === "individual"
                               ? () =>
@@ -531,7 +537,7 @@ const EventDelegationLanding = () => {
                         )}
                       </div>
                       <button
-                        className={`delete-btn ml-2 px-3 py-1 bg-red-500 text-white rounded text-xs hover:bg-red-600 transition-colors ${getHighlightClass(
+                        className={`delete-btn ml-2 px-3 py-1 bg-red-500 text-white rounded text-xs hover:bg-red-600 transition-all duration-200 ${getButtonHighlightClass(
                           "삭제 버튼"
                         )}`}
                         onClick={

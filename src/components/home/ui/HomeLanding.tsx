@@ -1,4 +1,3 @@
-import { StudyPageLayout } from "@/components/share/ui";
 import Link from "next/link";
 
 const HomeLanding = () => {

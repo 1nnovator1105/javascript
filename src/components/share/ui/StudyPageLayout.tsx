@@ -72,4 +72,4 @@ const StudyPageLayout: React.FC<StudyPageLayoutProps> = ({
   );
 };
 
-export default StudyPageLayout;
+export { StudyPageLayout };

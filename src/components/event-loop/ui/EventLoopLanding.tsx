@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import StudyPageLayout from "../../components/StudyPageLayout";
 
 interface Block {
   type: "sync" | "task" | "microtask" | "await";
@@ -227,7 +226,7 @@ const EventLoopVisualizer: React.FC<{
   );
 };
 
-const BlockEventLoopSimulator: React.FC = () => {
+const EventLoopLanding: React.FC = () => {
   const [codeBlocks, setCodeBlocks] = useState<Block[]>([]);
   const [log, setLog] = useState<string[]>([]);
   const [actualConsoleOutput, setActualConsoleOutput] = useState<string[]>([]);
@@ -530,12 +529,7 @@ const BlockEventLoopSimulator: React.FC = () => {
   };
 
   return (
-    <StudyPageLayout
-      title="🧱 JavaScript 이벤트 루프 시뮬레이터"
-      subtitle="비동기 처리 순서를 시각적으로 학습해보세요"
-      maxWidth="full"
-      showBackButton={true}
-    >
+    <div>
       <div className="mb-6">
         <h3 className="text-gray-700 mb-4 text-lg font-semibold">
           📦 코드 블록 추가
@@ -686,10 +680,8 @@ const BlockEventLoopSimulator: React.FC = () => {
           🎯 핵심: Call Stack → Microtask Queue → Task Queue 순서로 처리됩니다
         </div>
       </div>
-    </StudyPageLayout>
+    </div>
   );
 };
 
-export default function PromisePage() {
-  return <BlockEventLoopSimulator />;
-}
+export { EventLoopLanding };

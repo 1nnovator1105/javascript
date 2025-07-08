@@ -64,6 +64,7 @@ export default function Home() {
       title="🚀 Promise 응답 순서 시뮬레이터"
       subtitle="병렬 Promise에서 응답 받는 순서를 시각적으로 학습해보세요"
       maxWidth="full"
+      showBackButton={true}
     >
       <div className="flex flex-col sm:flex-row items-center gap-4 mb-6">
         <label className="w-full sm:w-auto">

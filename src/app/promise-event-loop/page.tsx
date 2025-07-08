@@ -534,6 +534,7 @@ const BlockEventLoopSimulator: React.FC = () => {
       title="🧱 JavaScript 이벤트 루프 시뮬레이터"
       subtitle="비동기 처리 순서를 시각적으로 학습해보세요"
       maxWidth="full"
+      showBackButton={true}
     >
       <div className="mb-6">
         <h3 className="text-gray-700 mb-4 text-lg font-semibold">

@@ -279,9 +279,9 @@ export default function ScopePage() {
         </h3>
         <div className="bg-white p-4 rounded-lg border border-red-200 mb-4">
           <p className="text-gray-700 mb-2">
-            <strong>실험해보세요:</strong> "올바른 방법 사용" 체크박스를{" "}
-            <strong>해제</strong>하고 "1초 후 증가" 버튼을 빠르게 여러 번
-            클릭해보세요!
+            <strong>실험해보세요:</strong> &quot;올바른 방법 사용&quot;
+            체크박스를 <strong>해제</strong>하고 &quot;1초 후 증가&quot; 버튼을
+            빠르게 여러 번 클릭해보세요!
           </p>
           <p className="text-red-600 font-medium">
             예상: 클릭한 만큼 증가 | 실제: 1만 증가하는 문제 발생
@@ -374,7 +374,7 @@ export default function ScopePage() {
                   1. 클로저 (Closure)
                 </h4>
                 <p className="text-sm text-blue-700">
-                  함수가 생성될 때 외부 변수에 대한 참조를 "기억"하는
+                  함수가 생성될 때 외부 변수에 대한 참조를 &quot;기억&quot;하는
                   메커니즘입니다. setTimeout 콜백은 클로저를 통해 count 변수를
                   캡처합니다.
                 </p>
@@ -395,8 +395,8 @@ export default function ScopePage() {
                   3. 함수형 업데이트
                 </h4>
                 <p className="text-sm text-blue-700">
-                  {`setCount(prev => prev + 1)을 사용하면 실행 시점의 최신 상태를 
-                  받아서 업데이트하므로 클로저 문제를 해결할 수 있습니다.`}
+                  setCount(prev =&gt; prev + 1)을 사용하면 실행 시점의 최신
+                  상태를 받아서 업데이트하므로 클로저 문제를 해결할 수 있습니다.
                 </p>
               </div>
               <div className="bg-white p-4 rounded-lg border border-blue-200">

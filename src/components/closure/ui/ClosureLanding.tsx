@@ -357,7 +357,7 @@ const ClosureLanding = () => {
         </div>
 
         {/* 핵심 개념 설명 */}
-        <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl p-6 border-2 border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl p-6 border-2 border-blue-200 mb-8">
           <h3 className="text-xl font-semibold mb-4 text-blue-800">
             🧠 핵심 개념 이해
           </h3>
@@ -403,6 +403,154 @@ const ClosureLanding = () => {
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* 클로저 패턴 활용 가이드 */}
+        <div className="bg-gradient-to-br from-purple-50 to-pink-100 rounded-xl p-6 border-2 border-purple-200 mb-8">
+          <h3 className="text-xl font-semibold mb-4 text-purple-800">
+            💡 클로저 패턴을 사용하는 이유
+          </h3>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="space-y-4">
+              <div className="bg-white p-4 rounded-lg border border-purple-200">
+                <h4 className="font-semibold text-purple-800 mb-2 flex items-center gap-2">
+                  🔒 1. 데이터 캡슐화
+                </h4>
+                <p className="text-sm text-purple-700 mb-2">
+                  외부에서 직접 접근할 수 없는 프라이빗 변수를 만들 수 있습니다.
+                </p>
+                <div className="bg-gray-100 p-2 rounded text-xs font-mono">
+                  <pre>{`function createCounter() {
+  let count = 0; // 프라이빗 변수
+  return {
+    increment: () => ++count,
+    getCount: () => count
+  };
+}`}</pre>
+                </div>
+              </div>
+
+              <div className="bg-white p-4 rounded-lg border border-purple-200">
+                <h4 className="font-semibold text-purple-800 mb-2 flex items-center gap-2">
+                  🏭 2. 팩토리 함수
+                </h4>
+                <p className="text-sm text-purple-700 mb-2">
+                  설정값을 기억하는 맞춤형 함수를 생성할 수 있습니다.
+                </p>
+                <div className="bg-gray-100 p-2 rounded text-xs font-mono">
+                  <pre>{`function createMultiplier(factor) {
+  return (num) => num * factor;
+}
+const double = createMultiplier(2);
+const triple = createMultiplier(3);`}</pre>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <div className="bg-white p-4 rounded-lg border border-purple-200">
+                <h4 className="font-semibold text-purple-800 mb-2 flex items-center gap-2">
+                  🔧 3. 모듈 패턴
+                </h4>
+                <p className="text-sm text-purple-700 mb-2">
+                  네임스페이스를 만들고 전역 변수 오염을 방지할 수 있습니다.
+                </p>
+                <div className="bg-gray-100 p-2 rounded text-xs font-mono">
+                  <pre>{`const MyModule = (() => {
+  let privateVar = 'hidden';
+  return {
+    publicMethod: () => privateVar,
+    setPrivate: (val) => privateVar = val
+  };
+})();`}</pre>
+                </div>
+              </div>
+
+              <div className="bg-white p-4 rounded-lg border border-purple-200">
+                <h4 className="font-semibold text-purple-800 mb-2 flex items-center gap-2">
+                  ⚡ 4. 콜백 컨텍스트 유지
+                </h4>
+                <p className="text-sm text-purple-700 mb-2">
+                  이벤트 핸들러나 비동기 함수에서 특정 값을 기억할 수 있습니다.
+                </p>
+                <div className="bg-gray-100 p-2 rounded text-xs font-mono">
+                  <pre>{`buttons.forEach((btn, index) => {
+  btn.onClick = () => {
+    console.log(\`Button \${index} clicked\`);
+  };
+});`}</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 실제 사용 예시 */}
+        <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl p-6 border-2 border-green-200">
+          <h3 className="text-xl font-semibold mb-4 text-green-800">
+            🌟 실제 개발에서의 클로저 활용 예시
+          </h3>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="bg-white p-4 rounded-lg border border-green-200">
+              <h4 className="font-semibold text-green-800 mb-2">
+                디바운스 함수
+              </h4>
+              <p className="text-sm text-green-700 mb-2">
+                검색 입력이나 리사이즈 이벤트에서 자주 사용됩니다.
+              </p>
+              <div className="bg-gray-900 text-green-400 p-3 rounded text-xs font-mono overflow-x-auto">
+                <pre>{`function debounce(func, delay) {
+  let timeoutId;
+  return function(...args) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  };
+}
+
+const debouncedSearch = debounce(searchAPI, 300);`}</pre>
+              </div>
+            </div>
+
+            <div className="bg-white p-4 rounded-lg border border-green-200">
+              <h4 className="font-semibold text-green-800 mb-2">
+                메모이제이션
+              </h4>
+              <p className="text-sm text-green-700 mb-2">
+                계산 결과를 캐싱하여 성능을 최적화할 수 있습니다.
+              </p>
+              <div className="bg-gray-900 text-green-400 p-3 rounded text-xs font-mono overflow-x-auto">
+                <pre>{`function memoize(func) {
+  const cache = {};
+  return function(...args) {
+    const key = JSON.stringify(args);
+    if (cache[key]) {
+      return cache[key];
+    }
+    const result = func.apply(this, args);
+    cache[key] = result;
+    return result;
+  };
+}
+
+const memoizedFib = memoize(fibonacci);`}</pre>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-4 p-4 bg-green-100 rounded-lg border border-green-300">
+            <h4 className="font-semibold text-green-800 mb-2">💡 주의사항</h4>
+            <ul className="text-sm text-green-700 space-y-1">
+              <li>
+                • 클로저는 메모리를 계속 참조하므로 메모리 누수에 주의해야
+                합니다.
+              </li>
+              <li>• 순환 참조를 만들지 않도록 조심해야 합니다.</li>
+              <li>• 과도한 클로저 사용은 성능에 영향을 줄 수 있습니다.</li>
+              <li>• 디버깅이 어려울 수 있으므로 명확한 네이밍이 중요합니다.</li>
+            </ul>
           </div>
         </div>
       </div>

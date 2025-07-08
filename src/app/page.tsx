@@ -49,8 +49,8 @@ export default function Home() {
 
   return (
     <StudyPageLayout
-      title="🎓 JavaScript 비동기 학습 센터"
-      subtitle="Promise와 이벤트 루프를 시각적으로 학습해보세요"
+      title="🎓 JavaScript 핵심 개념 학습 센터"
+      subtitle="JavaScript 핵심 개념을 시각적으로 학습해보세요"
       maxWidth="wide"
     >
       {/* 소개 섹션 */}
@@ -148,9 +148,10 @@ export default function Home() {
         </h3>
         <div className="text-sm text-emerald-700 space-y-2">
           <p>• 실제 프로젝트에서 비동기 처리 패턴을 적용해보세요</p>
+          <p>• 클로저를 활용한 모듈 패턴과 캡슐화를 실습해보세요</p>
           <p>• async/await vs Promise.then() 비교 학습을 진행해보세요</p>
           <p>• 에러 처리(try/catch, .catch())에 대해 학습해보세요</p>
-          <p>• 성능 최적화를 위한 Promise 패턴들을 탐구해보세요</p>
+          <p>• 성능 최적화를 위한 JavaScript 패턴들을 탐구해보세요</p>
         </div>
       </div>
 

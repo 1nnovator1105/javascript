@@ -529,7 +529,7 @@ const BlockEventLoopSimulator: React.FC = () => {
   };
 
   return (
-    <div className="font-sans min-h-screen mx-auto bg-gradient-to-br from-indigo-500 to-purple-600 p-4 md:p-6 max-w-full md:max-w-7xl">
+    <div className="font-sans min-h-screen mx-auto bg-gradient-to-br from-indigo-500 to-purple-600 p-4 md:p-6 max-w-full">
       <div className="bg-white/95 backdrop-blur-lg shadow-2xl rounded-xl md:rounded-2xl p-5 md:p-8">
         <div className="text-center mb-8">
           <h1 className="font-bold bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent mb-2 text-2xl md:text-3xl">

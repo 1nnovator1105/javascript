@@ -343,38 +343,42 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-white rounded-lg border-2 border-green-200 p-6">
             <h3 className="text-lg font-semibold mb-4 text-green-800 flex items-center gap-2">
-              👨‍👩‍👧‍👦 가족 관계로 이해하기
+              🚗 자동차로 이해하기
             </h3>
             <div className="space-y-3 text-gray-700">
               <div className="flex items-center gap-3">
-                <span className="text-2xl">👴</span>
+                <span className="text-2xl">🚙</span>
                 <div>
-                  <div className="font-medium">할아버지 (Object.prototype)</div>
-                  <div className="text-sm">모든 사람이 가지는 기본 능력</div>
+                  <div className="font-medium">
+                    모든 교통수단 (Object.prototype)
+                  </div>
+                  <div className="text-sm">이동수단이 가지는 기본 특성</div>
                 </div>
               </div>
               <div className="ml-4 text-gray-400">↓</div>
               <div className="flex items-center gap-3">
-                <span className="text-2xl">👨</span>
+                <span className="text-2xl">🚗</span>
                 <div>
-                  <div className="font-medium">아버지 (Animal.prototype)</div>
-                  <div className="text-sm">동물이 가지는 공통 능력</div>
+                  <div className="font-medium">자동차 (Animal.prototype)</div>
+                  <div className="text-sm">엔진으로 움직이는 차량의 특성</div>
                 </div>
               </div>
               <div className="ml-4 text-gray-400">↓</div>
               <div className="flex items-center gap-3">
-                <span className="text-2xl">🐕</span>
+                <span className="text-2xl">🚙</span>
                 <div>
-                  <div className="font-medium">강아지 (Dog.prototype)</div>
-                  <div className="text-sm">강아지만의 특별한 능력</div>
+                  <div className="font-medium">SUV (Dog.prototype)</div>
+                  <div className="text-sm">SUV 타입 차량만의 특성</div>
                 </div>
               </div>
               <div className="ml-4 text-gray-400">↓</div>
               <div className="flex items-center gap-3">
-                <span className="text-2xl">🦮</span>
+                <span className="text-2xl">🚐</span>
                 <div>
-                  <div className="font-medium">멍멍이 (myDog)</div>
-                  <div className="text-sm">구체적인 강아지 개체</div>
+                  <div className="font-medium">내 차 (myDog)</div>
+                  <div className="text-sm">
+                    구체적인 번호판을 가진 실제 차량
+                  </div>
                 </div>
               </div>
             </div>
@@ -382,38 +386,40 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
 
           <div className="bg-white rounded-lg border-2 border-green-200 p-6">
             <h3 className="text-lg font-semibold mb-4 text-green-800 flex items-center gap-2">
-              🏭 공장 설계도로 이해하기
+              🐕 강아지로 이해하기
             </h3>
             <div className="space-y-3 text-gray-700">
               <div className="flex items-center gap-3">
-                <span className="text-2xl">📋</span>
+                <span className="text-2xl">🌍</span>
                 <div>
-                  <div className="font-medium">기본 설계도</div>
-                  <div className="text-sm">모든 제품의 기본 사양</div>
+                  <div className="font-medium">모든 생명체</div>
+                  <div className="text-sm">생명이 있는 모든 것의 기본 특성</div>
                 </div>
               </div>
               <div className="ml-4 text-gray-400">↓</div>
               <div className="flex items-center gap-3">
-                <span className="text-2xl">📐</span>
+                <span className="text-2xl">🐾</span>
                 <div>
-                  <div className="font-medium">동물 설계도</div>
-                  <div className="text-sm">동물 제품의 공통 사양</div>
+                  <div className="font-medium">동물</div>
+                  <div className="text-sm">동물들이 공통으로 가지는 특성</div>
                 </div>
               </div>
               <div className="ml-4 text-gray-400">↓</div>
               <div className="flex items-center gap-3">
-                <span className="text-2xl">🔧</span>
+                <span className="text-2xl">🐕</span>
                 <div>
-                  <div className="font-medium">강아지 설계도</div>
-                  <div className="text-sm">강아지의 특별 사양</div>
+                  <div className="font-medium">강아지</div>
+                  <div className="text-sm">강아지 종류가 가지는 특성</div>
                 </div>
               </div>
               <div className="ml-4 text-gray-400">↓</div>
               <div className="flex items-center gap-3">
                 <span className="text-2xl">🦮</span>
                 <div>
-                  <div className="font-medium">완성된 제품</div>
-                  <div className="text-sm">실제 사용 가능한 강아지</div>
+                  <div className="font-medium">멍멍이</div>
+                  <div className="text-sm">
+                    구체적인 이름을 가진 실제 강아지
+                  </div>
                 </div>
               </div>
             </div>

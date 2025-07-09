@@ -26,9 +26,9 @@
   "categories": ["education", "developer", "programming"],
   "screenshots": [
     {
-      "src": "/images/og-image.svg",
+      "src": "/images/thumbnail-backup.png",
       "sizes": "1200x630",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "form_factor": "wide"
     }
   ]

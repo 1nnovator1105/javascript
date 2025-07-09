@@ -79,7 +79,7 @@ export const metadata: Metadata = {
     siteName: "JavaScript 핵심 개념 학습 센터",
     images: [
       {
-        url: "/images/og-image.svg",
+        url: "/images/thumbnail-backup.png",
         width: 1200,
         height: 630,
         alt: "JavaScript 핵심 개념 학습 센터 - 인터랙티브 학습 플랫폼",
@@ -91,7 +91,7 @@ export const metadata: Metadata = {
     title: "JavaScript 핵심 개념 학습 센터",
     description:
       "Promise, Closure, Event Loop, Variable 등 JavaScript 핵심 개념을 시각적 시뮬레이터로 학습하세요.",
-    images: ["/images/og-image.svg"],
+    images: ["/images/thumbnail-backup.png"],
   },
   robots: {
     index: true,

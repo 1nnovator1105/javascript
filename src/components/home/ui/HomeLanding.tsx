@@ -84,6 +84,15 @@ const HomeLanding = () => {
       ],
       icon: "⚛️",
     },
+    {
+      title: "🌐 웹 렌더링 전략 시뮬레이터",
+      description:
+        "CSR, SSR, ISR, SSG의 차이점과 특징을 시각적 시뮬레이터로 학습",
+      path: "/rendering-strategies",
+      difficulty: "중급",
+      topics: ["CSR", "SSR", "ISR", "SSG", "렌더링", "성능 최적화"],
+      icon: "🌐",
+    },
   ];
 
   const getDifficultyColor = (difficulty: string) => {

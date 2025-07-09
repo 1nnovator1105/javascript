@@ -1,14 +1,13 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { StudyPageLayout } from "@/components/share/ui";
+import React, { useState } from "react";
 
 // 프로토타입 체인 노드 인터페이스
 interface PrototypeNode {
   id: string;
   name: string;
   type: string;
-  properties: Record<string, any>;
+  properties: Record<string, string>;
   description: string;
 }
 
@@ -42,7 +41,7 @@ const PrototypeLanding = () => {
   const [searchResult, setSearchResult] = useState<{
     found: boolean;
     path: string[];
-    value: any;
+    value: string;
   } | null>(null);
 
   // 개념 설명 데이터
@@ -256,7 +255,7 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
             setSearchResult({
               found: false,
               path: steps,
-              value: undefined,
+              value: "",
             });
 
             setAnimationState({

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 
 interface DOMNode {
   type: string;
@@ -117,45 +117,48 @@ const VirtualDomLanding: React.FC = () => {
     "idle" | "real-dom" | "virtual-dom" | "completed"
   >("idle");
 
-  // 초기 DOM 트리 생성
-  const initialDomTree: DOMNode[] = [
-    {
-      type: "div",
-      props: { className: "container", id: "root" },
-      children: [
-        {
-          type: "h1",
-          props: { className: "title" },
-          children: ["Hello World"],
-          id: "title-1",
-        },
-        {
-          type: "ul",
-          props: { className: "list" },
-          children: [
-            {
-              type: "li",
-              props: { key: "1" },
-              children: ["Item 1"],
-              id: "item-1",
-            },
-            {
-              type: "li",
-              props: { key: "2" },
-              children: ["Item 2"],
-              id: "item-2",
-            },
-          ],
-          id: "list-1",
-        },
-      ],
-      id: "root-1",
-    },
-  ];
+  // 초기 DOM 트리 생성 (useMemo로 최적화)
+  const initialDomTree: DOMNode[] = useMemo(
+    () => [
+      {
+        type: "div",
+        props: { className: "container", id: "root" },
+        children: [
+          {
+            type: "h1",
+            props: { className: "title" },
+            children: ["Hello World"],
+            id: "title-1",
+          },
+          {
+            type: "ul",
+            props: { className: "list" },
+            children: [
+              {
+                type: "li",
+                props: { key: "1" },
+                children: ["Item 1"],
+                id: "item-1",
+              },
+              {
+                type: "li",
+                props: { key: "2" },
+                children: ["Item 2"],
+                id: "item-2",
+              },
+            ],
+            id: "list-1",
+          },
+        ],
+        id: "root-1",
+      },
+    ],
+    []
+  );
 
   useEffect(() => {
     setState((prev) => ({ ...prev, domNodes: initialDomTree }));
-  }, []);
+  }, [initialDomTree]);
 
   // Real DOM 시뮬레이션 함수
   const runRealDomSimulation = async () => {

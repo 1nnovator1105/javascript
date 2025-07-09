@@ -40,7 +40,6 @@ const renderingStrategies: RenderingStrategy[] = [
       "빠른 페이지 간 네비게이션",
       "풍부한 사용자 상호작용",
       "서버 부하 감소",
-      "오프라인 작동 가능",
     ],
     disadvantages: [
       "초기 로딩 시간이 길음",
@@ -1016,7 +1015,7 @@ const RenderingStrategiesLanding: React.FC = () => {
         <div className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
           <pre className="text-sm">
             {selectedStrategy === "csr" &&
-              `// CSR (Create React App)
+              `// CSR
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 

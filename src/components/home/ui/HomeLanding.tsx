@@ -69,6 +69,21 @@ const HomeLanding = () => {
       topics: ["실행 컨텍스트", "스택", "스코프 체인", "호이스팅", "변수 환경"],
       icon: "🧠",
     },
+    {
+      title: "⚛️ React Virtual DOM",
+      description:
+        "Virtual DOM의 작동 원리와 Diffing 알고리즘을 시각적 시뮬레이터로 학습",
+      path: "/virtual-dom",
+      difficulty: "중급",
+      topics: [
+        "Virtual DOM",
+        "Diffing",
+        "Reconciliation",
+        "React",
+        "성능 최적화",
+      ],
+      icon: "⚛️",
+    },
   ];
 
   const getDifficultyColor = (difficulty: string) => {

@@ -52,6 +52,14 @@ const HomeLanding = () => {
       ],
       icon: "🎪",
     },
+    {
+      title: "🧬 JavaScript Prototype & 상속",
+      description: "프로토타입 체인과 상속 메커니즘을 시각적 시뮬레이터로 학습",
+      path: "/prototype",
+      difficulty: "중급",
+      topics: ["Prototype", "상속", "생성자 함수", "클래스", "프로토타입 체인"],
+      icon: "🧬",
+    },
   ];
 
   const getDifficultyColor = (difficulty: string) => {
@@ -81,6 +89,7 @@ const HomeLanding = () => {
               <li>JavaScript 변수 선언 & 호이스팅 (기초)</li>
               <li>병렬 Promise 응답 순서 (기초)</li>
               <li>JavaScript Scope & Closure (중급)</li>
+              <li>JavaScript Prototype & 상속 (중급)</li>
               <li>Event Delegation & 이벤트 위임 (중급)</li>
               <li>JavaScript 이벤트 루프 (심화)</li>
             </ol>

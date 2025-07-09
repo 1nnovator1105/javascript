@@ -124,6 +124,18 @@ export default function NotFound() {
                 <div className="text-sm text-gray-600">이벤트 위임 패턴</div>
               </Link>
 
+              {/* Prototype 카드 */}
+              <Link
+                href="/prototype"
+                className="group p-4 bg-white rounded-lg border-2 border-purple-200 hover:border-purple-400 transition-all duration-200 hover:shadow-lg"
+              >
+                <div className="text-2xl mb-2">🧬</div>
+                <div className="font-semibold text-purple-800 mb-1">
+                  Prototype
+                </div>
+                <div className="text-sm text-gray-600">프로토타입 상속</div>
+              </Link>
+
               {/* 더 많은 주제 (예약) */}
               <div className="p-4 bg-gray-50 rounded-lg border-2 border-gray-200">
                 <div className="text-2xl mb-2">🚀</div>

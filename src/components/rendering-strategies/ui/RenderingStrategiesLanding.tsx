@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 interface RenderingStrategy {
   id: string;
@@ -332,49 +332,113 @@ const RenderingStrategiesLanding: React.FC = () => {
   const [simulationSpeed, setSimulationSpeed] = useState<number>(1);
   const [isPaused, setIsPaused] = useState<boolean>(false);
 
+  // useRef를 사용하여 최신 상태 추적
+  const simulationRef = useRef<{
+    isRunning: boolean;
+    isPaused: boolean;
+    currentStep: number;
+  }>({
+    isRunning: false,
+    isPaused: false,
+    currentStep: 0,
+  });
+
   const currentStrategyData = renderingStrategies.find(
     (s) => s.id === selectedStrategy
   )!;
   const currentSteps = simulationSteps[selectedStrategy];
 
-  // 시뮬레이션 실행
+  // 시뮬레이션 실행 - 완전히 새로운 접근법
   const runSimulation = async () => {
+    if (simulationRef.current.isRunning) {
+      console.log("시뮬레이션이 이미 실행 중입니다.");
+      return;
+    }
+
+    console.log(
+      "시뮬레이션 시작:",
+      selectedStrategy,
+      currentSteps.length,
+      "단계"
+    );
+
+    // 초기 상태 설정
+    simulationRef.current = {
+      isRunning: true,
+      isPaused: false,
+      currentStep: 0,
+    };
+
     setIsSimulating(true);
     setCurrentStep(0);
     setIsPaused(false);
 
+    // 잠시 대기 후 첫 번째 단계부터 시작
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
     for (let i = 0; i < currentSteps.length; i++) {
-      while (isPaused && isSimulating) {
-        await new Promise((resolve) => setTimeout(resolve, 100));
+      // 중단 체크
+      if (!simulationRef.current.isRunning) {
+        console.log("시뮬레이션이 중단되었습니다.");
+        break;
       }
 
-      if (!isSimulating) break;
+      // 일시정지 체크
+      while (
+        simulationRef.current.isPaused &&
+        simulationRef.current.isRunning
+      ) {
+        console.log("시뮬레이션 일시정지 중...");
+        await new Promise((resolve) => setTimeout(resolve, 200));
+      }
 
-      const baseDelay = 2000;
-      const adjustedTiming = baseDelay / simulationSpeed;
-      await new Promise((resolve) => setTimeout(resolve, adjustedTiming));
+      if (!simulationRef.current.isRunning) break;
 
-      if (!isSimulating) break;
+      console.log(
+        `단계 ${i + 1}/${currentSteps.length} 실행 중:`,
+        currentSteps[i].title
+      );
+
+      // 현재 단계 업데이트
+      simulationRef.current.currentStep = i + 1;
       setCurrentStep(i + 1);
+
+      // 단계별 대기 시간
+      const baseDelay = 2000;
+      const adjustedDelay = baseDelay / simulationSpeed;
+
+      console.log(`${adjustedDelay}ms 대기 중...`);
+      await new Promise((resolve) => setTimeout(resolve, adjustedDelay));
     }
 
-    if (isSimulating) {
+    // 시뮬레이션 완료
+    if (simulationRef.current.isRunning) {
+      console.log("시뮬레이션 완료");
       setTimeout(() => {
+        simulationRef.current.isRunning = false;
         setIsSimulating(false);
         setCurrentStep(0);
         setIsPaused(false);
-      }, 2000);
+      }, 1000);
     }
   };
 
   const stopSimulation = () => {
+    console.log("시뮬레이션 중단");
+    simulationRef.current.isRunning = false;
+    simulationRef.current.isPaused = false;
+    simulationRef.current.currentStep = 0;
+
     setIsSimulating(false);
     setCurrentStep(0);
     setIsPaused(false);
   };
 
   const togglePause = () => {
-    setIsPaused(!isPaused);
+    const newPausedState = !simulationRef.current.isPaused;
+    simulationRef.current.isPaused = newPausedState;
+    setIsPaused(newPausedState);
+    console.log("일시정지 상태:", newPausedState);
   };
 
   // 성능 점수 바 컴포넌트
@@ -412,14 +476,17 @@ const RenderingStrategiesLanding: React.FC = () => {
   // 시뮬레이션 시각화 컴포넌트
   const SimulationVisualizer: React.FC = () => {
     const getComponentStyle = (component: string) => {
-      const currentStepData = currentSteps[currentStep - 1];
-      const isHighlighted = currentStepData?.highlight?.includes(component);
+      // currentStep이 0보다 클 때만 하이라이트 체크
+      const currentStepData =
+        currentStep > 0 ? currentSteps[currentStep - 1] : null;
+      const isHighlighted =
+        currentStepData?.highlight?.includes(component) || false;
 
       const baseStyles =
         "w-16 h-16 md:w-20 md:h-20 rounded-xl flex items-center justify-center text-xl md:text-2xl font-bold transition-all duration-500 relative";
 
       if (isHighlighted) {
-        return `${baseStyles} bg-gradient-to-br from-yellow-400 to-orange-500 text-white shadow-lg transform scale-110 animate-pulse z-10`;
+        return `${baseStyles} bg-gradient-to-br from-yellow-400 to-orange-500 text-white shadow-lg transform scale-110 animate-pulse z-10 ring-4 ring-yellow-300`;
       }
 
       switch (component) {
@@ -454,9 +521,9 @@ const RenderingStrategiesLanding: React.FC = () => {
             <span className="text-sm font-medium text-blue-800">
               {isSimulating
                 ? isPaused
-                  ? "일시정지"
-                  : "진행 중"
-                : "시뮬레이션 준비"}
+                  ? "⏸️ 일시정지"
+                  : "▶️ 진행 중"
+                : "⏹️ 시뮬레이션 준비"}
             </span>
             <div className="text-sm text-blue-600 flex items-center gap-2">
               <span>
@@ -468,13 +535,25 @@ const RenderingStrategiesLanding: React.FC = () => {
             </div>
           </div>
 
-          {currentStep > 0 && (
+          {currentStep > 0 && currentStep <= currentSteps.length && (
             <div>
               <h4 className="font-semibold text-blue-900 text-sm md:text-base">
                 {currentSteps[currentStep - 1].title}
               </h4>
               <p className="text-xs md:text-sm text-blue-700 mt-1">
                 {currentSteps[currentStep - 1].description}
+              </p>
+            </div>
+          )}
+
+          {currentStep === 0 && !isSimulating && (
+            <div>
+              <h4 className="font-semibold text-blue-900 text-sm md:text-base">
+                시뮬레이션 시작 대기 중
+              </h4>
+              <p className="text-xs md:text-sm text-blue-700 mt-1">
+                &apos;시뮬레이션 시작&apos; 버튼을 눌러{" "}
+                {currentStrategyData.name} 렌더링 과정을 확인해보세요.
               </p>
             </div>
           )}
@@ -654,7 +733,17 @@ const RenderingStrategiesLanding: React.FC = () => {
               {/* 제어 버튼들 */}
               <div className="space-y-2">
                 <button
-                  onClick={runSimulation}
+                  onClick={() => {
+                    console.log("시뮬레이션 시작 버튼 클릭됨");
+                    console.log("현재 전략:", selectedStrategy);
+                    console.log("현재 단계들:", currentSteps);
+                    console.log("현재 상태:", {
+                      isSimulating,
+                      currentStep,
+                      isPaused,
+                    });
+                    runSimulation();
+                  }}
                   disabled={isSimulating}
                   className={`w-full px-4 py-3 rounded-lg font-medium transition-all duration-200 ${
                     isSimulating
@@ -667,7 +756,10 @@ const RenderingStrategiesLanding: React.FC = () => {
 
                 <div className="grid grid-cols-2 gap-2">
                   <button
-                    onClick={togglePause}
+                    onClick={() => {
+                      console.log("일시정지/재개 버튼 클릭됨");
+                      togglePause();
+                    }}
                     disabled={!isSimulating}
                     className={`px-3 py-2 rounded-lg font-medium transition-all duration-200 text-sm ${
                       !isSimulating
@@ -681,7 +773,10 @@ const RenderingStrategiesLanding: React.FC = () => {
                   </button>
 
                   <button
-                    onClick={stopSimulation}
+                    onClick={() => {
+                      console.log("중단 버튼 클릭됨");
+                      stopSimulation();
+                    }}
                     disabled={!isSimulating}
                     className={`px-3 py-2 rounded-lg font-medium transition-all duration-200 text-sm ${
                       !isSimulating
@@ -696,7 +791,7 @@ const RenderingStrategiesLanding: React.FC = () => {
             </div>
 
             {/* 단계별 설명 */}
-            <div className="bg-gray-50 p-4 rounded-lg max-h-64 overflow-y-auto">
+            <div className="bg-gray-50 p-4 rounded-lg overflow-y-auto">
               <h4 className="font-medium text-gray-700 mb-3">렌더링 단계:</h4>
               <div className="space-y-2">
                 {currentSteps.map((step, index) => (

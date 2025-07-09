@@ -349,9 +349,7 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
               <div className="flex items-center gap-3">
                 <span className="text-2xl">🚙</span>
                 <div>
-                  <div className="font-medium">
-                    모든 교통수단 (Object.prototype)
-                  </div>
+                  <div className="font-medium">모든 교통수단</div>
                   <div className="text-sm">이동수단이 가지는 기본 특성</div>
                 </div>
               </div>
@@ -359,7 +357,7 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
               <div className="flex items-center gap-3">
                 <span className="text-2xl">🚗</span>
                 <div>
-                  <div className="font-medium">자동차 (Animal.prototype)</div>
+                  <div className="font-medium">자동차</div>
                   <div className="text-sm">엔진으로 움직이는 차량의 특성</div>
                 </div>
               </div>
@@ -367,7 +365,7 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
               <div className="flex items-center gap-3">
                 <span className="text-2xl">🚙</span>
                 <div>
-                  <div className="font-medium">SUV (Dog.prototype)</div>
+                  <div className="font-medium">SUV</div>
                   <div className="text-sm">SUV 타입 차량만의 특성</div>
                 </div>
               </div>
@@ -375,7 +373,7 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
               <div className="flex items-center gap-3">
                 <span className="text-2xl">🚐</span>
                 <div>
-                  <div className="font-medium">내 차 (myDog)</div>
+                  <div className="font-medium">내 차</div>
                   <div className="text-sm">
                     구체적인 번호판을 가진 실제 차량
                   </div>

@@ -232,7 +232,25 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
         }));
 
         const currentNode = prototypeChain[currentStep];
-        if (currentNode && currentNode.properties[property] !== undefined) {
+        console.log(
+          `단계 ${currentStep + 1}: ${currentNode?.name}에서 "${property}" 검색`
+        );
+        console.log(`현재 노드 properties:`, currentNode?.properties);
+        console.log(
+          `${property} 직접 정의 여부:`,
+          currentNode
+            ? Object.prototype.hasOwnProperty.call(
+                currentNode.properties,
+                property
+              )
+            : false
+        );
+
+        if (
+          currentNode &&
+          Object.prototype.hasOwnProperty.call(currentNode.properties, property)
+        ) {
+          console.log(`✅ ${currentNode.name}에서 "${property}" 찾음!`);
           // 찾았을 때 성공 애니메이션
           setTimeout(() => {
             setSearchResult({

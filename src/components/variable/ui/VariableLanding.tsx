@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useCallback, useRef, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 
 interface Variable {
   id: string;
@@ -359,7 +359,11 @@ const VariableLanding = () => {
               </label>
               <select
                 value={currentScope}
-                onChange={(e) => setCurrentScope(e.target.value as any)}
+                onChange={(e) =>
+                  setCurrentScope(
+                    e.target.value as "global" | "function" | "block"
+                  )
+                }
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
               >
                 <option value="global">Global Scope</option>
@@ -425,11 +429,11 @@ const VariableLanding = () => {
             </div>
 
             <div className="bg-gray-100 p-3 rounded-lg mb-4 font-mono text-sm">
-              <div className="text-gray-600">// 코드 실행 전 상태</div>
-              <div className="text-red-600">console.log(hoistedVar); // ?</div>
-              <div className="text-blue-600">console.log(letVar); // ?</div>
-              <div className="text-green-600">console.log(constVar); // ?</div>
-              <div className="mt-2 text-gray-600">// 선언부</div>
+              <div className="text-gray-600">{`// 코드 실행 전 상태`}</div>
+              <div className="text-red-600">{`console.log(hoistedVar); // ?`}</div>
+              <div className="text-blue-600">{`console.log(letVar); // ?`}</div>
+              <div className="text-green-600">{`console.log(constVar); // ?`}</div>
+              <div className="mt-2 text-gray-600">{`// 선언부`}</div>
               <div className="text-red-600">
                 var hoistedVar = &quot;I&apos;m var&quot;;
               </div>
@@ -745,32 +749,30 @@ const VariableLanding = () => {
 
                 <div className="bg-gray-100 p-3 rounded text-xs font-mono">
                   <div className="text-gray-600 mb-2">
-                    // 우리가 작성한 코드
+                    {`// 우리가 작성한 코드`}
                   </div>
                   <div className="text-blue-600">
-                    console.log(myVar); // undefined
+                    {`console.log(myVar); // undefined`}
                   </div>
-                  <div className="text-red-600">
-                    var myVar = &quot;Hello&quot;;
-                  </div>
+                  <div className="text-red-600">{`var myVar = "Hello";`}</div>
                   <div className="text-blue-600">
-                    console.log(myVar); // &quot;Hello&quot;
+                    {`console.log(myVar); // "Hello"`}
                   </div>
 
                   <div className="text-gray-600 mt-4 mb-2">
-                    // JavaScript 엔진이 해석하는 방식
+                    {`// JavaScript 엔진이 해석하는 방식`}
                   </div>
                   <div className="text-red-600">
-                    var myVar; // undefined로 초기화
+                    {`var myVar; // undefined로 초기화`}
                   </div>
                   <div className="text-blue-600">
-                    console.log(myVar); // undefined
+                    {`console.log(myVar); // undefined`}
                   </div>
                   <div className="text-red-600">
-                    myVar = &quot;Hello&quot;; // 값 할당
+                    {`myVar = "Hello"; // 값 할당`}
                   </div>
                   <div className="text-blue-600">
-                    console.log(myVar); // &quot;Hello&quot;
+                    {`console.log(myVar); // "Hello"`}
                   </div>
                 </div>
               </div>
@@ -826,34 +828,28 @@ const VariableLanding = () => {
                 </p>
 
                 <div className="bg-gray-100 p-3 rounded text-xs font-mono">
-                  <div className="text-gray-600 mb-2">// TDZ 예시</div>
+                  <div className="text-gray-600 mb-2">{`// TDZ 예시`}</div>
                   <div className="text-green-600">function example() {`{`}</div>
-                  <div className="text-red-600 ml-4"> // TDZ 시작 지점</div>
+                  <div className="text-red-600 ml-4">{` // TDZ 시작 지점`}</div>
                   <div className="text-red-600 ml-4">
-                    {" "}
-                    console.log(myLet); // ReferenceError!
+                    {`  console.log(myLet); // ReferenceError!`}
                   </div>
                   <div className="text-red-600 ml-4">
-                    {" "}
-                    console.log(myConst); // ReferenceError!
+                    {`  console.log(myConst); // ReferenceError!`}
                   </div>
-                  <div className="text-gray-600 ml-4"> </div>
+                  <div className="text-gray-600 ml-4">{`  `}</div>
                   <div className="text-blue-600 ml-4">
-                    {" "}
-                    let myLet = &quot;Hello&quot;; // TDZ 끝
+                    {`  let myLet = "Hello"; // TDZ 끝`}
                   </div>
                   <div className="text-blue-600 ml-4">
-                    {" "}
-                    const myConst = &quot;World&quot;; // TDZ 끝
+                    {`  const myConst = "World"; // TDZ 끝`}
                   </div>
-                  <div className="text-gray-600 ml-4"> </div>
+                  <div className="text-gray-600 ml-4">{`  `}</div>
                   <div className="text-green-600 ml-4">
-                    {" "}
-                    console.log(myLet); // &quot;Hello&quot; ✅
+                    {`  console.log(myLet); // "Hello" ✅`}
                   </div>
                   <div className="text-green-600 ml-4">
-                    {" "}
-                    console.log(myConst); // &quot;World&quot; ✅
+                    {`  console.log(myConst); // "World" ✅`}
                   </div>
                   <div className="text-green-600">{`}`}</div>
                 </div>

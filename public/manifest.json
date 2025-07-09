@@ -1,0 +1,35 @@
+{
+  "name": "JavaScript 핵심 개념 학습 센터",
+  "short_name": "JS 학습 센터",
+  "description": "Promise, Closure, Event Loop, Variable 등 JavaScript 핵심 개념을 시각적 시뮬레이터로 학습하세요.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4f46e5",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "ko",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["education", "developer", "programming"],
+  "screenshots": [
+    {
+      "src": "/images/og-image.svg",
+      "sizes": "1200x630",
+      "type": "image/svg+xml",
+      "form_factor": "wide"
+    }
+  ]
+}

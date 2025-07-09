@@ -60,6 +60,15 @@ const HomeLanding = () => {
       topics: ["Prototype", "상속", "생성자 함수", "클래스", "프로토타입 체인"],
       icon: "🧬",
     },
+    {
+      title: "🧠 JavaScript 실행 컨텍스트",
+      description:
+        "실행 컨텍스트와 스택, 스코프 체인의 작동 원리를 단계별 시각화로 학습",
+      path: "/execution-context",
+      difficulty: "중급",
+      topics: ["실행 컨텍스트", "스택", "스코프 체인", "호이스팅", "변수 환경"],
+      icon: "🧠",
+    },
   ];
 
   const getDifficultyColor = (difficulty: string) => {
@@ -88,6 +97,7 @@ const HomeLanding = () => {
             <ol className="list-decimal list-inside space-y-1">
               <li>JavaScript 변수 선언 & 호이스팅 (기초)</li>
               <li>병렬 Promise 응답 순서 (기초)</li>
+              <li>JavaScript 실행 컨텍스트 (중급)</li>
               <li>JavaScript Scope & Closure (중급)</li>
               <li>JavaScript Prototype & 상속 (중급)</li>
               <li>Event Delegation & 이벤트 위임 (중급)</li>

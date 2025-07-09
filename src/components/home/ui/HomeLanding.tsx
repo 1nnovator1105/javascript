@@ -3,6 +3,15 @@ import Link from "next/link";
 const HomeLanding = () => {
   const studyPages = [
     {
+      title: "📝 JavaScript 변수 선언 & 호이스팅",
+      description:
+        "var, let, const의 차이점과 스코프, 호이스팅, TDZ를 인터랙티브 시뮬레이터로 학습",
+      path: "/variable",
+      difficulty: "초급",
+      topics: ["var", "let", "const", "스코프", "호이스팅", "TDZ"],
+      icon: "📋",
+    },
+    {
       title: "🚀 병렬 Promise 응답 순서",
       description:
         "여러 Promise가 병렬로 실행될 때 응답 받는 순서를 시각적으로 학습",
@@ -69,6 +78,7 @@ const HomeLanding = () => {
           <div>
             <h3 className="font-medium mb-2">📚 학습 순서 추천</h3>
             <ol className="list-decimal list-inside space-y-1">
+              <li>JavaScript 변수 선언 & 호이스팅 (기초)</li>
               <li>병렬 Promise 응답 순서 (기초)</li>
               <li>JavaScript Scope & Closure (중급)</li>
               <li>Event Delegation & 이벤트 위임 (중급)</li>

@@ -222,14 +222,18 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
 
     const animate = () => {
       if (currentStep < steps.length) {
+        // 현재 단계와 이전 단계들을 모두 하이라이트
+        const highlightedSteps = steps.slice(0, currentStep + 1);
+
         setAnimationState((prev) => ({
           ...prev,
           currentStep,
-          highlightedNodes: [steps[currentStep]],
+          highlightedNodes: highlightedSteps,
         }));
 
         const currentNode = prototypeChain[currentStep];
         if (currentNode && currentNode.properties[property] !== undefined) {
+          // 찾았을 때 성공 애니메이션
           setTimeout(() => {
             setSearchResult({
               found: true,
@@ -240,17 +244,18 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
             setAnimationState({
               isSearching: false,
               currentStep: currentStep,
-              highlightedNodes: [steps[currentStep]],
+              highlightedNodes: [steps[currentStep]], // 찾은 노드만 하이라이트
             });
-          }, 800);
+          }, 1200);
           return;
         }
 
         currentStep++;
 
         if (currentStep < steps.length) {
-          setTimeout(animate, 1000);
+          setTimeout(animate, 1500); // 애니메이션 속도 조정
         } else {
+          // 찾지 못했을 때
           setTimeout(() => {
             setSearchResult({
               found: false,
@@ -263,7 +268,7 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
               currentStep: 0,
               highlightedNodes: [],
             });
-          }, 800);
+          }, 1200);
         }
       }
     };
@@ -431,6 +436,28 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
           🔍 프로토타입 체인 탐색 체험하기
         </h2>
 
+        {/* 탐색 상태 표시 */}
+        {animationState.isSearching && (
+          <div className="mb-6 bg-blue-50 border-2 border-blue-200 rounded-lg p-4">
+            <div className="flex items-center gap-3">
+              <span className="text-blue-600 animate-spin text-2xl">🔍</span>
+              <div>
+                <h3 className="font-semibold text-blue-800">
+                  &ldquo;{searchProperty}&rdquo; 속성을 찾는 중...
+                </h3>
+                <p className="text-sm text-blue-600">
+                  {prototypeChain[animationState.currentStep]?.name}에서 검색
+                  중입니다.
+                  {animationState.currentStep === 0 &&
+                    " 먼저 자기 자신에서 찾아보고 있어요!"}
+                  {animationState.currentStep > 0 &&
+                    " 없으면 부모로 올라가서 찾아보겠습니다!"}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* 체인 시각화 */}
           <div className="lg:col-span-2">
@@ -439,54 +466,101 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
                 프로토타입 체인 구조
               </h3>
               <div className="space-y-4">
-                {prototypeChain.map((node, index) => (
-                  <div
-                    key={node.id}
-                    className={`relative p-4 rounded-lg border-2 transition-all duration-500 ${
-                      animationState.highlightedNodes.includes(node.name)
-                        ? "border-green-500 bg-green-100 scale-105 shadow-lg animate-pulse"
-                        : "border-gray-200 hover:border-purple-300"
-                    }`}
-                  >
-                    {/* 연결선 */}
-                    {index > 0 && (
-                      <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                        <div className="text-purple-400 text-2xl">↑</div>
-                      </div>
-                    )}
+                {prototypeChain.map((node, index) => {
+                  const isHighlighted =
+                    animationState.highlightedNodes.includes(node.name);
+                  const isCurrentStep =
+                    animationState.currentStep === index &&
+                    animationState.isSearching;
+                  const isPreviousStep =
+                    index < animationState.currentStep &&
+                    animationState.isSearching;
 
-                    <div className="flex items-start gap-4">
-                      <div className="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center text-purple-700 font-bold">
-                        {index + 1}
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="font-semibold text-purple-800 mb-1">
-                          {node.name}
-                        </h4>
-                        <p className="text-sm text-gray-600 mb-2">
-                          {node.description}
-                        </p>
-                        <div className="space-y-1">
-                          {Object.entries(node.properties).map(
-                            ([key, value]) => (
-                              <div
-                                key={key}
-                                className="flex items-center gap-2 text-sm"
-                              >
-                                <span className="font-mono text-purple-600">
-                                  {key}:
-                                </span>
-                                <span className="text-gray-700 truncate">
-                                  {value}
-                                </span>
-                              </div>
-                            )
-                          )}
+                  return (
+                    <div
+                      key={node.id}
+                      className={`relative p-4 rounded-lg border-2 transition-all duration-700 ${
+                        isCurrentStep
+                          ? "border-blue-500 bg-blue-100 scale-105 shadow-lg animate-bounce"
+                          : isHighlighted
+                          ? "border-green-500 bg-green-100 scale-105 shadow-lg"
+                          : isPreviousStep
+                          ? "border-gray-400 bg-gray-50"
+                          : "border-gray-200 hover:border-purple-300"
+                      }`}
+                    >
+                      {/* 연결선 */}
+                      {index > 0 && (
+                        <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                          <div
+                            className={`text-2xl transition-all duration-500 ${
+                              isPreviousStep || isCurrentStep
+                                ? "text-blue-500 animate-pulse"
+                                : isHighlighted
+                                ? "text-green-500"
+                                : "text-purple-400"
+                            }`}
+                          >
+                            ↑
+                          </div>
+                        </div>
+                      )}
+
+                      <div className="flex items-start gap-4">
+                        <div
+                          className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold transition-all duration-500 ${
+                            isCurrentStep
+                              ? "bg-blue-500 text-white"
+                              : isHighlighted
+                              ? "bg-green-500 text-white"
+                              : isPreviousStep
+                              ? "bg-gray-400 text-white"
+                              : "bg-purple-100 text-purple-700"
+                          }`}
+                        >
+                          {index + 1}
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="font-semibold text-purple-800 mb-1 flex items-center gap-2">
+                            {node.name}
+                            {isCurrentStep && (
+                              <span className="text-blue-600 animate-spin text-lg">
+                                🔍
+                              </span>
+                            )}
+                            {isHighlighted && !isCurrentStep && (
+                              <span className="text-green-600 text-lg">✅</span>
+                            )}
+                          </h4>
+                          <p className="text-sm text-gray-600 mb-2">
+                            {node.description}
+                          </p>
+                          <div className="space-y-1">
+                            {Object.entries(node.properties).map(
+                              ([key, value]) => (
+                                <div
+                                  key={key}
+                                  className={`flex items-center gap-2 text-sm transition-all duration-300 ${
+                                    isCurrentStep && key === searchProperty
+                                      ? "bg-yellow-100 border border-yellow-300 rounded px-2 py-1"
+                                      : ""
+                                  }`}
+                                >
+                                  <span className="font-mono text-purple-600">
+                                    {key}:
+                                  </span>
+                                  <span className="text-gray-700 truncate">
+                                    {value}
+                                  </span>
+                                </div>
+                              )
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>

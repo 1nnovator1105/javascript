@@ -105,7 +105,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "google-site-verification-code",
+    google: "RZ3SuMznsX4BzS6t_lynVpIwRm1hlumCeBakaCUK1-s",
     yandex: "yandex-verification-code",
     yahoo: "yahoo-site-verification-code",
   },

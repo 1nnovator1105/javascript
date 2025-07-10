@@ -2,6 +2,7 @@ import Link from "next/link";
 
 const HomeLanding = () => {
   const studyPages = [
+    // 초급 레벨
     {
       title: "📝 JavaScript 변수 선언 & 호이스팅",
       description:
@@ -12,22 +13,91 @@ const HomeLanding = () => {
       icon: "📋",
     },
     {
+      title: "⚖️ JavaScript 동등 연산자 (== vs ===)",
+      description:
+        "동등 연산자와 일치 연산자의 차이점을 실습과 예제로 명확하게 학습",
+      path: "/equality-operators",
+      difficulty: "초급",
+      topics: ["동등 연산자", "일치 연산자", "타입 변환", "비교"],
+      icon: "⚖️",
+    },
+    {
+      title: "🌐 웹 렌더링 전략 시뮬레이터",
+      description:
+        "CSR, SSR, ISR, SSG의 차이점과 특징을 시각적 시뮬레이터로 학습",
+      path: "/rendering-strategies",
+      difficulty: "초급",
+      topics: ["CSR", "SSR", "ISR", "SSG", "렌더링", "성능 최적화"],
+      icon: "🌐",
+    },
+    {
+      title: "🎨 브라우저 렌더링 과정",
+      description:
+        "HTML과 CSS가 화면에 그려지는 전체 과정을 시각적으로 학습하고 성능 최적화 기법 마스터",
+      path: "/browser-rendering",
+      difficulty: "초급",
+      topics: [
+        "DOM",
+        "CSSOM",
+        "Critical Rendering Path",
+        "성능 최적화",
+        "리플로우",
+        "리페인트",
+      ],
+      icon: "🎨",
+    },
+    {
+      title: "🔧 브라우저별 CSS 호환성 해결",
+      description:
+        "개발자가 자주 마주하는 CSS 호환성 이슈 해결 방법과 실무 사례를 체계적으로 학습",
+      path: "/css-compatibility",
+      difficulty: "초급",
+      topics: [
+        "Vendor Prefix",
+        "Progressive Enhancement",
+        "Feature Detection",
+        "Cross Browser",
+        "Polyfill",
+        "학습 가이드",
+      ],
+      icon: "🔧",
+    },
+
+    // 초급-중급 레벨
+    {
+      title: "⏱️ JavaScript Debounce & Throttle",
+      description:
+        "이벤트 호출 빈도 제어 기법과 성능 최적화를 인터랙티브 시뮬레이터로 학습",
+      path: "/debounce-throttle",
+      difficulty: "초급-중급",
+      topics: [
+        "Debounce",
+        "Throttle",
+        "성능 최적화",
+        "이벤트 제어",
+        "사용자 경험",
+      ],
+      icon: "⏱️",
+    },
+
+    // 중급 레벨
+    {
       title: "🚀 병렬 Promise 응답 순서",
       description:
         "여러 Promise가 병렬로 실행될 때 응답 받는 순서를 시각적으로 학습",
       path: "/parallel-promise",
-      difficulty: "초급",
+      difficulty: "중급",
       topics: ["Promise", "비동기 처리", "병렬 실행"],
       icon: "🔄",
     },
     {
-      title: "🧱 JavaScript 이벤트 루프",
+      title: "🧠 JavaScript 실행 컨텍스트",
       description:
-        "Call Stack, Task Queue, Microtask Queue의 작동 원리를 시뮬레이션으로 학습",
-      path: "/event-loop",
+        "실행 컨텍스트와 스택, 스코프 체인의 작동 원리를 단계별 시각화로 학습",
+      path: "/execution-context",
       difficulty: "중급",
-      topics: ["Event Loop", "Call Stack", "Queue"],
-      icon: "⚡",
+      topics: ["실행 컨텍스트", "스택", "스코프 체인", "호이스팅", "변수 환경"],
+      icon: "🧠",
     },
     {
       title: "🔍 JavaScript Scope & Closure",
@@ -37,6 +107,14 @@ const HomeLanding = () => {
       difficulty: "중급",
       topics: ["Closure", "Scope", "Variable Capture", "React State"],
       icon: "🎯",
+    },
+    {
+      title: "🧬 JavaScript Prototype & 상속",
+      description: "프로토타입 체인과 상속 메커니즘을 시각적 시뮬레이터로 학습",
+      path: "/prototype",
+      difficulty: "중급",
+      topics: ["Prototype", "상속", "생성자 함수", "클래스", "프로토타입 체인"],
+      icon: "🧬",
     },
     {
       title: "🎯 Event Delegation & 이벤트 위임",
@@ -51,23 +129,6 @@ const HomeLanding = () => {
         "DOM Management",
       ],
       icon: "🎪",
-    },
-    {
-      title: "🧬 JavaScript Prototype & 상속",
-      description: "프로토타입 체인과 상속 메커니즘을 시각적 시뮬레이터로 학습",
-      path: "/prototype",
-      difficulty: "중급",
-      topics: ["Prototype", "상속", "생성자 함수", "클래스", "프로토타입 체인"],
-      icon: "🧬",
-    },
-    {
-      title: "🧠 JavaScript 실행 컨텍스트",
-      description:
-        "실행 컨텍스트와 스택, 스코프 체인의 작동 원리를 단계별 시각화로 학습",
-      path: "/execution-context",
-      difficulty: "중급",
-      topics: ["실행 컨텍스트", "스택", "스코프 체인", "호이스팅", "변수 환경"],
-      icon: "🧠",
     },
     {
       title: "⚛️ React Virtual DOM",
@@ -85,45 +146,13 @@ const HomeLanding = () => {
       icon: "⚛️",
     },
     {
-      title: "🌐 웹 렌더링 전략 시뮬레이터",
+      title: "🧱 JavaScript 이벤트 루프",
       description:
-        "CSR, SSR, ISR, SSG의 차이점과 특징을 시각적 시뮬레이터로 학습",
-      path: "/rendering-strategies",
+        "Call Stack, Task Queue, Microtask Queue의 작동 원리를 시뮬레이션으로 학습",
+      path: "/event-loop",
       difficulty: "중급",
-      topics: ["CSR", "SSR", "ISR", "SSG", "렌더링", "성능 최적화"],
-      icon: "🌐",
-    },
-    {
-      title: "🌐 브라우저 렌더링 과정",
-      description:
-        "HTML과 CSS가 화면에 그려지는 전체 과정을 시각적으로 학습하고 성능 최적화 기법 마스터",
-      path: "/browser-rendering",
-      difficulty: "중급",
-      topics: [
-        "DOM",
-        "CSSOM",
-        "Critical Rendering Path",
-        "성능 최적화",
-        "리플로우",
-        "리페인트",
-      ],
-      icon: "🎨",
-    },
-    {
-      title: "🔧 브라우저별 CSS 호환성 해결",
-      description:
-        "개발자가 자주 마주하는 CSS 호환성 이슈 해결 방법과 실무 사례를 체계적으로 학습",
-      path: "/css-compatibility",
-      difficulty: "중급",
-      topics: [
-        "Vendor Prefix",
-        "Progressive Enhancement",
-        "Feature Detection",
-        "Cross Browser",
-        "Polyfill",
-        "학습 가이드",
-      ],
-      icon: "🔧",
+      topics: ["Event Loop", "Call Stack", "Queue"],
+      icon: "⚡",
     },
   ];
 
@@ -131,6 +160,8 @@ const HomeLanding = () => {
     switch (difficulty) {
       case "초급":
         return "bg-green-100 text-green-800 border-green-200";
+      case "초급-중급":
+        return "bg-emerald-100 text-emerald-800 border-emerald-200";
       case "중급":
         return "bg-yellow-100 text-yellow-800 border-yellow-200";
       case "고급":
@@ -149,17 +180,43 @@ const HomeLanding = () => {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-blue-700">
           <div>
-            <h3 className="font-medium mb-2">📚 학습 순서 추천</h3>
-            <ol className="list-decimal list-inside space-y-1">
-              <li>JavaScript 변수 선언 & 호이스팅 (기초)</li>
-              <li>병렬 Promise 응답 순서 (기초)</li>
-              <li>JavaScript 실행 컨텍스트 (중급)</li>
-              <li>JavaScript Scope & Closure (중급)</li>
-              <li>JavaScript Prototype & 상속 (중급)</li>
-              <li>Event Delegation & 이벤트 위임 (중급)</li>
-              <li>브라우저 렌더링 과정 (중급)</li>
-              <li>JavaScript 이벤트 루프 (심화)</li>
-            </ol>
+            <h3 className="font-medium mb-2">📚 난이도별 학습 순서 추천</h3>
+            <div className="space-y-3">
+              <div>
+                <p className="font-medium text-green-700 mb-1">
+                  🟢 초급 (기초 개념)
+                </p>
+                <ol className="list-decimal list-inside space-y-1 text-xs ml-3">
+                  <li>JavaScript 변수 선언 & 호이스팅</li>
+                  <li>동등 연산자 (== vs ===)</li>
+                  <li>웹 렌더링 전략</li>
+                  <li>브라우저 렌더링 과정</li>
+                  <li>CSS 호환성 해결</li>
+                </ol>
+              </div>
+              <div>
+                <p className="font-medium text-emerald-700 mb-1">
+                  🟡 초급-중급 (응용)
+                </p>
+                <ol className="list-decimal list-inside space-y-1 text-xs ml-3">
+                  <li>Debounce & Throttle</li>
+                </ol>
+              </div>
+              <div>
+                <p className="font-medium text-yellow-700 mb-1">
+                  🔴 중급 (심화 개념)
+                </p>
+                <ol className="list-decimal list-inside space-y-1 text-xs ml-3">
+                  <li>병렬 Promise 응답 순서</li>
+                  <li>JavaScript 실행 컨텍스트</li>
+                  <li>Scope & Closure</li>
+                  <li>Prototype & 상속</li>
+                  <li>Event Delegation</li>
+                  <li>React Virtual DOM</li>
+                  <li>JavaScript 이벤트 루프</li>
+                </ol>
+              </div>
+            </div>
           </div>
           <div>
             <h3 className="font-medium mb-2">💡 학습 팁</h3>

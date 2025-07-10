@@ -109,6 +109,22 @@ const HomeLanding = () => {
       ],
       icon: "🎨",
     },
+    {
+      title: "🔧 브라우저별 CSS 호환성 해결",
+      description:
+        "개발자가 자주 마주하는 CSS 호환성 이슈 해결 방법과 실무 사례를 체계적으로 학습",
+      path: "/css-compatibility",
+      difficulty: "중급",
+      topics: [
+        "Vendor Prefix",
+        "Progressive Enhancement",
+        "Feature Detection",
+        "Cross Browser",
+        "Polyfill",
+        "학습 가이드",
+      ],
+      icon: "🔧",
+    },
   ];
 
   const getDifficultyColor = (difficulty: string) => {

@@ -530,6 +530,133 @@ const EventLoopLanding: React.FC = () => {
 
   return (
     <div>
+      {/* Event Loop 개념 설명 섹션 */}
+      <div className="mb-8 p-6 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 rounded-xl border border-indigo-200">
+        <h2 className="text-2xl font-bold text-indigo-900 mb-6 flex items-center gap-2">
+          🔄 Event Loop 개념 이해하기
+        </h2>
+
+        <div className="grid gap-6 md:grid-cols-2 mb-6">
+          <div className="bg-white p-5 rounded-lg border border-indigo-100 shadow-sm">
+            <h3 className="text-lg font-semibold text-indigo-800 mb-3 flex items-center gap-2">
+              🤔 Event Loop란 무엇인가요?
+            </h3>
+            <p className="text-gray-700 text-sm leading-relaxed mb-3">
+              Event Loop는 JavaScript의 핵심 메커니즘으로,{" "}
+              <strong>단일 스레드</strong> 환경에서 비동기 작업을 효율적으로
+              처리할 수 있게 해주는 시스템입니다.
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              브라우저나 Node.js 환경에서 코드 실행 순서를 관리하고, 동기/비동기
+              작업들을 적절한 순서로 실행하는 역할을 합니다.
+            </p>
+          </div>
+
+          <div className="bg-white p-5 rounded-lg border border-indigo-100 shadow-sm">
+            <h3 className="text-lg font-semibold text-indigo-800 mb-3 flex items-center gap-2">
+              ⚡ 왜 중요한가요?
+            </h3>
+            <ul className="text-gray-700 text-sm space-y-2">
+              <li className="flex items-start gap-2">
+                <span className="text-green-500 font-bold">✓</span>
+                <span>
+                  <strong>비동기 처리:</strong> 네트워크 요청, 타이머 등을
+                  블로킹 없이 처리
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-green-500 font-bold">✓</span>
+                <span>
+                  <strong>반응성 유지:</strong> UI가 멈추지 않고 사용자 상호작용
+                  가능
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-green-500 font-bold">✓</span>
+                <span>
+                  <strong>성능 최적화:</strong> 효율적인 코드 실행 순서 이해
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="bg-white p-5 rounded-lg border border-indigo-100 shadow-sm">
+          <h3 className="text-lg font-semibold text-indigo-800 mb-4 flex items-center gap-2">
+            🏗️ Event Loop 구성 요소
+          </h3>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="p-4 bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg border border-amber-200">
+              <div className="text-amber-700 font-semibold mb-2 flex items-center gap-2">
+                📚 Call Stack
+              </div>
+              <p className="text-amber-800 text-xs leading-relaxed">
+                현재 실행 중인 함수들을 쌓아두는 스택. 동기 코드가 여기서
+                순차적으로 실행됩니다.
+              </p>
+            </div>
+
+            <div className="p-4 bg-gradient-to-br from-violet-50 to-violet-100 rounded-lg border border-violet-200">
+              <div className="text-violet-700 font-semibold mb-2 flex items-center gap-2">
+                🌐 Web APIs
+              </div>
+              <p className="text-violet-800 text-xs leading-relaxed">
+                브라우저 제공 API들(setTimeout, fetch 등)이 백그라운드에서
+                작업을 처리하는 영역입니다.
+              </p>
+            </div>
+
+            <div className="p-4 bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-lg border border-emerald-200">
+              <div className="text-emerald-700 font-semibold mb-2 flex items-center gap-2">
+                🟢 Microtask Queue
+              </div>
+              <p className="text-emerald-800 text-xs leading-relaxed">
+                Promise, queueMicrotask 등의
+                <strong>높은 우선순위</strong> 비동기 작업 대기열입니다.
+              </p>
+            </div>
+
+            <div className="p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200">
+              <div className="text-blue-700 font-semibold mb-2 flex items-center gap-2">
+                🔵 Task Queue
+              </div>
+              <p className="text-blue-800 text-xs leading-relaxed">
+                setTimeout, setInterval 등의
+                <strong>낮은 우선순위</strong> 비동기 작업 대기열입니다.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-6 p-4 bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 rounded-lg border border-blue-200">
+          <h4 className="text-base font-semibold text-blue-900 mb-3 flex items-center gap-2">
+            🔄 Event Loop 동작 원리
+          </h4>
+          <div className="flex flex-wrap gap-2 text-sm">
+            <span className="px-3 py-1 bg-white rounded-full text-blue-800 border border-blue-200 font-medium">
+              1️⃣ Call Stack 확인
+            </span>
+            <span className="text-blue-600">→</span>
+            <span className="px-3 py-1 bg-white rounded-full text-emerald-800 border border-emerald-200 font-medium">
+              2️⃣ Microtask Queue 처리
+            </span>
+            <span className="text-blue-600">→</span>
+            <span className="px-3 py-1 bg-white rounded-full text-blue-800 border border-blue-200 font-medium">
+              3️⃣ Task Queue 처리
+            </span>
+            <span className="text-blue-600">→</span>
+            <span className="px-3 py-1 bg-white rounded-full text-gray-800 border border-gray-200 font-medium">
+              🔄 반복
+            </span>
+          </div>
+          <p className="text-blue-800 text-xs mt-3 leading-relaxed">
+            <strong>핵심:</strong> Call Stack이 비어야 큐에서 작업을 가져오며,
+            Microtask Queue가 항상 Task Queue보다 우선 처리됩니다.
+          </p>
+        </div>
+      </div>
+
       <div className="mb-6">
         <h3 className="text-gray-700 mb-4 text-lg font-semibold">
           📦 코드 블록 추가

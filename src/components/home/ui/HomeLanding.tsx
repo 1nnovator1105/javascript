@@ -93,6 +93,22 @@ const HomeLanding = () => {
       topics: ["CSR", "SSR", "ISR", "SSG", "렌더링", "성능 최적화"],
       icon: "🌐",
     },
+    {
+      title: "🌐 브라우저 렌더링 과정",
+      description:
+        "HTML과 CSS가 화면에 그려지는 전체 과정을 시각적으로 학습하고 성능 최적화 기법 마스터",
+      path: "/browser-rendering",
+      difficulty: "중급",
+      topics: [
+        "DOM",
+        "CSSOM",
+        "Critical Rendering Path",
+        "성능 최적화",
+        "리플로우",
+        "리페인트",
+      ],
+      icon: "🎨",
+    },
   ];
 
   const getDifficultyColor = (difficulty: string) => {
@@ -125,6 +141,7 @@ const HomeLanding = () => {
               <li>JavaScript Scope & Closure (중급)</li>
               <li>JavaScript Prototype & 상속 (중급)</li>
               <li>Event Delegation & 이벤트 위임 (중급)</li>
+              <li>브라우저 렌더링 과정 (중급)</li>
               <li>JavaScript 이벤트 루프 (심화)</li>
             </ol>
           </div>

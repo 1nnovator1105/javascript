@@ -67,6 +67,34 @@ const StudyPageLayout: React.FC<StudyPageLayoutProps> = ({
         </div>
 
         {children}
+
+        <footer className="mt-12 pt-8 border-t border-gray-200 text-center">
+          <p className="text-sm text-gray-500 mb-2">
+            개발자: 김민성 (프론트엔드 엔지니어)
+          </p>
+          <div className="flex justify-center items-center gap-4 mb-4">
+            <a
+              href="https://github.com/1nnovator1105"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium text-gray-600 hover:text-indigo-600 transition-colors"
+            >
+              GitHub
+            </a>
+            <span className="text-gray-300">|</span>
+            <a
+              href="https://1nnovator.tistory.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium text-gray-600 hover:text-indigo-600 transition-colors"
+            >
+              Blog
+            </a>
+          </div>
+          <p className="text-xs text-gray-400">
+            이 페이지는 생성형 AI의 도움을 받아 제작되었습니다.
+          </p>
+        </footer>
       </div>
     </main>
   );

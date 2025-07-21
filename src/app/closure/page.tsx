@@ -1,4 +1,4 @@
-import { ClosureLanding } from "@/components/closure/ui/ClosureLanding";
+import { ClosureLanding } from "@/components/closure/ui";
 import { StudyPageLayout } from "@/components/share/ui";
 
 export default function Page() {

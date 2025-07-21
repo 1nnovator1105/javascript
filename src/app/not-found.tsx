@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { StudyPageLayout } from "@/components/share/ui";
-import { Metadata } from "next";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "404 - 페이지를 찾을 수 없습니다",
   description:
     "요청하신 페이지를 찾을 수 없습니다. JavaScript 학습 센터의 다른 주제들을 확인해보세요.",

@@ -68,33 +68,53 @@ const StudyPageLayout: React.FC<StudyPageLayoutProps> = ({
 
         {children}
 
-        <footer className="mt-12 pt-8 border-t border-gray-200 text-center">
-          <p className="text-sm text-gray-500 mb-2">
-            개발자: 김민성 (프론트엔드 엔지니어)
-          </p>
-          <div className="flex justify-center items-center gap-4 mb-4">
-            <a
-              href="https://github.com/1nnovator1105"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-medium text-gray-600 hover:text-indigo-600 transition-colors"
-            >
-              GitHub
-            </a>
-            <span className="text-gray-300">|</span>
-            <a
-              href="https://1nnovator.tistory.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-medium text-gray-600 hover:text-indigo-600 transition-colors"
-            >
-              Blog
-            </a>
+        {/* 개발자 정보 섹션 */}
+        <div className="mt-12 pt-8 border-t border-gray-200">
+          <div className="text-center">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-full border border-indigo-200">
+                <div className="w-8 h-8 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">🧑‍💻</span>
+                </div>
+                <div className="text-left">
+                  <p className="text-sm font-semibold text-gray-800">
+                    1nnovator 김민성
+                  </p>
+                  <p className="text-xs text-gray-600">
+                    JavaScript 학습 센터 개발자
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-center gap-4 text-sm text-gray-600">
+              <a
+                href="https://1nnovator.tistory.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 hover:text-indigo-600 transition-colors duration-200"
+              >
+                <svg
+                  className="w-4 h-4"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 0C5.374 0 0 5.373 0 12s5.374 12 12 12 12-5.373 12-12S18.626 0 12 0zm5.568 8.16c-.169 1.858-.896 3.248-2.174 4.168-.851.613-1.849.613-2.174.613-.325 0-1.323 0-2.174-.613-1.278-.92-2.005-2.31-2.174-4.168-.085-.937-.085-1.383 0-2.32.169-1.858.896-3.248 2.174-4.168.851-.613 1.849.613 2.174.613.325 0 1.323 0 2.174.613 1.278.92 2.005 2.31 2.174 4.168.085.937.085 1.383 0 2.32z" />
+                </svg>
+                기술 블로그
+              </a>
+              <span className="text-gray-400">•</span>
+              <span className="text-xs text-gray-500">
+                Interactive JavaScript Learning Platform
+              </span>
+            </div>
+
+            <p className="text-xs text-gray-500 mt-3">
+              🌟 이 프로젝트가 도움이 되셨다면 블로그에서 더 많은 개발 이야기를
+              확인해보세요!
+            </p>
           </div>
-          <p className="text-xs text-gray-400">
-            이 페이지는 생성형 AI의 도움을 받아 제작되었습니다.
-          </p>
-        </footer>
+        </div>
       </div>
     </main>
   );

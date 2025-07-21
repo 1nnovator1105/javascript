@@ -222,14 +222,36 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
 
     const animate = () => {
       if (currentStep < steps.length) {
+        // 현재 단계와 이전 단계들을 모두 하이라이트
+        const highlightedSteps = steps.slice(0, currentStep + 1);
+
         setAnimationState((prev) => ({
           ...prev,
           currentStep,
-          highlightedNodes: [steps[currentStep]],
+          highlightedNodes: highlightedSteps,
         }));
 
         const currentNode = prototypeChain[currentStep];
-        if (currentNode && currentNode.properties[property] !== undefined) {
+        console.log(
+          `단계 ${currentStep + 1}: ${currentNode?.name}에서 "${property}" 검색`
+        );
+        console.log(`현재 노드 properties:`, currentNode?.properties);
+        console.log(
+          `${property} 직접 정의 여부:`,
+          currentNode
+            ? Object.prototype.hasOwnProperty.call(
+                currentNode.properties,
+                property
+              )
+            : false
+        );
+
+        if (
+          currentNode &&
+          Object.prototype.hasOwnProperty.call(currentNode.properties, property)
+        ) {
+          console.log(`✅ ${currentNode.name}에서 "${property}" 찾음!`);
+          // 찾았을 때 성공 애니메이션
           setTimeout(() => {
             setSearchResult({
               found: true,
@@ -240,17 +262,18 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
             setAnimationState({
               isSearching: false,
               currentStep: currentStep,
-              highlightedNodes: [steps[currentStep]],
+              highlightedNodes: [steps[currentStep]], // 찾은 노드만 하이라이트
             });
-          }, 800);
+          }, 1200);
           return;
         }
 
         currentStep++;
 
         if (currentStep < steps.length) {
-          setTimeout(animate, 1000);
+          setTimeout(animate, 1500); // 애니메이션 속도 조정
         } else {
+          // 찾지 못했을 때
           setTimeout(() => {
             setSearchResult({
               found: false,
@@ -263,7 +286,7 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
               currentStep: 0,
               highlightedNodes: [],
             });
-          }, 800);
+          }, 1200);
         }
       }
     };
@@ -343,38 +366,40 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-white rounded-lg border-2 border-green-200 p-6">
             <h3 className="text-lg font-semibold mb-4 text-green-800 flex items-center gap-2">
-              👨‍👩‍👧‍👦 가족 관계로 이해하기
+              🚗 자동차로 이해하기
             </h3>
             <div className="space-y-3 text-gray-700">
               <div className="flex items-center gap-3">
-                <span className="text-2xl">👴</span>
+                <span className="text-2xl">🚙</span>
                 <div>
-                  <div className="font-medium">할아버지 (Object.prototype)</div>
-                  <div className="text-sm">모든 사람이 가지는 기본 능력</div>
+                  <div className="font-medium">모든 교통수단</div>
+                  <div className="text-sm">이동수단이 가지는 기본 특성</div>
                 </div>
               </div>
               <div className="ml-4 text-gray-400">↓</div>
               <div className="flex items-center gap-3">
-                <span className="text-2xl">👨</span>
+                <span className="text-2xl">🚗</span>
                 <div>
-                  <div className="font-medium">아버지 (Animal.prototype)</div>
-                  <div className="text-sm">동물이 가지는 공통 능력</div>
+                  <div className="font-medium">자동차</div>
+                  <div className="text-sm">엔진으로 움직이는 차량의 특성</div>
                 </div>
               </div>
               <div className="ml-4 text-gray-400">↓</div>
               <div className="flex items-center gap-3">
-                <span className="text-2xl">🐕</span>
+                <span className="text-2xl">🚙</span>
                 <div>
-                  <div className="font-medium">강아지 (Dog.prototype)</div>
-                  <div className="text-sm">강아지만의 특별한 능력</div>
+                  <div className="font-medium">SUV</div>
+                  <div className="text-sm">SUV 타입 차량만의 특성</div>
                 </div>
               </div>
               <div className="ml-4 text-gray-400">↓</div>
               <div className="flex items-center gap-3">
-                <span className="text-2xl">🦮</span>
+                <span className="text-2xl">🚐</span>
                 <div>
-                  <div className="font-medium">멍멍이 (myDog)</div>
-                  <div className="text-sm">구체적인 강아지 개체</div>
+                  <div className="font-medium">내 차</div>
+                  <div className="text-sm">
+                    구체적인 번호판을 가진 실제 차량
+                  </div>
                 </div>
               </div>
             </div>
@@ -382,38 +407,40 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
 
           <div className="bg-white rounded-lg border-2 border-green-200 p-6">
             <h3 className="text-lg font-semibold mb-4 text-green-800 flex items-center gap-2">
-              🏭 공장 설계도로 이해하기
+              🐕 강아지로 이해하기
             </h3>
             <div className="space-y-3 text-gray-700">
               <div className="flex items-center gap-3">
-                <span className="text-2xl">📋</span>
+                <span className="text-2xl">🌍</span>
                 <div>
-                  <div className="font-medium">기본 설계도</div>
-                  <div className="text-sm">모든 제품의 기본 사양</div>
+                  <div className="font-medium">모든 생명체</div>
+                  <div className="text-sm">생명이 있는 모든 것의 기본 특성</div>
                 </div>
               </div>
               <div className="ml-4 text-gray-400">↓</div>
               <div className="flex items-center gap-3">
-                <span className="text-2xl">📐</span>
+                <span className="text-2xl">🐾</span>
                 <div>
-                  <div className="font-medium">동물 설계도</div>
-                  <div className="text-sm">동물 제품의 공통 사양</div>
+                  <div className="font-medium">동물</div>
+                  <div className="text-sm">동물들이 공통으로 가지는 특성</div>
                 </div>
               </div>
               <div className="ml-4 text-gray-400">↓</div>
               <div className="flex items-center gap-3">
-                <span className="text-2xl">🔧</span>
+                <span className="text-2xl">🐕</span>
                 <div>
-                  <div className="font-medium">강아지 설계도</div>
-                  <div className="text-sm">강아지의 특별 사양</div>
+                  <div className="font-medium">강아지</div>
+                  <div className="text-sm">강아지 종류가 가지는 특성</div>
                 </div>
               </div>
               <div className="ml-4 text-gray-400">↓</div>
               <div className="flex items-center gap-3">
                 <span className="text-2xl">🦮</span>
                 <div>
-                  <div className="font-medium">완성된 제품</div>
-                  <div className="text-sm">실제 사용 가능한 강아지</div>
+                  <div className="font-medium">멍멍이</div>
+                  <div className="text-sm">
+                    구체적인 이름을 가진 실제 강아지
+                  </div>
                 </div>
               </div>
             </div>
@@ -427,6 +454,28 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
           🔍 프로토타입 체인 탐색 체험하기
         </h2>
 
+        {/* 탐색 상태 표시 */}
+        {animationState.isSearching && (
+          <div className="mb-6 bg-blue-50 border-2 border-blue-200 rounded-lg p-4">
+            <div className="flex items-center gap-3">
+              <span className="text-blue-600 animate-spin text-2xl">🔍</span>
+              <div>
+                <h3 className="font-semibold text-blue-800">
+                  &ldquo;{searchProperty}&rdquo; 속성을 찾는 중...
+                </h3>
+                <p className="text-sm text-blue-600">
+                  {prototypeChain[animationState.currentStep]?.name}에서 검색
+                  중입니다.
+                  {animationState.currentStep === 0 &&
+                    " 먼저 자기 자신에서 찾아보고 있어요!"}
+                  {animationState.currentStep > 0 &&
+                    " 없으면 부모로 올라가서 찾아보겠습니다!"}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* 체인 시각화 */}
           <div className="lg:col-span-2">
@@ -435,54 +484,101 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
                 프로토타입 체인 구조
               </h3>
               <div className="space-y-4">
-                {prototypeChain.map((node, index) => (
-                  <div
-                    key={node.id}
-                    className={`relative p-4 rounded-lg border-2 transition-all duration-500 ${
-                      animationState.highlightedNodes.includes(node.name)
-                        ? "border-green-500 bg-green-100 scale-105 shadow-lg animate-pulse"
-                        : "border-gray-200 hover:border-purple-300"
-                    }`}
-                  >
-                    {/* 연결선 */}
-                    {index > 0 && (
-                      <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                        <div className="text-purple-400 text-2xl">↑</div>
-                      </div>
-                    )}
+                {prototypeChain.map((node, index) => {
+                  const isHighlighted =
+                    animationState.highlightedNodes.includes(node.name);
+                  const isCurrentStep =
+                    animationState.currentStep === index &&
+                    animationState.isSearching;
+                  const isPreviousStep =
+                    index < animationState.currentStep &&
+                    animationState.isSearching;
 
-                    <div className="flex items-start gap-4">
-                      <div className="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center text-purple-700 font-bold">
-                        {index + 1}
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="font-semibold text-purple-800 mb-1">
-                          {node.name}
-                        </h4>
-                        <p className="text-sm text-gray-600 mb-2">
-                          {node.description}
-                        </p>
-                        <div className="space-y-1">
-                          {Object.entries(node.properties).map(
-                            ([key, value]) => (
-                              <div
-                                key={key}
-                                className="flex items-center gap-2 text-sm"
-                              >
-                                <span className="font-mono text-purple-600">
-                                  {key}:
-                                </span>
-                                <span className="text-gray-700 truncate">
-                                  {value}
-                                </span>
-                              </div>
-                            )
-                          )}
+                  return (
+                    <div
+                      key={node.id}
+                      className={`relative p-4 rounded-lg border-2 transition-all duration-700 ${
+                        isCurrentStep
+                          ? "border-blue-500 bg-blue-100 scale-105 shadow-lg animate-bounce"
+                          : isHighlighted
+                          ? "border-green-500 bg-green-100 scale-105 shadow-lg"
+                          : isPreviousStep
+                          ? "border-gray-400 bg-gray-50"
+                          : "border-gray-200 hover:border-purple-300"
+                      }`}
+                    >
+                      {/* 연결선 */}
+                      {index > 0 && (
+                        <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                          <div
+                            className={`text-2xl transition-all duration-500 ${
+                              isPreviousStep || isCurrentStep
+                                ? "text-blue-500 animate-pulse"
+                                : isHighlighted
+                                ? "text-green-500"
+                                : "text-purple-400"
+                            }`}
+                          >
+                            ↑
+                          </div>
+                        </div>
+                      )}
+
+                      <div className="flex items-start gap-4">
+                        <div
+                          className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold transition-all duration-500 ${
+                            isCurrentStep
+                              ? "bg-blue-500 text-white"
+                              : isHighlighted
+                              ? "bg-green-500 text-white"
+                              : isPreviousStep
+                              ? "bg-gray-400 text-white"
+                              : "bg-purple-100 text-purple-700"
+                          }`}
+                        >
+                          {index + 1}
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="font-semibold text-purple-800 mb-1 flex items-center gap-2">
+                            {node.name}
+                            {isCurrentStep && (
+                              <span className="text-blue-600 animate-spin text-lg">
+                                🔍
+                              </span>
+                            )}
+                            {isHighlighted && !isCurrentStep && (
+                              <span className="text-green-600 text-lg">✅</span>
+                            )}
+                          </h4>
+                          <p className="text-sm text-gray-600 mb-2">
+                            {node.description}
+                          </p>
+                          <div className="space-y-1">
+                            {Object.entries(node.properties).map(
+                              ([key, value]) => (
+                                <div
+                                  key={key}
+                                  className={`flex items-center gap-2 text-sm transition-all duration-300 ${
+                                    isCurrentStep && key === searchProperty
+                                      ? "bg-yellow-100 border border-yellow-300 rounded px-2 py-1"
+                                      : ""
+                                  }`}
+                                >
+                                  <span className="font-mono text-purple-600">
+                                    {key}:
+                                  </span>
+                                  <span className="text-gray-700 truncate">
+                                    {value}
+                                  </span>
+                                </div>
+                              )
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>

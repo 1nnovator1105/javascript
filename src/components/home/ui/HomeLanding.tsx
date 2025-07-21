@@ -1,213 +1,158 @@
 import Link from "next/link";
 
 const HomeLanding = () => {
-  const learningPaths = [
+  const studyPages = [
+    // 초급 레벨
     {
-      phase: 1,
-      title: "Phase 1: 웹 프론트엔드 기초",
+      title: "📝 JavaScript 변수 선언 & 호이스팅",
       description:
-        "웹 개발자라면 반드시 알아야 할 핵심적인 CS 기초 지식을 학습합니다.",
-      courses: [
-        {
-          title: "동기 vs 비동기 프로그래밍",
-          description:
-            "JavaScript의 핵심인 동기/비동기 처리 방식을 시각적 타임라인으로 완벽 이해",
-          path: "/sync-async",
-          difficulty: "기초 필수",
-          topics: ["콜백", "Promise", "async/await"],
-          icon: "⏱️",
-          colorTheme: "indigo",
-        },
-        {
-          title: "HTTP vs HTTPS",
-          description:
-            "웹 보안의 기초인 HTTP와 HTTPS의 차이점, SSL/TLS 동작 원리를 시각적으로 학습합니다",
-          path: "/http-https",
-          difficulty: "기초 필수",
-          topics: ["암호화", "SSL/TLS", "인증서"],
-          icon: "🔒",
-          colorTheme: "emerald",
-        },
-        {
-          title: "CORS (Cross-Origin Resource Sharing)",
-          description:
-            "브라우저의 보안 정책과 CORS 동작 원리를 시각적으로 학습하고, 실무에서 자주 마주치는 에러 해결법을 익혀보세요",
-          path: "/cors",
-          difficulty: "기초 필수",
-          topics: ["Same-Origin Policy", "Preflight Request", "CORS Headers"],
-          icon: "🌐",
-          colorTheme: "orange",
-        },
-        {
-          title: "인증 방식 비교 (Cookie vs Session vs JWT)",
-          description:
-            "웹 인증의 핵심 방식들을 비교하고, 각각의 장단점과 적합한 사용 사례를 학습합니다",
-          path: "/auth-methods",
-          difficulty: "기초 필수",
-          topics: ["Cookie", "Session", "JWT"],
-          icon: "🔐",
-          colorTheme: "purple",
-        },
-        {
-          title: "웹소켓 vs HTTP 통신",
-          description:
-            "실시간 통신을 위한 WebSocket과 전통적인 HTTP 통신의 차이점을 시각적으로 학습합니다",
-          path: "/websocket-http",
-          difficulty: "기초 필수",
-          topics: ["실시간 통신", "양방향 통신", "Polling/SSE"],
-          icon: "🔌",
-          colorTheme: "cyan",
-        },
-        {
-          title: "RESTful API 설계 원칙",
-          description:
-            "REST 아키텍처 스타일과 API 설계 모범 사례를 시각적으로 학습하고 실습합니다",
-          path: "/restful-api",
-          difficulty: "기초 필수",
-          topics: ["HTTP Methods", "Status Codes", "Best Practices"],
-          icon: "🔄",
-          colorTheme: "rose",
-        },
-        {
-          title: "웹 스토리지 완벽 가이드",
-          description:
-            "LocalStorage, SessionStorage, Cookie, IndexedDB의 차이점과 활용법을 실습으로 학습합니다",
-          path: "/web-storage",
-          difficulty: "기초 필수",
-          topics: ["LocalStorage", "Cookie", "IndexedDB"],
-          icon: "💾",
-          colorTheme: "amber",
-        },
-      ],
+        "var, let, const의 차이점과 스코프, 호이스팅, TDZ를 인터랙티브 시뮬레이터로 학습",
+      path: "/variable",
+      difficulty: "초급",
+      topics: ["var", "let", "const", "스코프", "호이스팅", "TDZ"],
+      icon: "📋",
     },
     {
-      phase: 2,
-      title: "Phase 2: JavaScript 핵심 마스터리",
+      title: "⚖️ JavaScript 동등 연산자 (== vs ===)",
       description:
-        "JavaScript의 내부 동작 원리를 깊이 있게 파고들어 고급 개발자로 거듭납니다.",
-      courses: [
-        {
-          title: "📝 JavaScript 변수 선언 & 호이스팅",
-          description:
-            "var, let, const의 차이점과 스코프, 호이스팅, TDZ를 인터랙티브 시뮬레이터로 학습",
-          path: "/variable",
-          difficulty: "초급",
-          topics: ["var", "let", "const", "스코프", "호이스팅", "TDZ"],
-          icon: "📋",
-          colorTheme: "rose",
-        },
-        {
-          title: "🚀 병렬 Promise 응답 순서",
-          description:
-            "여러 Promise가 병렬로 실행될 때 응답 받는 순서를 시각적으로 학습",
-          path: "/parallel-promise",
-          difficulty: "초급",
-          topics: ["Promise", "비동기 처리", "병렬 실행"],
-          icon: "🔄",
-          colorTheme: "cyan",
-        },
-        {
-          title: "🧠 JavaScript 실행 컨텍스트",
-          description:
-            "실행 컨텍스트와 스택, 스코프 체인의 작동 원리를 단계별 시각화로 학습",
-          path: "/execution-context",
-          difficulty: "중급",
-          topics: [
-            "실행 컨텍스트",
-            "스택",
-            "스코프 체인",
-            "호이스팅",
-            "변수 환경",
-          ],
-          icon: "🧠",
-          colorTheme: "purple",
-        },
-        {
-          title: "🔍 JavaScript Scope & Closure",
-          description:
-            "클로저와 스코프 체인을 통한 변수 캡처 메커니즘을 시각적 시뮬레이터로 학습",
-          path: "/closure",
-          difficulty: "중급",
-          topics: ["Closure", "Scope", "Variable Capture", "React State"],
-          icon: "🎯",
-          colorTheme: "amber",
-        },
-        {
-          title: "🧬 JavaScript Prototype & 상속",
-          description:
-            "프로토타입 체인과 상속 메커니즘을 시각적 시뮬레이터로 학습",
-          path: "/prototype",
-          difficulty: "중급",
-          topics: [
-            "Prototype",
-            "상속",
-            "생성자 함수",
-            "클래스",
-            "프로토타입 체인",
-          ],
-          icon: "🧬",
-          colorTheme: "orange",
-        },
-        {
-          title: "🎯 Event Delegation & 이벤트 위임",
-          description:
-            "효율적인 이벤트 처리와 DOM 이벤트 전파 메커니즘을 인터랙티브 시뮬레이터로 학습",
-          path: "/event-delegation",
-          difficulty: "중급",
-          topics: [
-            "Event Delegation",
-            "Event Bubbling",
-            "Performance",
-            "DOM Management",
-          ],
-          icon: "🎪",
-          colorTheme: "emerald",
-        },
-        {
-          title: "🧱 JavaScript 이벤트 루프",
-          description:
-            "Call Stack, Task Queue, Microtask Queue의 작동 원리를 시뮬레이션으로 학습",
-          path: "/event-loop",
-          difficulty: "중급",
-          topics: ["Event Loop", "Call Stack", "Queue"],
-          icon: "⚡",
-          colorTheme: "indigo",
-        },
-      ],
+        "동등 연산자와 일치 연산자의 차이점을 실습과 예제로 명확하게 학습",
+      path: "/equality-operators",
+      difficulty: "초급",
+      topics: ["동등 연산자", "일치 연산자", "타입 변환", "비교"],
+      icon: "⚖️",
     },
     {
-      phase: 3,
-      title: "Phase 3: React & 웹 심화",
+      title: "🌐 웹 렌더링 전략 시뮬레이터",
       description:
-        "모던 웹 개발의 핵심인 React와 브라우저 렌더링에 대한 심도 있는 내용을 학습합니다.",
-      courses: [
-        {
-          title: "⚛️ React Virtual DOM",
-          description:
-            "Virtual DOM의 작동 원리와 Diffing 알고리즘을 시각적 시뮬레이터로 학습",
-          path: "/virtual-dom",
-          difficulty: "중급",
-          topics: [
-            "Virtual DOM",
-            "Diffing",
-            "Reconciliation",
-            "React",
-            "성능 최적화",
-          ],
-          icon: "⚛️",
-          colorTheme: "purple",
-        },
-        {
-          title: "🌐 웹 렌더링 전략 시뮬레이터",
-          description:
-            "CSR, SSR, ISR, SSG의 차이점과 특징을 시각적 시뮬레이터로 학습",
-          path: "/rendering-strategies",
-          difficulty: "중급",
-          topics: ["CSR", "SSR", "ISR", "SSG", "렌더링", "성능 최적화"],
-          icon: "🌐",
-          colorTheme: "rose",
-        },
+        "CSR, SSR, ISR, SSG의 차이점과 특징을 시각적 시뮬레이터로 학습",
+      path: "/rendering-strategies",
+      difficulty: "초급",
+      topics: ["CSR", "SSR", "ISR", "SSG", "렌더링", "성능 최적화"],
+      icon: "🌐",
+    },
+    {
+      title: "🎨 브라우저 렌더링 과정",
+      description:
+        "HTML과 CSS가 화면에 그려지는 전체 과정을 시각적으로 학습하고 성능 최적화 기법 마스터",
+      path: "/browser-rendering",
+      difficulty: "초급",
+      topics: [
+        "DOM",
+        "CSSOM",
+        "Critical Rendering Path",
+        "성능 최적화",
+        "리플로우",
+        "리페인트",
       ],
+      icon: "🎨",
+    },
+    {
+      title: "🔧 브라우저별 CSS 호환성 해결",
+      description:
+        "개발자가 자주 마주하는 CSS 호환성 이슈 해결 방법과 실무 사례를 체계적으로 학습",
+      path: "/css-compatibility",
+      difficulty: "초급",
+      topics: [
+        "Vendor Prefix",
+        "Progressive Enhancement",
+        "Feature Detection",
+        "Cross Browser",
+        "Polyfill",
+        "학습 가이드",
+      ],
+      icon: "🔧",
+    },
+
+    // 초급-중급 레벨
+    {
+      title: "⏱️ JavaScript Debounce & Throttle",
+      description:
+        "이벤트 호출 빈도 제어 기법과 성능 최적화를 인터랙티브 시뮬레이터로 학습",
+      path: "/debounce-throttle",
+      difficulty: "초급-중급",
+      topics: [
+        "Debounce",
+        "Throttle",
+        "성능 최적화",
+        "이벤트 제어",
+        "사용자 경험",
+      ],
+      icon: "⏱️",
+    },
+
+    // 중급 레벨
+    {
+      title: "🚀 병렬 Promise 응답 순서",
+      description:
+        "여러 Promise가 병렬로 실행될 때 응답 받는 순서를 시각적으로 학습",
+      path: "/parallel-promise",
+      difficulty: "중급",
+      topics: ["Promise", "비동기 처리", "병렬 실행"],
+      icon: "🔄",
+    },
+    {
+      title: "🧠 JavaScript 실행 컨텍스트",
+      description:
+        "실행 컨텍스트와 스택, 스코프 체인의 작동 원리를 단계별 시각화로 학습",
+      path: "/execution-context",
+      difficulty: "중급",
+      topics: ["실행 컨텍스트", "스택", "스코프 체인", "호이스팅", "변수 환경"],
+      icon: "🧠",
+    },
+    {
+      title: "🔍 JavaScript Scope & Closure",
+      description:
+        "클로저와 스코프 체인을 통한 변수 캡처 메커니즘을 시각적 시뮬레이터로 학습",
+      path: "/closure",
+      difficulty: "중급",
+      topics: ["Closure", "Scope", "Variable Capture", "React State"],
+      icon: "🎯",
+    },
+    {
+      title: "🧬 JavaScript Prototype & 상속",
+      description: "프로토타입 체인과 상속 메커니즘을 시각적 시뮬레이터로 학습",
+      path: "/prototype",
+      difficulty: "중급",
+      topics: ["Prototype", "상속", "생성자 함수", "클래스", "프로토타입 체인"],
+      icon: "🧬",
+    },
+    {
+      title: "🎯 Event Delegation & 이벤트 위임",
+      description:
+        "효율적인 이벤트 처리와 DOM 이벤트 전파 메커니즘을 인터랙티브 시뮬레이터로 학습",
+      path: "/event-delegation",
+      difficulty: "중급",
+      topics: [
+        "Event Delegation",
+        "Event Bubbling",
+        "Performance",
+        "DOM Management",
+      ],
+      icon: "🎪",
+    },
+    {
+      title: "⚛️ React Virtual DOM",
+      description:
+        "Virtual DOM의 작동 원리와 Diffing 알고리즘을 시각적 시뮬레이터로 학습",
+      path: "/virtual-dom",
+      difficulty: "중급",
+      topics: [
+        "Virtual DOM",
+        "Diffing",
+        "Reconciliation",
+        "React",
+        "성능 최적화",
+      ],
+      icon: "⚛️",
+    },
+    {
+      title: "🧱 JavaScript 이벤트 루프",
+      description:
+        "Call Stack, Task Queue, Microtask Queue의 작동 원리를 시뮬레이션으로 학습",
+      path: "/event-loop",
+      difficulty: "중급",
+      topics: ["Event Loop", "Call Stack", "Queue"],
+      icon: "⚡",
     },
   ];
 
@@ -216,6 +161,8 @@ const HomeLanding = () => {
       case "초급":
       case "기초 필수":
         return "bg-green-100 text-green-800 border-green-200";
+      case "초급-중급":
+        return "bg-emerald-100 text-emerald-800 border-emerald-200";
       case "중급":
         return "bg-yellow-100 text-yellow-800 border-yellow-200";
       case "고급":
@@ -225,135 +172,123 @@ const HomeLanding = () => {
     }
   };
 
-  const getCardColors = (colorTheme: string | undefined) => {
-    switch (colorTheme) {
-      case "indigo":
-        return "from-indigo-50 to-blue-50 border-indigo-200 hover:border-indigo-300";
-      case "emerald":
-        return "from-emerald-50 to-teal-50 border-emerald-200 hover:border-emerald-300";
-      case "orange":
-        return "from-orange-50 to-amber-50 border-orange-200 hover:border-orange-300";
-      case "purple":
-        return "from-purple-50 to-pink-50 border-purple-200 hover:border-purple-300";
-      case "cyan":
-        return "from-cyan-50 to-blue-50 border-cyan-200 hover:border-cyan-300";
-      case "rose":
-        return "from-rose-50 to-orange-50 border-rose-200 hover:border-rose-300";
-      case "amber":
-        return "from-amber-50 to-yellow-50 border-amber-200 hover:border-amber-300";
-      default:
-        return "from-slate-50 to-slate-100 border-slate-200 hover:border-indigo-300";
-    }
-  };
-
-  const getTopicColors = (colorTheme: string | undefined) => {
-    switch (colorTheme) {
-      case "indigo":
-        return "bg-indigo-100 text-indigo-700";
-      case "emerald":
-        return "bg-emerald-100 text-emerald-700";
-      case "orange":
-        return "bg-orange-100 text-orange-700";
-      case "purple":
-        return "bg-purple-100 text-purple-700";
-      case "cyan":
-        return "bg-cyan-100 text-cyan-700";
-      case "rose":
-        return "bg-rose-100 text-rose-700";
-      case "amber":
-        return "bg-amber-100 text-amber-700";
-      default:
-        return "bg-indigo-100 text-indigo-700";
-    }
-  };
-
   return (
     <div>
       {/* 소개 섹션 */}
-      <div className="mb-12 bg-gradient-to-r from-blue-50 to-indigo-50 p-8 rounded-xl border border-blue-200">
-        <h1 className="text-4xl font-bold text-blue-900 mb-4">
-          Interactive JavaScript
-        </h1>
-        <p className="text-blue-800 text-lg">
-          복잡한 JavaScript 개념과 웹 개발 지식을 인터랙티브 시뮬레이터로 쉽고
-          재미있게 학습하세요.
-        </p>
+      <div className="mb-8 bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-200">
+        <h2 className="text-xl font-semibold mb-4 text-blue-800">
+          🌟 학습 가이드
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-blue-700">
+          <div>
+            <h3 className="font-medium mb-2">📚 난이도별 학습 순서 추천</h3>
+            <div className="space-y-3">
+              <div>
+                <p className="font-medium text-green-700 mb-1">
+                  🟢 초급 (기초 개념)
+                </p>
+                <ol className="list-decimal list-inside space-y-1 text-xs ml-3">
+                  <li>JavaScript 변수 선언 & 호이스팅</li>
+                  <li>동등 연산자 (== vs ===)</li>
+                  <li>웹 렌더링 전략</li>
+                  <li>브라우저 렌더링 과정</li>
+                  <li>CSS 호환성 해결</li>
+                </ol>
+              </div>
+              <div>
+                <p className="font-medium text-emerald-700 mb-1">
+                  🟡 초급-중급 (응용)
+                </p>
+                <ol className="list-decimal list-inside space-y-1 text-xs ml-3">
+                  <li>Debounce & Throttle</li>
+                </ol>
+              </div>
+              <div>
+                <p className="font-medium text-yellow-700 mb-1">
+                  🔴 중급 (심화 개념)
+                </p>
+                <ol className="list-decimal list-inside space-y-1 text-xs ml-3">
+                  <li>병렬 Promise 응답 순서</li>
+                  <li>JavaScript 실행 컨텍스트</li>
+                  <li>Scope & Closure</li>
+                  <li>Prototype & 상속</li>
+                  <li>Event Delegation</li>
+                  <li>React Virtual DOM</li>
+                  <li>JavaScript 이벤트 루프</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h3 className="font-medium mb-2">💡 학습 팁</h3>
+            <ul className="list-disc list-inside space-y-1">
+              <li>실제 코드와 시뮬레이션을 병행 학습</li>
+              <li>브라우저 개발자 도구 활용</li>
+              <li>다양한 시나리오로 실험</li>
+            </ul>
+          </div>
+        </div>
       </div>
 
       {/* 학습 코스 */}
-      <div className="space-y-12">
-        {learningPaths.map((path) => (
-          <div key={path.phase}>
-            <div className="mb-6">
-              <h2 className="text-3xl font-bold text-gray-800 mb-2">
-                {path.title}
-              </h2>
-              <p className="text-gray-600">{path.description}</p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {path.courses.map((course, index) => (
-                <Link
-                  key={index}
-                  href={course.path}
-                  className={`group block bg-gradient-to-br rounded-xl p-6 border shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 ${getCardColors(
-                    course.colorTheme
-                  )}`}
-                >
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className="text-3xl">{course.icon}</div>
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-800 group-hover:text-indigo-600 transition-colors">
-                          {course.title}
-                        </h3>
-                        <span
-                          className={`inline-block px-2 py-1 rounded-full text-xs font-medium border ${getDifficultyColor(
-                            course.difficulty
-                          )}`}
-                        >
-                          {course.difficulty}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="text-indigo-500 group-hover:text-indigo-700 transition-colors">
-                      <svg
-                        className="w-5 h-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
-                    </div>
+      <div className="space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {studyPages.map((course, index) => (
+            <Link
+              key={index}
+              href={course.path}
+              className="group block bg-gradient-to-br from-slate-50 to-slate-100 border-slate-200 hover:border-indigo-300 rounded-xl p-6 border shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+            >
+              <div className="flex items-start justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <div className="text-3xl">{course.icon}</div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 group-hover:text-indigo-600 transition-colors">
+                      {course.title}
+                    </h3>
+                    <span
+                      className={`inline-block px-2 py-1 rounded-full text-xs font-medium border ${getDifficultyColor(
+                        course.difficulty
+                      )}`}
+                    >
+                      {course.difficulty}
+                    </span>
                   </div>
+                </div>
+                <div className="text-indigo-500 group-hover:text-indigo-700 transition-colors">
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </div>
+              </div>
 
-                  <p className="text-gray-600 mb-4 leading-relaxed">
-                    {course.description}
-                  </p>
+              <p className="text-gray-600 mb-4 leading-relaxed">
+                {course.description}
+              </p>
 
-                  <div className="flex flex-wrap gap-2">
-                    {course.topics.map((topic, topicIndex) => (
-                      <span
-                        key={topicIndex}
-                        className={`px-3 py-1 rounded-full text-xs font-medium ${getTopicColors(
-                          course.colorTheme
-                        )}`}
-                      >
-                        {topic}
-                      </span>
-                    ))}
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        ))}
+              <div className="flex flex-wrap gap-2">
+                {course.topics.map((topic, topicIndex) => (
+                  <span
+                    key={topicIndex}
+                    className="px-3 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-700"
+                  >
+                    {topic}
+                  </span>
+                ))}
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
 
       {/* 더 많은 주제 준비 중 */}

@@ -113,6 +113,13 @@ const StudyPageLayout: React.FC<StudyPageLayoutProps> = ({
               🌟 이 프로젝트가 도움이 되셨다면 블로그에서 더 많은 개발 이야기를
               확인해보세요!
             </p>
+
+            <div className="mt-4 pt-3 border-t border-gray-100">
+              <p className="text-xs text-gray-400 flex items-center justify-center gap-1">
+                <span>🤖</span>
+                <span>이 페이지는 생성형 AI의 도움을 받아 제작되었습니다.</span>
+              </p>
+            </div>
           </div>
         </div>
       </div>

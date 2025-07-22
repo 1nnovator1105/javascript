@@ -10,7 +10,8 @@
       "Bash(nvm use:*)",
       "Bash(nvm alias:*)",
       "Bash(source ~/.bashrc)",
-      "Bash(yarn lint:*)"
+      "Bash(yarn lint:*)",
+      "WebFetch(domain:1nnovator-js-study.vercel.app)"
     ],
     "deny": []
   }

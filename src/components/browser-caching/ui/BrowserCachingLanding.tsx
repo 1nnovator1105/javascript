@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { StudyPageLayout } from "@/components/share/ui/StudyPageLayout";
 import { CacheFlowDiagram } from "./CacheFlowDiagram";
 import { CacheComparisonCards } from "./CacheComparisonCards";
@@ -38,7 +38,6 @@ const BrowserCachingLanding = () => {
     "no-cache" | "private" | "public" | "max-age"
   >("max-age");
   const [isSimulating, setIsSimulating] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
   const [isFlowActive, setIsFlowActive] = useState(false);
 
   // 캐시 전략별 설명
@@ -176,13 +175,6 @@ const BrowserCachingLanding = () => {
     setTimeout(() => setIsSimulating(false), 1000);
   };
 
-  // CDN 캐싱 시각화
-  const [cdnLayers] = useState([
-    { name: "Browser Cache", hit: false, latency: 0 },
-    { name: "Edge Server", hit: false, latency: 10 },
-    { name: "Regional Cache", hit: false, latency: 50 },
-    { name: "Origin Server", hit: true, latency: 200 },
-  ]);
 
   return (
     <StudyPageLayout
@@ -206,7 +198,7 @@ const BrowserCachingLanding = () => {
                   setTimeout(() => setIsFlowActive(false), 5000);
                 }}
                 aria-label={`${strategy.title} 캐시 전략 선택: ${strategy.description}`}
-                aria-pressed={selectedStrategy === key}
+                aria-checked={selectedStrategy === key}
                 role="radio"
                 className={`p-4 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
                   selectedStrategy === key

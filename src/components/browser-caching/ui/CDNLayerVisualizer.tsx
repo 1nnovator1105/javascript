@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 interface CDNLayer {
   name: string;
@@ -22,7 +22,7 @@ export const CDNLayerVisualizer: React.FC<CDNLayerVisualizerProps> = ({
   const [activeLayer, setActiveLayer] = useState(-1);
   const [cacheHits, setCacheHits] = useState<boolean[]>([false, false, false, false]);
 
-  const getLayers = (): CDNLayer[] => {
+  const getLayers = useCallback((): CDNLayer[] => {
     const isPublic = strategy === "public";
     const isPrivate = strategy === "private";
     const isNoCache = strategy === "no-cache";
@@ -65,7 +65,7 @@ export const CDNLayerVisualizer: React.FC<CDNLayerVisualizerProps> = ({
         description: "원본 서버 (항상 최신 데이터)",
       },
     ];
-  };
+  }, [strategy, cacheHits]);
 
   useEffect(() => {
     if (!isRequestActive) {
@@ -89,7 +89,7 @@ export const CDNLayerVisualizer: React.FC<CDNLayerVisualizerProps> = ({
     }, 500);
 
     return () => clearInterval(interval);
-  }, [isRequestActive, strategy]);
+  }, [isRequestActive, strategy, getLayers]);
 
   // Simulate cache hit patterns based on strategy
   useEffect(() => {

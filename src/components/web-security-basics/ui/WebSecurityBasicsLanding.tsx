@@ -32,7 +32,7 @@ const WebSecurityBasicsLanding = () => {
   const [userInput, setUserInput] = useState("");
   const [isCSPEnabled, setIsCSPEnabled] = useState(false);
   const [isInputSanitized, setIsInputSanitized] = useState(false);
-  const [csrfToken, setCSRFToken] = useState("abc123def456");
+  const [csrfToken] = useState("abc123def456");
   const [isCSRFProtected, setIsCSRFProtected] = useState(false);
 
   // 보안 로그 추가
@@ -150,7 +150,8 @@ const WebSecurityBasicsLanding = () => {
     }
   };
 
-  // 입력값 정제 함수
+  // 입력값 정제 함수 (예시용 - 실제로는 보안 라이브러리 사용 권장)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const sanitizeInput = (input: string): string => {
     return input
       .replace(/</g, "&lt;")

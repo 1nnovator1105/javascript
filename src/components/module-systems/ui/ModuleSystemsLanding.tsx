@@ -748,7 +748,7 @@ export const helper = () => {};`}
                 💡 마이그레이션 팁
               </h4>
               <ul className="text-sm space-y-1">
-                <li>• package.json에 "type": "module" 추가</li>
+                <li>• package.json에 &quot;type&quot;: &quot;module&quot; 추가</li>
                 <li>• .js 확장자를 명시적으로 포함</li>
                 <li>• __dirname, __filename 대신 import.meta.url 사용</li>
                 <li>• require() 대신 동적 import() 사용</li>

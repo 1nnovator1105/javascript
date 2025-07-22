@@ -9,7 +9,7 @@ interface APIRequest {
   endpoint: string;
   method: string;
   body?: string;
-  response: any;
+  response: unknown;
   size: number;
   time: number;
 }
@@ -42,11 +42,6 @@ const GraphQLRestLanding = () => {
   >("user-posts");
   const [apiRequests, setApiRequests] = useState<APIRequest[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedFields, setSelectedFields] = useState({
-    user: ["id", "name", "email"],
-    posts: ["id", "title"],
-    comments: ["id", "text"],
-  });
 
   // 모의 데이터
   const mockData = {

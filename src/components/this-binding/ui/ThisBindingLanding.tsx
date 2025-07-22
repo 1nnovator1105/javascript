@@ -14,7 +14,8 @@ const ThisBindingLanding = () => {
   const [selectedRule, setSelectedRule] = useState<
     "default" | "implicit" | "explicit" | "new" | "arrow"
   >("default");
-  const [executionContext, setExecutionContext] = useState<string>("");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_executionContext, setExecutionContext] = useState<string>("");
   const [thisValue, setThisValue] = useState<string>("undefined");
 
   // this 바인딩 규칙들
@@ -400,7 +401,7 @@ obj.method(); // 출력 결과는?`}</pre>
                 </summary>
                 <div className="mt-2 p-3 bg-blue-50 rounded">
                   <p className="text-sm">
-                    <strong>"Test"</strong> - 화살표 함수는 렉시컬 this를
+                    <strong>&quot;Test&quot;</strong> - 화살표 함수는 렉시컬 this를
                     사용하므로 method의 this(obj)를 그대로 사용합니다.
                   </p>
                 </div>

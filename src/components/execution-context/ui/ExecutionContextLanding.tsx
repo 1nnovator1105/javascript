@@ -634,32 +634,6 @@ console.log(hoistedFunc());`,
           </div>
         </div>
       </div>
-
-      {/* 마무리 */}
-      <div className="text-center bg-gradient-to-r from-amber-50 to-yellow-50 rounded-xl p-8 border-2 border-amber-200">
-        <h2 className="text-2xl font-bold text-amber-800 mb-4">
-          🎉 축하합니다!
-        </h2>
-        <p className="text-lg text-amber-700 mb-6">
-          JavaScript 실행 컨텍스트의 핵심 개념을 이해했습니다!
-        </p>
-        <div className="flex justify-center items-center gap-4 text-amber-700">
-          <div className="text-center">
-            <div className="text-2xl mb-1">📚</div>
-            <div className="text-sm">이론 학습 완료</div>
-          </div>
-          <span className="text-xl">→</span>
-          <div className="text-center">
-            <div className="text-2xl mb-1">🔍</div>
-            <div className="text-sm">개념 이해 확인</div>
-          </div>
-          <span className="text-xl">→</span>
-          <div className="text-center">
-            <div className="text-2xl mb-1">🚀</div>
-            <div className="text-sm">실제 프로젝트 적용</div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

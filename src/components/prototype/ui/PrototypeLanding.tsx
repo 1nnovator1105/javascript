@@ -836,32 +836,6 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
           </div>
         </div>
       </div>
-
-      {/* 마무리 */}
-      <div className="text-center bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-8 border-2 border-indigo-200">
-        <h2 className="text-2xl font-bold text-indigo-800 mb-4">
-          🎉 축하합니다!
-        </h2>
-        <p className="text-lg text-indigo-600 mb-6">
-          JavaScript 프로토타입의 기본 개념을 이해했습니다!
-        </p>
-        <div className="flex justify-center items-center gap-4 text-indigo-700">
-          <div className="text-center">
-            <div className="text-2xl mb-1">📚</div>
-            <div className="text-sm">더 공부하기</div>
-          </div>
-          <span className="text-xl">→</span>
-          <div className="text-center">
-            <div className="text-2xl mb-1">💻</div>
-            <div className="text-sm">실습 해보기</div>
-          </div>
-          <span className="text-xl">→</span>
-          <div className="text-center">
-            <div className="text-2xl mb-1">🚀</div>
-            <div className="text-sm">프로젝트 적용</div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

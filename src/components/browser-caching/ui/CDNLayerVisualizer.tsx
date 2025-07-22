@@ -15,12 +15,20 @@ interface CDNLayerVisualizerProps {
   isRequestActive?: boolean;
 }
 
+interface PacketPosition {
+  layerIndex: number;
+  progress: number; // 0 to 1
+}
+
 export const CDNLayerVisualizer: React.FC<CDNLayerVisualizerProps> = ({
   strategy,
   isRequestActive = false,
 }) => {
   const [activeLayer, setActiveLayer] = useState(-1);
   const [cacheHits, setCacheHits] = useState<boolean[]>([false, false, false, false]);
+  const [packetPosition, setPacketPosition] = useState<PacketPosition | null>(null);
+  const [hitAnimations, setHitAnimations] = useState<number[]>([]);
+  const [missAnimations, setMissAnimations] = useState<number[]>([]);
 
   const getLayers = useCallback((): CDNLayer[] => {
     const isPublic = strategy === "public";
@@ -70,46 +78,90 @@ export const CDNLayerVisualizer: React.FC<CDNLayerVisualizerProps> = ({
   useEffect(() => {
     if (!isRequestActive) {
       setActiveLayer(-1);
+      setPacketPosition(null);
       return;
     }
 
     // Simulate request flow through layers
     const layers = getLayers();
     let currentLayer = 0;
-    const maxLayer = layers.findIndex((layer) => layer.hit) || layers.length - 1;
+    const maxLayer = layers.findIndex((layer) => layer.hit) !== -1 
+      ? layers.findIndex((layer) => layer.hit) 
+      : layers.length - 1;
 
-    const interval = setInterval(() => {
-      if (currentLayer <= maxLayer) {
-        setActiveLayer(currentLayer);
+    // Animate packet movement
+    let progress = 0;
+    let animationFrame: number;
+
+    const animatePacket = () => {
+      progress += 0.02; // Adjust speed
+
+      if (progress >= 1) {
+        progress = 0;
         currentLayer++;
-      } else {
-        setActiveLayer(-1);
-        clearInterval(interval);
-      }
-    }, 500);
 
-    return () => clearInterval(interval);
+        if (currentLayer > maxLayer) {
+          setActiveLayer(-1);
+          setPacketPosition(null);
+          
+          // Trigger hit animation for the final layer
+          if (layers[maxLayer].hit) {
+            setHitAnimations(prev => [...prev, maxLayer]);
+            setTimeout(() => {
+              setHitAnimations(prev => prev.filter(i => i !== maxLayer));
+            }, 1000);
+          }
+          return;
+        }
+
+        // Check for cache miss animation
+        if (currentLayer > 0 && !layers[currentLayer - 1].hit && layers[currentLayer - 1].enabled) {
+          setMissAnimations(prev => [...prev, currentLayer - 1]);
+          setTimeout(() => {
+            setMissAnimations(prev => prev.filter(i => i !== currentLayer - 1));
+          }, 600);
+        }
+      }
+
+      setActiveLayer(currentLayer);
+      setPacketPosition({ layerIndex: currentLayer, progress });
+
+      animationFrame = requestAnimationFrame(animatePacket);
+    };
+
+    animationFrame = requestAnimationFrame(animatePacket);
+
+    return () => {
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+      }
+    };
   }, [isRequestActive, strategy, getLayers]);
 
   // Simulate cache hit patterns based on strategy
   useEffect(() => {
-    if (strategy === "public") {
-      setCacheHits([
-        Math.random() > 0.3, // Browser cache hit 70%
-        Math.random() > 0.4, // Edge cache hit 60%
-        Math.random() > 0.6, // Regional cache hit 40%
-        false, // Origin always processes
-      ]);
-    } else if (strategy === "private" || strategy === "max-age") {
-      setCacheHits([
-        Math.random() > 0.3, // Browser cache hit 70%
-        false, // No CDN for private
-        false, // No CDN for private
-        false, // Origin always processes
-      ]);
-    } else {
-      setCacheHits([false, false, false, false]); // no-cache
-    }
+    // Add a small delay for smooth transition effect
+    const timer = setTimeout(() => {
+      if (strategy === "public") {
+        setCacheHits([
+          Math.random() > 0.3, // Browser cache hit 70%
+          Math.random() > 0.4, // Edge cache hit 60%
+          Math.random() > 0.6, // Regional cache hit 40%
+          false, // Origin always processes
+        ]);
+      } else if (strategy === "private" || strategy === "max-age") {
+        setCacheHits([
+          Math.random() > 0.3, // Browser cache hit 70%
+          false, // No CDN for private
+          false, // No CDN for private
+          false, // Origin always processes
+        ]);
+      } else {
+        setCacheHits([false, false, false, false]); // no-cache
+      }
+    }, 100);
+
+    return () => clearTimeout(timer);
   }, [strategy, isRequestActive]);
 
   const layers = getLayers();
@@ -136,49 +188,135 @@ export const CDNLayerVisualizer: React.FC<CDNLayerVisualizerProps> = ({
         </div>
       </div>
 
+      {/* Layer descriptions */}
+      <div className="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+        <h4 className="font-semibold text-blue-900 mb-3">캐싱 계층 설명</h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+          <div className="flex items-start gap-2">
+            <span className="text-lg">💻</span>
+            <div>
+              <strong className="text-blue-800">Browser Cache</strong>
+              <p className="text-gray-700">사용자의 브라우저에 저장되는 로컬 캐시. 가장 빠른 응답 속도(0ms)를 제공하며 네트워크 요청 없이 즉시 콘텐츠를 제공합니다.</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-2">
+            <span className="text-lg">🌐</span>
+            <div>
+              <strong className="text-blue-800">Edge Server</strong>
+              <p className="text-gray-700">사용자와 가장 가까운 CDN 서버. 전 세계에 분산되어 있으며 지리적으로 가까운 사용자에게 빠른 응답(~10ms)을 제공합니다.</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-2">
+            <span className="text-lg">🏢</span>
+            <div>
+              <strong className="text-blue-800">Regional Cache</strong>
+              <p className="text-gray-700">지역별 중앙 캐시 서버. Edge Server가 캐시를 갖고 있지 않을 때 사용되며 중간 수준의 응답 속도(~50ms)를 제공합니다.</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-2">
+            <span className="text-lg">🖥️</span>
+            <div>
+              <strong className="text-blue-800">Origin Server</strong>
+              <p className="text-gray-700">원본 콘텐츠를 제공하는 실제 웹 서버. 캐시가 없거나 만료된 경우 여기서 최신 데이터를 가져옵니다(~200ms).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="relative">
         {/* Connection lines */}
         <div className="absolute inset-0 flex items-center">
           {layers.slice(0, -1).map((layer, index) => (
             <div
               key={index}
-              className={`flex-1 h-0.5 mx-4 transition-all duration-300 ${
+              className={`flex-1 h-1 mx-4 transition-all duration-500 relative overflow-hidden ${
                 layer.enabled && layers[index + 1].enabled
                   ? activeLayer === index || activeLayer === index + 1
-                    ? "bg-blue-500"
+                    ? "bg-gradient-to-r from-blue-400 via-blue-500 to-blue-400"
                     : "bg-gray-300"
-                  : "bg-gray-200 border-b-2 border-dashed border-gray-300"
+                  : "bg-transparent"
               }`}
-            />
+            >
+              {/* Dashed line for disabled connections */}
+              {(!layer.enabled || !layers[index + 1].enabled) && (
+                <div className="absolute inset-0 border-b-2 border-dashed border-gray-300" />
+              )}
+              
+              {/* Flowing animation for active connections */}
+              {layer.enabled && layers[index + 1].enabled && (activeLayer === index || activeLayer === index + 1) && (
+                <div className="absolute inset-0 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-30 animate-flow" />
+                </div>
+              )}
+            </div>
           ))}
         </div>
+
+        {/* Animated packet */}
+        {packetPosition && layers[packetPosition.layerIndex] && layers[packetPosition.layerIndex + 1] && (
+          <div className="absolute inset-0 flex items-center pointer-events-none">
+            <div 
+              className="absolute w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full shadow-lg transform -translate-y-1/2 z-20 flex items-center justify-center"
+              style={{
+                left: `calc(${(packetPosition.layerIndex + packetPosition.progress) * 25}% - 1rem)`,
+                top: '50%',
+                boxShadow: '0 0 20px rgba(251, 191, 36, 0.6)',
+              }}
+            >
+              <div className="w-6 h-6 bg-white rounded-full animate-pulse opacity-40" />
+              <div className="absolute text-xs font-bold">📦</div>
+            </div>
+          </div>
+        )}
 
         {/* Layer nodes */}
         <div className="relative flex items-center justify-between">
           {layers.map((layer, index) => (
             <div key={layer.name} className="text-center relative z-10">
               <div className="relative">
+                {/* Ripple effect for active layer */}
+                {activeLayer === index && layer.enabled && (
+                  <div className="absolute inset-0 rounded-lg animate-ping bg-blue-400 opacity-75" />
+                )}
+                
+                {/* Hit burst effect */}
+                {hitAnimations.includes(index) && (
+                  <div className="absolute inset-0 rounded-lg animate-burst bg-green-400" />
+                )}
+                
+                {/* Miss shake effect */}
                 <div
-                  className={`w-24 h-24 rounded-lg flex flex-col items-center justify-center text-white font-bold transition-all duration-300 ${
-                    !layer.enabled
-                      ? "bg-gray-300 opacity-50"
-                      : layer.hit
-                      ? "bg-green-500"
-                      : activeLayer === index
-                      ? "bg-blue-500 scale-110 shadow-lg"
-                      : "bg-gray-400"
+                  className={`w-24 h-24 rounded-lg flex flex-col items-center justify-center text-white font-bold transition-all duration-500 ease-in-out transform ${
+                    missAnimations.includes(index) ? "animate-shake" : ""
                   } ${
-                    layer.enabled ? "cursor-pointer hover:scale-105" : ""
+                    !layer.enabled
+                      ? "bg-gray-300 opacity-50 scale-95"
+                      : layer.hit
+                      ? hitAnimations.includes(index)
+                        ? "bg-green-500 scale-125 shadow-2xl ring-4 ring-green-300 ring-opacity-50"
+                        : "bg-green-500 shadow-lg"
+                      : activeLayer === index
+                      ? "bg-blue-500 scale-110 shadow-xl animate-pulse ring-2 ring-blue-300 ring-opacity-75"
+                      : "bg-gray-400 shadow-md"
+                  } ${
+                    layer.enabled ? "cursor-pointer hover:scale-105 hover:shadow-xl transition-transform" : ""
                   }`}
                   role="button"
                   tabIndex={layer.enabled ? 0 : -1}
                   aria-label={`${layer.name} - ${layer.description}`}
                   aria-disabled={!layer.enabled}
                 >
+                  {/* Loading spinner for active layer */}
+                  {activeLayer === index && !layer.hit && layer.enabled && (
+                    <div className="absolute inset-0 rounded-lg bg-black bg-opacity-10 flex items-center justify-center">
+                      <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    </div>
+                  )}
+                  
                   <div className="text-xs mb-1">
                     {layer.hit && layer.enabled ? "캐시 히트!" : layer.name}
                   </div>
-                  <div className="text-2xl">
+                  <div className="text-2xl relative">
                     {index === 0
                       ? "💻"
                       : index === 1
@@ -197,8 +335,8 @@ export const CDNLayerVisualizer: React.FC<CDNLayerVisualizerProps> = ({
                 )}
 
                 {/* Cache hit indicator */}
-                {layer.hit && layer.enabled && (
-                  <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-bold animate-pulse">
+                {layer.hit && layer.enabled && !hitAnimations.includes(index) && (
+                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg animate-bounce">
                     ✓
                   </div>
                 )}

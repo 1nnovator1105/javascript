@@ -75,6 +75,7 @@ const DebounceThrottleLanding = () => {
     addLog("event", `검색 실행: "${value}"`);
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSearch = useCallback(
     debounce((value: string) => {
       addLog("debounce", `Debounced 검색: "${value}"`);
@@ -82,6 +83,7 @@ const DebounceThrottleLanding = () => {
     [addLog, delayTime]
   );
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const throttledSearch = useCallback(
     throttle((value: string) => {
       addLog("throttle", `Throttled 검색: "${value}"`);
@@ -94,6 +96,7 @@ const DebounceThrottleLanding = () => {
     addLog("event", `스크롤 위치: ${position}px`);
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedScroll = useCallback(
     debounce((position: number) => {
       addLog("debounce", `Debounced 스크롤: ${position}px`);
@@ -101,6 +104,7 @@ const DebounceThrottleLanding = () => {
     [addLog, delayTime]
   );
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const throttledScroll = useCallback(
     throttle((position: number) => {
       addLog("throttle", `Throttled 스크롤: ${position}px`);

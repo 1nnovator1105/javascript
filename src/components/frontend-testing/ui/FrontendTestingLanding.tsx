@@ -403,7 +403,7 @@ describe('쇼핑 카트 E2E 테스트', () => {
           <button
             key={category.key}
             onClick={() => {
-              setSelectedCategory(category.key as any);
+              setSelectedCategory(category.key as "unit" | "integration" | "e2e");
               setShowTestResult(false);
             }}
             className={`px-6 py-3 rounded-lg font-medium transition-all ${

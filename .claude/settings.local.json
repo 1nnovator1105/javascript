@@ -2,7 +2,15 @@
   "permissions": {
     "allow": [
       "Bash(yarn type-check)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "Bash(mkdir:*)",
+      "Bash(yarn build)",
+      "Bash(node:*)",
+      "Bash(nvm list:*)",
+      "Bash(nvm use:*)",
+      "Bash(nvm alias:*)",
+      "Bash(source ~/.bashrc)",
+      "Bash(yarn lint:*)"
     ],
     "deny": []
   }

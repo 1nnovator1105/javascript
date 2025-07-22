@@ -57,31 +57,31 @@ export const FlexboxPlayground: React.FC<FlexboxPlaygroundProps> = ({
     if (externalFlexDirection && externalFlexDirection !== flexDirection) {
       setFlexDirection(externalFlexDirection);
     }
-  }, [externalFlexDirection]);
+  }, [externalFlexDirection, flexDirection]);
 
   React.useEffect(() => {
     if (externalJustifyContent && externalJustifyContent !== justifyContent) {
       setJustifyContent(externalJustifyContent);
     }
-  }, [externalJustifyContent]);
+  }, [externalJustifyContent, justifyContent]);
 
   React.useEffect(() => {
     if (externalAlignItems && externalAlignItems !== alignItems) {
       setAlignItems(externalAlignItems);
     }
-  }, [externalAlignItems]);
+  }, [externalAlignItems, alignItems]);
 
   React.useEffect(() => {
     if (externalFlexWrap && externalFlexWrap !== flexWrap) {
       setFlexWrap(externalFlexWrap);
     }
-  }, [externalFlexWrap]);
+  }, [externalFlexWrap, flexWrap]);
 
   React.useEffect(() => {
     if (externalGap !== undefined && externalGap !== gap) {
       setGap(externalGap);
     }
-  }, [externalGap]);
+  }, [externalGap, gap]);
 
   const handleFlexDirectionChange = (newDirection: "row" | "row-reverse" | "column" | "column-reverse") => {
     setFlexDirection(newDirection);
@@ -167,7 +167,7 @@ export const FlexboxPlayground: React.FC<FlexboxPlaygroundProps> = ({
             </label>
             <select
               value={flexDirection}
-              onChange={(e) => handleFlexDirectionChange(e.target.value as any)}
+              onChange={(e) => handleFlexDirectionChange(e.target.value as "row" | "row-reverse" | "column" | "column-reverse")}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="row">row</option>
@@ -220,7 +220,7 @@ export const FlexboxPlayground: React.FC<FlexboxPlaygroundProps> = ({
             </label>
             <select
               value={flexWrap}
-              onChange={(e) => handleFlexWrapChange(e.target.value as any)}
+              onChange={(e) => handleFlexWrapChange(e.target.value as "nowrap" | "wrap" | "wrap-reverse")}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="nowrap">nowrap</option>

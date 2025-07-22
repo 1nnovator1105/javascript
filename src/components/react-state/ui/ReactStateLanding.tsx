@@ -175,7 +175,8 @@ const ReactStateLanding = () => {
     return () => clearInterval(interval);
   }, [isTimerRunning]);
 
-  // 단계 완료 체크
+  // 단계 완료 체크 (미래 기능용)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const completeStep = (stepId: string) => {
     // 실제로는 학습 진행도를 저장하는 로직이 들어갈 수 있음
     console.log(`Step ${stepId} completed!`);
@@ -317,7 +318,7 @@ const ReactStateLanding = () => {
                   </div>
                   <div className="mt-4 p-3 bg-white rounded-lg">
                     <code className="text-sm text-blue-700">
-                      const [name, setName] = useState("");
+                      const [name, setName] = useState(&quot;&quot;);
                     </code>
                   </div>
                 </div>
@@ -373,7 +374,7 @@ const ReactStateLanding = () => {
                   </div>
                   <div className="mt-4 p-3 bg-white rounded-lg">
                     <code className="text-sm text-yellow-700">
-                      const [selectedColor, setSelectedColor] = useState("blue");
+                      const [selectedColor, setSelectedColor] = useState(&quot;blue&quot;);
                     </code>
                   </div>
                 </div>
@@ -539,14 +540,14 @@ const ReactStateLanding = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="p-4 bg-red-50 rounded-lg border border-red-200">
                     <h4 className="font-bold text-red-600 mb-2">❌ 잘못된 방법</h4>
-                    <code className="text-sm block mb-2">user.name = "새이름"; // 직접 수정</code>
-                    <code className="text-sm block mb-2">items.push("새항목"); // 직접 추가</code>
+                    <code className="text-sm block mb-2">user.name = &quot;새이름&quot;; // 직접 수정</code>
+                    <code className="text-sm block mb-2">items.push(&quot;새항목&quot;); // 직접 추가</code>
                     <p className="text-sm text-red-600">React가 변화를 감지하지 못해요!</p>
                   </div>
                   <div className="p-4 bg-green-50 rounded-lg border border-green-200">
                     <h4 className="font-bold text-green-600 mb-2">✅ 올바른 방법</h4>
                     <code className="text-sm block mb-2">setUser({`{...user, name: "새이름"}`})</code>
-                    <code className="text-sm block mb-2">setItems([...items, "새항목"])</code>
+                    <code className="text-sm block mb-2">setItems([...items, &quot;새항목&quot;])</code>
                     <p className="text-sm text-green-600">새로운 객체/배열을 만들어요!</p>
                   </div>
                 </div>

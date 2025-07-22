@@ -3,6 +3,24 @@ import Link from "next/link";
 const HomeLanding = () => {
   const learningPaths = [
     {
+      phase: 0,
+      title: "Phase 0: 실무 도구 기초",
+      description:
+        "개발 환경 설정과 협업 도구 사용법을 학습하여 실무에 바로 적용할 수 있습니다.",
+      courses: [
+        {
+          title: "📁 Git & GitHub 실무 워크플로우",
+          description:
+            "혼자 개발할 때와 팀에서 협업할 때 꼭 알아야 할 Git 명령어와 GitHub 사용법을 학습합니다",
+          path: "/git-workflow",
+          difficulty: "기초 실무",
+          topics: ["브랜치 전략", "충돌 해결", "PR 작성", "이슈 관리"],
+          icon: "📁",
+          colorTheme: "orange",
+        },
+      ],
+    },
+    {
       phase: 1,
       title: "Phase 1: 웹 프론트엔드 기초",
       description:
@@ -234,6 +252,16 @@ const HomeLanding = () => {
           colorTheme: "teal",
         },
         {
+          title: "🎯 JavaScript 배열 메서드 완전 정복",
+          description:
+            "map, filter, reduce부터 최신 메서드까지 배열 조작의 모든 것을 실습으로 학습",
+          path: "/array-methods-mastery",
+          difficulty: "초급",
+          topics: ["고차함수", "메서드 체이닝", "성능 비교", "실무 패턴"],
+          icon: "🎯",
+          colorTheme: "purple",
+        },
+        {
           title: "📊 JavaScript 메모리 관리",
           description:
             "가비지 컬렉션, 메모리 누수, WeakMap/WeakSet의 동작을 시각적으로 학습합니다",
@@ -372,6 +400,8 @@ const HomeLanding = () => {
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
+      case "기초 실무":
+        return "bg-blue-100 text-blue-800 border-blue-200";
       case "초급":
       case "기초 필수":
         return "bg-green-100 text-green-800 border-green-200";

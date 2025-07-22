@@ -78,6 +78,36 @@ const HomeLanding = () => {
           icon: "💾",
           colorTheme: "amber",
         },
+        {
+          title: "🗄️ 브라우저 캐싱 전략",
+          description:
+            "HTTP 캐싱, 브라우저 캐시, CDN 캐싱의 작동 원리를 시각적으로 학습하고 성능을 최적화합니다",
+          path: "/browser-caching",
+          difficulty: "기초 필수",
+          topics: ["Cache-Control", "ETag", "CDN", "Service Worker Cache"],
+          icon: "🗄️",
+          colorTheme: "slate",
+        },
+        {
+          title: "📡 GraphQL vs REST",
+          description:
+            "REST API와 GraphQL의 차이점을 실제 요청/응답 비교로 학습하고 각각의 장단점을 이해합니다",
+          path: "/graphql-rest",
+          difficulty: "기초 필수",
+          topics: ["Over-fetching", "Under-fetching", "Schema", "Resolver"],
+          icon: "📡",
+          colorTheme: "pink",
+        },
+        {
+          title: "🛡️ 웹 보안 기초 (XSS, CSRF)",
+          description:
+            "웹 애플리케이션의 주요 보안 취약점과 방어 방법을 시뮬레이션으로 학습합니다",
+          path: "/web-security-basics",
+          difficulty: "기초 필수",
+          topics: ["XSS 공격", "CSRF 토큰", "Content Security Policy", "보안 헤더"],
+          icon: "🛡️",
+          colorTheme: "red",
+        },
       ],
     },
     {
@@ -183,6 +213,36 @@ const HomeLanding = () => {
           icon: "⚡",
           colorTheme: "indigo",
         },
+        {
+          title: "🎯 this 바인딩의 모든 것",
+          description:
+            "JavaScript의 this 키워드가 결정되는 4가지 규칙을 인터랙티브 예제로 완벽 학습",
+          path: "/this-binding",
+          difficulty: "중급",
+          topics: ["암시적 바인딩", "명시적 바인딩", "new 바인딩", "화살표 함수"],
+          icon: "🎯",
+          colorTheme: "violet",
+        },
+        {
+          title: "🔄 JavaScript 모듈 시스템",
+          description:
+            "CommonJS, ES Modules, AMD의 차이점과 번들러가 처리하는 과정을 시각화로 학습",
+          path: "/module-systems",
+          difficulty: "중급",
+          topics: ["import/export", "require", "동적 import", "순환 참조"],
+          icon: "🔄",
+          colorTheme: "teal",
+        },
+        {
+          title: "📊 JavaScript 메모리 관리",
+          description:
+            "가비지 컬렉션, 메모리 누수, WeakMap/WeakSet의 동작을 시각적으로 학습합니다",
+          path: "/memory-management",
+          difficulty: "중급",
+          topics: ["가비지 컬렉션", "메모리 누수", "힙/스택", "WeakMap"],
+          icon: "📊",
+          colorTheme: "lime",
+        },
       ],
     },
     {
@@ -266,6 +326,46 @@ const HomeLanding = () => {
           icon: "⏱️",
           colorTheme: "amber",
         },
+        {
+          title: "🎛️ React 상태 관리 완전 가이드",
+          description:
+            "useState부터 Context API까지 React의 모든 상태 관리 패턴을 초보자도 쉽게 이해할 수 있도록 단계별로 학습합니다",
+          path: "/react-state",
+          difficulty: "초급-중급",
+          topics: ["useState", "useEffect", "useReducer", "Context API", "커스텀 훅"],
+          icon: "🎛️",
+          colorTheme: "blue",
+        },
+        {
+          title: "📱 반응형 웹 디자인 실전",
+          description:
+            "미디어 쿼리, 플렉스박스, 그리드를 활용한 반응형 레이아웃을 실습으로 구현합니다",
+          path: "/responsive-design",
+          difficulty: "초급-중급",
+          topics: ["미디어 쿼리", "모바일 퍼스트", "터치 이벤트", "뷰포트"],
+          icon: "📱",
+          colorTheme: "pink",
+        },
+        {
+          title: "⚡ 웹 성능 측정과 개선",
+          description:
+            "Lighthouse, Web Vitals를 활용한 성능 측정과 실제 개선 방법을 학습합니다",
+          path: "/web-performance",
+          difficulty: "중급",
+          topics: ["Core Web Vitals", "번들 최적화", "이미지 최적화", "로딩 전략"],
+          icon: "⚡",
+          colorTheme: "orange",
+        },
+        {
+          title: "🧪 프론트엔드 테스팅 입문",
+          description:
+            "Jest와 React Testing Library를 활용한 컴포넌트 테스트 작성법을 학습합니다",
+          path: "/frontend-testing",
+          difficulty: "중급",
+          topics: ["단위 테스트", "통합 테스트", "모킹", "테스트 주도 개발"],
+          icon: "🧪",
+          colorTheme: "green",
+        },
       ],
     },
   ];
@@ -304,6 +404,22 @@ const HomeLanding = () => {
         return "from-amber-50 to-yellow-50 border-amber-200 hover:border-amber-300";
       case "blue":
         return "from-blue-50 to-indigo-50 border-blue-200 hover:border-blue-300";
+      case "slate":
+        return "from-slate-50 to-gray-50 border-slate-200 hover:border-slate-300";
+      case "pink":
+        return "from-pink-50 to-rose-50 border-pink-200 hover:border-pink-300";
+      case "red":
+        return "from-red-50 to-rose-50 border-red-200 hover:border-red-300";
+      case "violet":
+        return "from-violet-50 to-purple-50 border-violet-200 hover:border-violet-300";
+      case "teal":
+        return "from-teal-50 to-cyan-50 border-teal-200 hover:border-teal-300";
+      case "lime":
+        return "from-lime-50 to-green-50 border-lime-200 hover:border-lime-300";
+      case "fuchsia":
+        return "from-fuchsia-50 to-pink-50 border-fuchsia-200 hover:border-fuchsia-300";
+      case "green":
+        return "from-green-50 to-emerald-50 border-green-200 hover:border-green-300";
       default:
         return "from-slate-50 to-slate-100 border-slate-200 hover:border-indigo-300";
     }
@@ -327,6 +443,22 @@ const HomeLanding = () => {
         return "bg-amber-100 text-amber-700";
       case "blue":
         return "bg-blue-100 text-blue-700";
+      case "slate":
+        return "bg-slate-100 text-slate-700";
+      case "pink":
+        return "bg-pink-100 text-pink-700";
+      case "red":
+        return "bg-red-100 text-red-700";
+      case "violet":
+        return "bg-violet-100 text-violet-700";
+      case "teal":
+        return "bg-teal-100 text-teal-700";
+      case "lime":
+        return "bg-lime-100 text-lime-700";
+      case "fuchsia":
+        return "bg-fuchsia-100 text-fuchsia-700";
+      case "green":
+        return "bg-green-100 text-green-700";
       default:
         return "bg-indigo-100 text-indigo-700";
     }

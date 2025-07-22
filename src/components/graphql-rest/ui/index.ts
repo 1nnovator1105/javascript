@@ -1,0 +1,1 @@
+export { default as GraphQLRestLanding } from "./GraphQLRestLanding";

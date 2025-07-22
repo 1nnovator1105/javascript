@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(yarn type-check)",
+      "Bash(rm:*)"
+    ],
+    "deny": []
+  }
+}

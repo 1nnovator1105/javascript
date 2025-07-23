@@ -15,11 +15,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | 인터랙티브 웹 개발 학습 센터",
-    default: "인터랙티브 웹 개발 학습 센터 - JavaScript, React, 웹 기초부터 심화까지",
+    template: "%s | 프론트엔드 인터랙티브 학습",
+    default: "프론트엔드 인터랙티브 학습 - JavaScript 실습 플랫폼",
   },
   description:
-    "JavaScript, React, HTTP, 웹 성능, 브라우저 렌더링 등 웹 개발의 모든 것을 인터랙티브 시뮬레이터로 학습하세요. 초급부터 중급까지 체계적인 단계별 학습 경로를 제공합니다.",
+    "프론트엔드 인터랙티브 학습으로 JavaScript를 마스터하세요. React, Promise, Event Loop 등 핵심 개념을 시뮬레이터로 실습하며 배우는 체계적인 학습 플랫폼입니다.",
   keywords: [
     "웹 개발 학습",
     "JavaScript 튜토리얼",
@@ -102,8 +102,8 @@ export const metadata: Metadata = {
     "mobile-web-app-capable": "yes",
     "apple-mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "default",
-    "apple-mobile-web-app-title": "웹 개발 학습 센터",
-    "application-name": "인터랙티브 웹 개발 학습 센터",
+    "apple-mobile-web-app-title": "프론트엔드 인터랙티브 학습",
+    "application-name": "프론트엔드 인터랙티브 학습 플랫폼",
     "msapplication-TileColor": "#4f46e5",
     "msapplication-config": "none",
   },
@@ -111,24 +111,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ko_KR",
     url: "https://javascript-study.luvlog.xyz",
-    title: "인터랙티브 웹 개발 학습 센터 - JavaScript, React, 웹 기초부터 심화까지",
+    title: "프론트엔드 인터랙티브 학습 - JavaScript 실습 플랫폼",
     description:
-      "JavaScript, React, HTTP, 웹 성능, 브라우저 렌더링 등 웹 개발의 모든 것을 인터랙티브 시뮬레이터로 학습하세요. 체계적 커리큘럼으로 초급부터 중급까지!",
-    siteName: "인터랙티브 웹 개발 학습 센터",
+      "프론트엔드 인터랙티브 학습으로 JavaScript와 React를 완벽하게 마스터하세요. 시뮬레이터로 배우는 실습 중심 교육!",
+    siteName: "프론트엔드 인터랙티브 학습",
     images: [
       {
         url: "/images/thumbnail-backup.png",
         width: 1200,
         height: 630,
-        alt: "인터랙티브 웹 개발 학습 센터 - JavaScript, React, 웹 개발 종합 교육 플랫폼",
+        alt: "프론트엔드 인터랙티브 학습 - JavaScript 실습 플랫폼",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "인터랙티브 웹 개발 학습 센터 - JavaScript, React, 웹 개발 완전 정복",
+    title: "프론트엔드 인터랙티브 학습 - JavaScript 실습으로 마스터",
     description:
-      "인터랙티브 시뮬레이터로 JavaScript, React, HTTP, 웹 성능 등 웹 개발의 모든 것을 학습하세요!",
+      "프론트엔드 인터랙티브 학습 플랫폼에서 JavaScript 핵심 개념을 시뮬레이터로 체험하세요!",
     images: ["/images/thumbnail-backup.png"],
   },
   robots: {

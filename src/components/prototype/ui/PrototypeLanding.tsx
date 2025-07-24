@@ -639,7 +639,7 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
             {/* 탐색 결과 */}
             {searchResult && (
               <div className={`bg-white rounded-lg border-2 ${getColorClass('border-purple-200')} p-4`}>
-                <h3 className="text-lg font-semibold mb-3 text-purple-700">
+                <h3 className={`text-lg font-semibold mb-3 ${getColorClass('text-purple-700')}`}>
                   탐색 결과
                 </h3>
                 <div

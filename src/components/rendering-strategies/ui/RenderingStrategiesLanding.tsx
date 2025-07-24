@@ -616,7 +616,7 @@ const RenderingStrategiesLanding: React.FC = () => {
           </div>
           <div className="w-full bg-gray-200 rounded-full h-3">
             <div
-              className="h-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all duration-500 relative overflow-hidden"
+              className={`h-3 bg-gradient-to-r from-blue-500 ${getColorClass('to-purple-500')} rounded-full transition-all duration-500 relative overflow-hidden`}
               style={{ width: `${(currentStep / currentSteps.length) * 100}%` }}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-30 animate-pulse"></div>
@@ -630,7 +630,7 @@ const RenderingStrategiesLanding: React.FC = () => {
   return (
     <div className="space-y-8">
       {/* 개요 섹션 */}
-      <div className={`bg-gradient-to-r ${getColorClass('from-blue-50 to-purple-50')} p-6 rounded-xl border border-blue-200`}>
+      <div className={`bg-gradient-to-r from-blue-50 ${getColorClass('to-purple-50')} p-6 rounded-xl border border-blue-200`}>
         <h2 className="text-2xl font-bold mb-4 text-gray-800">
           🌐 웹 렌더링 전략이란?
         </h2>
@@ -649,7 +649,7 @@ const RenderingStrategiesLanding: React.FC = () => {
             <p className="text-gray-600">서버 사이드 렌더링</p>
           </div>
           <div className="bg-white p-3 rounded-lg">
-            <span className="text-purple-600 font-semibold">SSG</span>
+            <span className={`${getColorClass('text-purple-600')} font-semibold`}>SSG</span>
             <p className="text-gray-600">정적 사이트 생성</p>
           </div>
           <div className="bg-white p-3 rounded-lg">

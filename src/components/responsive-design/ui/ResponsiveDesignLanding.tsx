@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { getColorClass } from "@/utils/colorMigration";
 import { FlexboxPlayground } from "./FlexboxPlayground";
 import { FlexboxVisualizer } from "./FlexboxVisualizer";
 
@@ -123,7 +124,7 @@ const ResponsiveDesignLanding = () => {
                 viewportSize.width < 1024 ? "grid-cols-2" : "grid-cols-3"
               }`}>
                 {[1, 2, 3, 4, 5, 6].map((item) => (
-                  <div key={item} className="bg-gradient-to-br from-blue-100 to-indigo-100 rounded-lg p-4 border border-blue-200">
+                  <div key={item} className={`bg-gradient-to-br ${getColorClass('from-blue-100')} ${getColorClass('to-indigo-100')} rounded-lg p-4 border ${getColorClass('border-indigo-200')}`}>
                     <div className="h-24 bg-blue-200 rounded mb-2"></div>
                     <div className="h-4 bg-blue-300 rounded mb-1"></div>
                     <div className="h-4 bg-blue-200 rounded w-3/4"></div>
@@ -161,8 +162,8 @@ const ResponsiveDesignLanding = () => {
           onClick={() => setSelectedDemo("media")}
           className={`px-4 py-2 rounded-lg font-medium transition-all ${
             selectedDemo === "media"
-              ? "bg-purple-500 text-white"
-              : "bg-purple-100 text-purple-700 hover:bg-purple-200"
+              ? `${getColorClass('bg-purple-500')} text-white`
+              : `${getColorClass('bg-purple-100')} ${getColorClass('text-purple-700')} ${getColorClass('hover:bg-purple-200')}`
           }`}
         >
           미디어 쿼리
@@ -173,7 +174,7 @@ const ResponsiveDesignLanding = () => {
       {selectedDemo === "flexbox" && (
         <div className="space-y-8">
           {/* 기존 정적 예제를 인터랙티브 컴포넌트로 교체 */}
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-200">
+          <div className={`bg-gradient-to-br ${getColorClass('from-blue-50')} ${getColorClass('to-indigo-50')} rounded-xl p-6 border ${getColorClass('border-indigo-200')}`}>
             <h3 className="text-xl font-bold text-blue-900 mb-4">Interactive Flexbox Playground</h3>
             <FlexboxPlayground 
               flexDirection={sharedFlexDirection}
@@ -278,37 +279,37 @@ const ResponsiveDesignLanding = () => {
 
       {/* 미디어 쿼리 데모 */}
       {selectedDemo === "media" && (
-        <div className="bg-gradient-to-br from-purple-50 to-violet-50 rounded-xl p-6 border border-purple-200">
-          <h3 className="text-xl font-bold text-purple-900 mb-4">미디어 쿼리 브레이크포인트</h3>
+        <div className={`bg-gradient-to-br ${getColorClass('from-purple-50')} ${getColorClass('to-violet-50')} rounded-xl p-6 border ${getColorClass('border-purple-200')}`}>
+          <h3 className={`text-xl font-bold ${getColorClass('text-purple-900')} mb-4`}>미디어 쿼리 브레이크포인트</h3>
           
           <div className="space-y-4">
-            <div className="bg-white rounded-lg p-4 border border-purple-200">
-              <h4 className="font-semibold text-purple-800 mb-3">일반적인 브레이크포인트</h4>
+            <div className={`bg-white rounded-lg p-4 border ${getColorClass('border-purple-200')}`}>
+              <h4 className={`font-semibold ${getColorClass('text-purple-800')} mb-3`}>일반적인 브레이크포인트</h4>
               <div className="space-y-2">
-                <div className="flex items-center justify-between p-2 bg-purple-50 rounded">
-                  <span className="text-purple-700">Mobile</span>
-                  <code className="text-sm bg-purple-200 px-2 py-1 rounded">320px - 768px</code>
+                <div className={`flex items-center justify-between p-2 ${getColorClass('bg-purple-50')} rounded`}>
+                  <span className={getColorClass('text-purple-700')}>Mobile</span>
+                  <code className={`text-sm ${getColorClass('bg-purple-200')} px-2 py-1 rounded`}>320px - 768px</code>
                 </div>
-                <div className="flex items-center justify-between p-2 bg-purple-50 rounded">
-                  <span className="text-purple-700">Tablet</span>
-                  <code className="text-sm bg-purple-200 px-2 py-1 rounded">768px - 1024px</code>
+                <div className={`flex items-center justify-between p-2 ${getColorClass('bg-purple-50')} rounded`}>
+                  <span className={getColorClass('text-purple-700')}>Tablet</span>
+                  <code className={`text-sm ${getColorClass('bg-purple-200')} px-2 py-1 rounded`}>768px - 1024px</code>
                 </div>
-                <div className="flex items-center justify-between p-2 bg-purple-50 rounded">
-                  <span className="text-purple-700">Desktop</span>
-                  <code className="text-sm bg-purple-200 px-2 py-1 rounded">1024px - 1920px</code>
+                <div className={`flex items-center justify-between p-2 ${getColorClass('bg-purple-50')} rounded`}>
+                  <span className={getColorClass('text-purple-700')}>Desktop</span>
+                  <code className={`text-sm ${getColorClass('bg-purple-200')} px-2 py-1 rounded`}>1024px - 1920px</code>
                 </div>
-                <div className="flex items-center justify-between p-2 bg-purple-50 rounded">
-                  <span className="text-purple-700">Wide Screen</span>
-                  <code className="text-sm bg-purple-200 px-2 py-1 rounded">1920px+</code>
+                <div className={`flex items-center justify-between p-2 ${getColorClass('bg-purple-50')} rounded`}>
+                  <span className={getColorClass('text-purple-700')}>Wide Screen</span>
+                  <code className={`text-sm ${getColorClass('bg-purple-200')} px-2 py-1 rounded`}>1920px+</code>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 border border-purple-200">
-              <h4 className="font-semibold text-purple-800 mb-3">모바일 퍼스트 vs 데스크톱 퍼스트</h4>
+            <div className={`bg-white rounded-lg p-4 border ${getColorClass('border-purple-200')}`}>
+              <h4 className={`font-semibold ${getColorClass('text-purple-800')} mb-3`}>모바일 퍼스트 vs 데스크톱 퍼스트</h4>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <h5 className="font-medium text-purple-700 mb-2">📱 모바일 퍼스트 (권장)</h5>
+                  <h5 className={`font-medium ${getColorClass('text-purple-700')} mb-2`}>📱 모바일 퍼스트 (권장)</h5>
                   <pre className="bg-gray-100 p-3 rounded text-sm">
 {`/* Base styles for mobile */
 .container {
@@ -331,7 +332,7 @@ const ResponsiveDesignLanding = () => {
 }`}</pre>
                 </div>
                 <div>
-                  <h5 className="font-medium text-purple-700 mb-2">💻 데스크톱 퍼스트</h5>
+                  <h5 className={`font-medium ${getColorClass('text-purple-700')} mb-2`}>💻 데스크톱 퍼스트</h5>
                   <pre className="bg-gray-100 p-3 rounded text-sm">
 {`/* Base styles for desktop */
 .container {
@@ -357,9 +358,9 @@ const ResponsiveDesignLanding = () => {
               </div>
             </div>
 
-            <div className="bg-purple-100 rounded-lg p-4">
-              <h4 className="font-semibold text-purple-800 mb-2">💡 미디어 쿼리 팁</h4>
-              <ul className="space-y-1 text-purple-700 text-sm">
+            <div className={`${getColorClass('bg-purple-100')} rounded-lg p-4`}>
+              <h4 className={`font-semibold ${getColorClass('text-purple-800')} mb-2`}>💡 미디어 쿼리 팁</h4>
+              <ul className={`space-y-1 ${getColorClass('text-purple-700')} text-sm`}>
                 <li>• rem 단위 사용으로 접근성 향상</li>
                 <li>• 논리적 브레이크포인트 선택 (콘텐츠 기반)</li>
                 <li>• orientation, hover 등 다양한 미디어 특성 활용</li>

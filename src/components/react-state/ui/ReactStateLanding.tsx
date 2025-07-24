@@ -193,7 +193,7 @@ const ReactStateLanding = () => {
       <div className="space-y-8">
         
         {/* 학습 진행도 및 난이도 선택 */}
-        <div className={`bg-gradient-to-r from-blue-50 ${getColorClass('to-indigo-50')} rounded-xl p-6 border border-blue-200`}>
+        <div className={`bg-gradient-to-r from-blue-50 ${getColorClass('to-indigo-50')} rounded-xl p-6 border ${getColorClass('border-indigo-200')}`}>
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
             <h2 className="text-2xl font-bold text-blue-900 mb-4 md:mb-0">학습 로드맵</h2>
             <div className="flex gap-2">
@@ -1095,8 +1095,8 @@ function ChildComponent() {
         )}
 
         {/* 마무리 및 다음 단계 */}
-        <div className="bg-gradient-to-r from-purple-100 to-pink-100 rounded-xl p-6 border border-purple-200">
-          <h2 className="text-2xl font-bold text-purple-800 mb-4 flex items-center gap-2">
+        <div className={`bg-gradient-to-r ${getColorClass('from-purple-100')} to-pink-100 rounded-xl p-6 border ${getColorClass('border-purple-200')}`}>
+          <h2 className={`text-2xl font-bold ${getColorClass('text-purple-800')} mb-4 flex items-center gap-2`}>
             🎉 축하합니다! React 상태 관리를 배웠어요!
           </h2>
           
@@ -1126,8 +1126,8 @@ function ChildComponent() {
             </div>
           </div>
 
-          <div className="p-4 bg-white rounded-lg border border-purple-200">
-            <h3 className="font-bold text-purple-700 mb-2">🚀 다음 학습 추천</h3>
+          <div className={`p-4 bg-white rounded-lg border ${getColorClass('border-purple-200')}`}>
+            <h3 className={`font-bold ${getColorClass('text-purple-700')} mb-2`}>🚀 다음 학습 추천</h3>
             <ul className="text-sm space-y-1 text-gray-700">
               <li>• <strong>성능 최적화:</strong> React.memo, useMemo, useCallback</li>
               <li>• <strong>커스텀 훅:</strong> 로직 재사용하기</li>

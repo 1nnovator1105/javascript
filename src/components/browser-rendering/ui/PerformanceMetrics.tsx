@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { getColorClass } from "@/utils/colorMigration";
 
 interface WebVitalMetric {
   name: string;
@@ -341,7 +342,7 @@ const PerformanceMetrics = () => {
       </div>
 
       {/* Overall Score */}
-      <div className="mb-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-200">
+      <div className={`mb-8 bg-gradient-to-r from-blue-50 ${getColorClass('to-indigo-50')} rounded-xl p-6 border border-blue-200`}>
         <div className="text-center">
           <div className="text-4xl font-bold text-blue-600 mb-2">
             {calculateScore()}
@@ -427,16 +428,16 @@ const PerformanceMetrics = () => {
       </div>
 
       {/* Optimization Tips */}
-      <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6 border border-purple-200">
-        <h3 className="text-lg font-bold text-purple-800 mb-4">
+      <div className={`bg-gradient-to-r ${getColorClass('from-purple-50')} to-pink-50 rounded-xl p-6 border ${getColorClass('border-purple-200')}`}>
+        <h3 className={`text-lg font-bold ${getColorClass('text-purple-800')} mb-4`}>
           🚀 성능 최적화 가이드
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="font-semibold text-purple-700 mb-3">
+            <h4 className={`font-semibold ${getColorClass('text-purple-700')} mb-3`}>
               Core Web Vitals 개선
             </h4>
-            <ul className="text-sm text-purple-600 space-y-2">
+            <ul className={`text-sm ${getColorClass('text-purple-600')} space-y-2`}>
               <li>
                 <strong>FCP 개선:</strong> 중요한 리소스 우선 로딩, 폰트 최적화
               </li>
@@ -452,10 +453,10 @@ const PerformanceMetrics = () => {
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold text-purple-700 mb-3">
+            <h4 className={`font-semibold ${getColorClass('text-purple-700')} mb-3`}>
               일반 성능 최적화
             </h4>
-            <ul className="text-sm text-purple-600 space-y-2">
+            <ul className={`text-sm ${getColorClass('text-purple-600')} space-y-2`}>
               <li>
                 <strong>TTFB 개선:</strong> CDN 사용, 서버 캐싱 활용
               </li>

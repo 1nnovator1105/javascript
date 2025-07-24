@@ -409,7 +409,7 @@ console.log(hoistedFunc());`,
               </div>
             </div>
 
-            <div className="mt-4 bg-white rounded-lg border-2 border-indigo-200 p-4">
+            <div className={`mt-4 bg-white rounded-lg border-2 ${getColorClass('border-indigo-200')} p-4`}>
               <h3 className={`text-lg font-semibold mb-3 ${getColorClass('text-indigo-700')}`}>
                 실행 결과
               </h3>

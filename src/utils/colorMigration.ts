@@ -21,6 +21,18 @@ const colorMappings = {
     legacy: 'from-blue-50 to-indigo-100',
     modern: 'from-blue-50 to-yellow-100'
   },
+  'to-indigo-50': { legacy: 'to-indigo-50', modern: 'to-yellow-50' },
+  'from-purple-50': { legacy: 'from-purple-50', modern: 'from-blue-50' },
+  'from-indigo-50': { legacy: 'from-indigo-50', modern: 'from-yellow-50' },
+  'to-purple-50': { legacy: 'to-purple-50', modern: 'to-blue-50' },
+  'to-pink-50': { legacy: 'to-pink-50', modern: 'to-red-50' },
+  'from-purple-100': { legacy: 'from-purple-100', modern: 'from-blue-100' },
+  'from-violet-100': { legacy: 'from-violet-100', modern: 'from-green-100' },
+  'to-purple-500': { legacy: 'to-purple-500', modern: 'to-blue-500' },
+  'from-blue-100': { legacy: 'from-blue-100', modern: 'from-blue-100' },
+  'to-indigo-100': { legacy: 'to-indigo-100', modern: 'to-yellow-100' },
+  'from-blue-50': { legacy: 'from-blue-50', modern: 'from-blue-50' },
+  'to-violet-50': { legacy: 'to-violet-50', modern: 'to-green-50' },
   'from-purple-50 to-pink-100': {
     legacy: 'from-purple-50 to-pink-100',
     modern: 'from-blue-50 to-red-100'
@@ -109,6 +121,9 @@ const colorMappings = {
   'bg-purple-200': { legacy: 'bg-purple-200', modern: 'bg-blue-200' },
   'bg-indigo-200': { legacy: 'bg-indigo-200', modern: 'bg-yellow-200' },
   'bg-indigo-300': { legacy: 'bg-indigo-300', modern: 'bg-yellow-300' },
+  'bg-purple-400': { legacy: 'bg-purple-400', modern: 'bg-blue-400' },
+  'bg-violet-400': { legacy: 'bg-violet-400', modern: 'bg-green-400' },
+  'bg-purple-300': { legacy: 'bg-purple-300', modern: 'bg-blue-300' },
   
   // Text colors
   'text-indigo-500': { legacy: 'text-indigo-500', modern: 'text-yellow-500' },
@@ -124,6 +139,7 @@ const colorMappings = {
   'group-hover:text-purple-900': { legacy: 'group-hover:text-purple-900', modern: 'group-hover:text-blue-900' },
   'text-violet-700': { legacy: 'text-violet-700', modern: 'text-green-700' },
   'text-violet-800': { legacy: 'text-violet-800', modern: 'text-green-800' },
+  'text-violet-600': { legacy: 'text-violet-600', modern: 'text-green-600' },
   'hover:text-indigo-600': { legacy: 'hover:text-indigo-600', modern: 'hover:text-blue-600' },
   'hover:text-indigo-700': { legacy: 'hover:text-indigo-700', modern: 'hover:text-blue-700' },
   'group-hover:text-indigo-600': { legacy: 'group-hover:text-indigo-600', modern: 'group-hover:text-blue-600' },
@@ -142,6 +158,9 @@ const colorMappings = {
   'border-violet-500': { legacy: 'border-violet-500', modern: 'border-green-500' },
   'border-violet-300': { legacy: 'border-violet-300', modern: 'border-green-300' },
   'hover:border-violet-300': { legacy: 'hover:border-violet-300', modern: 'hover:border-green-300' },
+  'border-purple-600': { legacy: 'border-purple-600', modern: 'border-blue-600' },
+  'border-violet-600': { legacy: 'border-violet-600', modern: 'border-green-600' },
+  'border-purple-100': { legacy: 'border-purple-100', modern: 'border-blue-100' },
   
   // Hover states
   'hover:bg-indigo-100': { legacy: 'hover:bg-indigo-100', modern: 'hover:bg-yellow-100' },
@@ -151,11 +170,18 @@ const colorMappings = {
   'hover:bg-purple-200': { legacy: 'hover:bg-purple-200', modern: 'hover:bg-blue-200' },
   'hover:border-indigo-300': { legacy: 'hover:border-indigo-300', modern: 'hover:border-yellow-300' },
   'hover:border-purple-300': { legacy: 'hover:border-purple-300', modern: 'hover:border-blue-300' },
+  'hover:border-purple-400': { legacy: 'hover:border-purple-400', modern: 'hover:border-blue-400' },
+  'hover:bg-purple-600': { legacy: 'hover:bg-purple-600', modern: 'hover:bg-blue-600' },
+  'hover:bg-indigo-200': { legacy: 'hover:bg-indigo-200', modern: 'hover:bg-yellow-200' },
+  'hover:bg-violet-600': { legacy: 'hover:bg-violet-600', modern: 'hover:bg-green-600' },
+  'hover:bg-indigo-50': { legacy: 'hover:bg-indigo-50', modern: 'hover:bg-yellow-50' },
   
   // Focus states
   'focus:ring-indigo-500': { legacy: 'focus:ring-indigo-500', modern: 'focus:ring-yellow-500' },
   'focus:ring-purple-500': { legacy: 'focus:ring-purple-500', modern: 'focus:ring-blue-500' },
   'focus:border-transparent': { legacy: 'focus:border-transparent', modern: 'focus:border-transparent' },
+  'focus:border-indigo-500': { legacy: 'focus:border-indigo-500', modern: 'focus:border-yellow-500' },
+  'focus:ring-violet-500': { legacy: 'focus:ring-violet-500', modern: 'focus:ring-green-500' },
   
   // Shadow colors
   'shadow-indigo-500/30': { legacy: 'shadow-indigo-500/30', modern: 'shadow-yellow-500/30' },

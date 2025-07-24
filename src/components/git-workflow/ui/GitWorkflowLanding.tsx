@@ -118,7 +118,7 @@ const GitWorkflowLanding = () => {
 
   const getWorkflowColor = (workflow: string) => {
     const colors = {
-      solo: `${getColorClass('from-blue-50 to-indigo-50')} border-blue-200`,
+      solo: `${getColorClass('from-blue-50 to-indigo-50')} ${getColorClass('border-indigo-200')}`,
       team: "from-green-50 to-emerald-50 border-green-200"
     };
     return colors[workflow as keyof typeof colors] || colors.solo;

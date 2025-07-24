@@ -939,16 +939,16 @@ todoContainer.addEventListener('click', (e) => {
                 확인합니다.
               </p>
             </div>
-            <div className="bg-gradient-to-br from-purple-50 to-violet-50 p-6 rounded-xl border border-purple-200 shadow-sm">
-              <h4 className="font-semibold text-purple-800 mb-3 flex items-center gap-2">
+            <div className={`bg-gradient-to-br ${getColorClass('from-purple-50')} ${getColorClass('to-violet-50')} p-6 rounded-xl border ${getColorClass('border-purple-200')} shadow-sm`}>
+              <h4 className={`font-semibold ${getColorClass('text-purple-800')} mb-3 flex items-center gap-2`}>
                 ⚡ 성능 최적화
               </h4>
-              <p className="text-sm text-purple-700">
+              <p className={`text-sm ${getColorClass('text-purple-700')}`}>
                 하나의 이벤트 리스너로 여러 요소의 이벤트를 처리하여 메모리
                 사용량을 줄이고 성능을 향상시킬 수 있습니다.
               </p>
             </div>
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-200 shadow-sm">
+            <div className={`bg-gradient-to-br from-blue-50 ${getColorClass('to-indigo-50')} p-6 rounded-xl border border-blue-200 shadow-sm`}>
               <h4 className="font-semibold text-blue-800 mb-3 flex items-center gap-2">
                 🔄 동적 요소 처리
               </h4>

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useCallback } from "react";
+import { getColorClass } from "@/utils/colorMigration";
 
 interface ComparisonResult {
   id: string;
@@ -334,7 +335,7 @@ const EqualityOperatorsLanding = () => {
                   value={leftValue}
                   onChange={(e) => setLeftValue(e.target.value)}
                   placeholder='예: 5, "5", true, null, []'
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                  className={`w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 ${getColorClass('focus:ring-indigo-500')} focus:border-transparent`}
                 />
                 <p className="text-xs text-gray-500 mt-1">
                   타입:{" "}
@@ -356,7 +357,7 @@ const EqualityOperatorsLanding = () => {
                   value={rightValue}
                   onChange={(e) => setRightValue(e.target.value)}
                   placeholder='예: 5, "5", true, null, []'
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                  className={`w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 ${getColorClass('focus:ring-indigo-500')} focus:border-transparent`}
                 />
                 <p className="text-xs text-gray-500 mt-1">
                   타입:{" "}

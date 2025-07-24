@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { getColorClass } from "@/utils/colorMigration";
 
 type ApiStatus = {
   id: number;
@@ -71,14 +72,14 @@ const ParallelPromiseLanding = () => {
             max={5}
             value={inputCount}
             onChange={(e) => setInputCount(Number(e.target.value))}
-            className="w-full sm:w-32 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+            className={`w-full sm:w-32 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 ${getColorClass('focus:ring-indigo-500')} ${getColorClass('focus:border-transparent')}`}
           />
         </label>
 
         <button
           onClick={startSimulation}
           disabled={loading}
-          className="px-6 py-3 rounded-lg cursor-pointer text-sm font-medium transition-all duration-200 border bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg shadow-indigo-500/30 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-indigo-500/40 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:transform-none disabled:hover:shadow-none"
+          className={`px-6 py-3 rounded-lg cursor-pointer text-sm font-medium transition-all duration-200 border bg-gradient-to-r ${getColorClass('from-indigo-500 to-purple-600')} text-white shadow-lg ${getColorClass('shadow-indigo-500/30')} hover:-translate-y-0.5 hover:shadow-xl ${getColorClass('hover:shadow-indigo-500/40')} disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:transform-none disabled:hover:shadow-none`}
         >
           {loading ? "⏳ 실행 중..." : "▶ 시뮬레이션 시작"}
         </button>
@@ -164,7 +165,7 @@ const ParallelPromiseLanding = () => {
                       key={idx}
                       className="even:bg-gray-50 hover:bg-blue-50 transition-colors"
                     >
-                      <td className="px-4 py-3 text-center font-mono font-semibold text-indigo-600">
+                      <td className={`px-4 py-3 text-center font-mono font-semibold ${getColorClass('text-indigo-600')}`}>
                         {idx + 1}
                       </td>
                       <td className="px-4 py-3 font-mono text-gray-700">
@@ -195,7 +196,7 @@ const ParallelPromiseLanding = () => {
           <h3 className="text-xl font-semibold mb-4 text-gray-800">
             🔍 작동 원리
           </h3>
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-200">
+          <div className={`bg-gradient-to-br ${getColorClass('from-blue-50 to-indigo-50')} p-6 rounded-xl border border-blue-200`}>
             <ol className="list-decimal list-inside space-y-3 text-sm">
               <li>
                 <strong className="text-blue-800">Promise 생성:</strong> 각 API
@@ -230,7 +231,7 @@ const ParallelPromiseLanding = () => {
           <div className="space-y-6">
             {/* fakeApi 함수 */}
             <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl p-6 border border-slate-200">
-              <h4 className="text-lg font-medium mb-4 text-indigo-600">
+              <h4 className={`text-lg font-medium mb-4 ${getColorClass('text-indigo-600')}`}>
                 1. Promise 생성 함수
               </h4>
               <pre className="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-sm leading-relaxed">
@@ -250,7 +251,7 @@ const ParallelPromiseLanding = () => {
 
             {/* API 설정 생성 */}
             <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl p-6 border border-slate-200">
-              <h4 className="text-lg font-medium mb-4 text-indigo-600">
+              <h4 className={`text-lg font-medium mb-4 ${getColorClass('text-indigo-600')}`}>
                 2. 병렬 실행할 API 설정
               </h4>
               <pre className="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-sm leading-relaxed">
@@ -269,7 +270,7 @@ const apiConfigs = [
 
             {/* 병렬 Promise 실행 */}
             <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl p-6 border border-slate-200">
-              <h4 className="text-lg font-medium mb-4 text-indigo-600">
+              <h4 className={`text-lg font-medium mb-4 ${getColorClass('text-indigo-600')}`}>
                 3. 병렬 Promise 실행 및 응답 순서 처리
               </h4>
               <pre className="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-sm leading-relaxed">
@@ -333,11 +334,11 @@ const promises = apiConfigs.map((config) => {
                 있습니다. 순차 실행보다 효율적입니다.
               </p>
             </div>
-            <div className="bg-gradient-to-br from-purple-50 to-violet-50 p-6 rounded-xl border border-purple-200 shadow-sm">
-              <h4 className="font-semibold text-purple-800 mb-3 flex items-center gap-2">
+            <div className={`bg-gradient-to-br ${getColorClass('from-purple-50 to-pink-50')} p-6 rounded-xl border ${getColorClass('border-purple-200')} shadow-sm`}>
+              <h4 className={`font-semibold ${getColorClass('text-purple-800')} mb-3 flex items-center gap-2`}>
                 🎯 응답 순서 처리
               </h4>
-              <p className="text-sm text-purple-700">
+              <p className={`text-sm ${getColorClass('text-purple-700')}`}>
                 각 Promise가 완료되는 순서대로 결과를 받아 로그에 순차적으로
                 기록하여 응답 순서를 확인할 수 있습니다.
               </p>
@@ -346,24 +347,24 @@ const promises = apiConfigs.map((config) => {
         </div>
 
         {/* 실습 가이드 */}
-        <div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-6 rounded-xl border border-indigo-200">
-          <h3 className="text-xl font-semibold mb-4 text-indigo-800">
+        <div className={`bg-gradient-to-r ${getColorClass('from-indigo-50 to-purple-50')} p-6 rounded-xl border ${getColorClass('border-indigo-200')}`}>
+          <h3 className={`text-xl font-semibold mb-4 ${getColorClass('text-indigo-800')}`}>
             🏃‍♂️ 실습 가이드
           </h3>
           <div className="space-y-4 text-sm">
             <div className="flex items-start space-x-3">
-              <span className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
+              <span className={`bg-gradient-to-r ${getColorClass('from-indigo-500 to-purple-600')} text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5`}>
                 1
               </span>
-              <p className="text-indigo-800">
+              <p className={getColorClass('text-indigo-800')}>
                 API 호출 수를 변경하여 다양한 시나리오를 테스트해보세요.
               </p>
             </div>
             <div className="flex items-start space-x-3">
-              <span className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
+              <span className={`bg-gradient-to-r ${getColorClass('from-indigo-500 to-purple-600')} text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5`}>
                 2
               </span>
-              <p className="text-indigo-800">
+              <p className={getColorClass('text-indigo-800')}>
                 여러 번 실행하여 응답 순서가 매번 다른 것을 확인해보세요.
               </p>
             </div>

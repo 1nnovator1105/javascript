@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { getColorClass } from "@/utils/colorMigration";
 
 const MemoryManagementLanding = () => {
   return (

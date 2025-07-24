@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useCallback } from "react";
+import { getColorClass } from "@/utils/colorMigration";
 
 interface Variable {
   id: string;
@@ -314,15 +315,15 @@ const VariableLanding = () => {
   return (
     <div>
       {/* 변수 생성 컨트롤 */}
-      <div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-6 rounded-xl border border-indigo-200 mb-8">
-        <h3 className="text-xl font-semibold text-indigo-800 mb-4">
+      <div className={`bg-gradient-to-r ${getColorClass('from-indigo-50 to-purple-50')} p-6 rounded-xl border ${getColorClass('border-indigo-200')} mb-8`}>
+        <h3 className={`text-xl font-semibold ${getColorClass('text-indigo-800')} mb-4`}>
           🎯 변수 선언 시뮬레이터
         </h3>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* 변수 생성 폼 */}
-          <div className="bg-white p-4 rounded-lg border border-indigo-200">
-            <h4 className="font-semibold text-indigo-700 mb-3">
+          <div className={`bg-white p-4 rounded-lg border ${getColorClass('border-indigo-200')}`}>
+            <h4 className={`font-semibold ${getColorClass('text-indigo-700')} mb-3`}>
               새 변수 만들기
             </h4>
 
@@ -364,7 +365,7 @@ const VariableLanding = () => {
                     e.target.value as "global" | "function" | "block"
                   )
                 }
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className={`w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 ${getColorClass('focus:ring-indigo-500')}`}
               >
                 <option value="global">Global Scope</option>
                 <option value="function">Function Scope</option>
@@ -382,7 +383,7 @@ const VariableLanding = () => {
                 value={newVarName}
                 onChange={(e) => setNewVarName(e.target.value)}
                 placeholder="변수명을 입력하세요"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className={`w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 ${getColorClass('focus:ring-indigo-500')}`}
               />
             </div>
 
@@ -399,14 +400,14 @@ const VariableLanding = () => {
                 value={newVarValue}
                 onChange={(e) => setNewVarValue(e.target.value)}
                 placeholder="초기값을 입력하세요"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className={`w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 ${getColorClass('focus:ring-indigo-500')}`}
               />
             </div>
 
             <div className="flex gap-2">
               <button
                 onClick={createVariable}
-                className="flex-1 px-4 py-2 bg-indigo-500 text-white rounded-lg font-medium hover:bg-indigo-600 transition-colors"
+                className={`flex-1 px-4 py-2 ${getColorClass('bg-indigo-500')} text-white rounded-lg font-medium ${getColorClass('hover:bg-indigo-600')} transition-colors`}
               >
                 🚀 변수 생성
               </button>
@@ -420,8 +421,8 @@ const VariableLanding = () => {
           </div>
 
           {/* 호이스팅 데모 */}
-          <div className="bg-white p-4 rounded-lg border border-indigo-200">
-            <h4 className="font-semibold text-indigo-700 mb-3">
+          <div className={`bg-white p-4 rounded-lg border ${getColorClass('border-indigo-200')}`}>
+            <h4 className={`font-semibold ${getColorClass('text-indigo-700')} mb-3`}>
               호이스팅 데모
             </h4>
             <div className="text-sm text-gray-600 mb-4">
@@ -470,8 +471,8 @@ const VariableLanding = () => {
       {/* 스코프 시각화 및 변수 관리 */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         {/* 스코프 시각화 */}
-        <div className="bg-gradient-to-br from-purple-50 to-pink-100 rounded-xl p-6 border-2 border-purple-200 shadow-lg">
-          <h3 className="text-xl font-semibold mb-4 text-purple-800">
+        <div className={`bg-gradient-to-br ${getColorClass('from-purple-50 to-pink-100')} rounded-xl p-6 border-2 ${getColorClass('border-purple-200')} shadow-lg`}>
+          <h3 className={`text-xl font-semibold mb-4 ${getColorClass('text-purple-800')}`}>
             🌐 스코프 시각화
           </h3>
 
@@ -719,7 +720,7 @@ const VariableLanding = () => {
       {/* 학습 가이드 섹션 */}
       <div className="border-t border-gray-200 pt-8">
         <div className="text-center mb-8">
-          <h2 className="font-bold bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent mb-2 text-2xl md:text-3xl">
+          <h2 className={`font-bold bg-gradient-to-r ${getColorClass('from-indigo-500 to-purple-600')} bg-clip-text text-transparent mb-2 text-2xl md:text-3xl`}>
             📚 학습 가이드: var, let, const
           </h2>
           <p className="text-gray-500 font-normal m-0 text-sm md:text-base">
@@ -921,7 +922,7 @@ const VariableLanding = () => {
           <h3 className="text-xl font-semibold mb-4 text-gray-800">
             🔍 기본 개념과 차이점
           </h3>
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-200">
+          <div className={`bg-gradient-to-br ${getColorClass('from-blue-50 to-indigo-50')} p-6 rounded-xl border border-blue-200`}>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-red-50 p-4 rounded-lg border border-red-200">
                 <h4 className="font-semibold text-red-800 mb-3 flex items-center gap-2">
@@ -993,8 +994,8 @@ const VariableLanding = () => {
             </div>
 
             {/* 호이스팅 차이 */}
-            <div className="bg-purple-50 border-2 border-purple-200 rounded-xl p-6">
-              <h4 className="text-lg font-semibold text-purple-800 mb-4">
+            <div className={`${getColorClass('bg-purple-50')} border-2 ${getColorClass('border-purple-200')} rounded-xl p-6`}>
+              <h4 className={`text-lg font-semibold ${getColorClass('text-purple-800')} mb-4`}>
                 ⬆️ 호이스팅 차이
               </h4>
               <div className="bg-gray-900 text-gray-100 p-4 rounded-lg text-sm font-mono overflow-x-auto">
@@ -1151,7 +1152,7 @@ if (condition) {
         </div>
 
         {/* 성능과 최적화 */}
-        <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl p-6 border-2 border-blue-200">
+        <div className={`bg-gradient-to-br ${getColorClass('from-blue-50 to-indigo-100')} rounded-xl p-6 border-2 border-blue-200`}>
           <h3 className="text-lg font-semibold mb-4 text-blue-800">
             🚀 성능과 최적화 팁
           </h3>

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { getColorClass } from "@/utils/colorMigration";
 
 interface User {
   id: number;
@@ -297,7 +298,7 @@ const RestfulApiLanding = () => {
                         method === "POST" ? "bg-green-500 text-white" :
                         method === "PUT" ? "bg-orange-500 text-white" :
                         method === "DELETE" ? "bg-red-500 text-white" :
-                        "bg-purple-500 text-white"
+                        `${getColorClass('bg-purple-500')} text-white`
                       : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                   }`}
                 >
@@ -451,7 +452,7 @@ DELETE /api/users/123
 
               {selectedMethod === "PATCH" && (
                 <div>
-                  <h3 className="text-xl font-bold text-purple-700 mb-4">PATCH - 리소스 부분 수정</h3>
+                  <h3 className={`text-xl font-bold ${getColorClass('text-purple-700')} mb-4`}>PATCH - 리소스 부분 수정</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <h4 className="font-semibold mb-2">특징</h4>
@@ -465,7 +466,7 @@ DELETE /api/users/123
                     </div>
                     <div>
                       <h4 className="font-semibold mb-2">예제</h4>
-                      <pre className="bg-gray-900 text-purple-400 p-3 rounded text-sm">
+                      <pre className={`bg-gray-900 ${getColorClass('text-purple-400')} p-3 rounded text-sm`}>
 {`// 이메일만 수정
 PATCH /api/users/123
 Content-Type: application/json
@@ -530,7 +531,7 @@ Content-Type: application/json-patch+json
                   <td className="px-4 py-2 text-center">✅</td>
                 </tr>
                 <tr className="hover:bg-gray-50">
-                  <td className="px-4 py-2 font-medium text-purple-600">PATCH</td>
+                  <td className={`px-4 py-2 font-medium ${getColorClass('text-purple-600')}`}>PATCH</td>
                   <td className="px-4 py-2">리소스 부분 수정</td>
                   <td className="px-4 py-2 text-center">❌</td>
                   <td className="px-4 py-2 text-center">⚠️</td>
@@ -555,10 +556,10 @@ Content-Type: application/json-patch+json
       {activeTab === "design" && (
         <div className="space-y-6">
           {/* RESTful URL 설계 원칙 */}
-          <div className="bg-indigo-50 rounded-lg p-6 border border-indigo-200">
-            <h2 className="text-2xl font-bold text-indigo-800 mb-4">🎨 RESTful URL 설계 원칙</h2>
+          <div className={`${getColorClass('bg-indigo-50')} rounded-lg p-6 border ${getColorClass('border-indigo-200')}`}>
+            <h2 className={`text-2xl font-bold ${getColorClass('text-indigo-800')} mb-4`}>🎨 RESTful URL 설계 원칙</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-white p-4 rounded-lg border border-indigo-300">
+              <div className={`bg-white p-4 rounded-lg border ${getColorClass('border-indigo-300')}`}>
                 <h3 className="font-semibold text-green-700 mb-3">✅ 좋은 예시</h3>
                 <div className="space-y-2 font-mono text-sm">
                   <div className="p-2 bg-green-50 rounded">GET /users</div>
@@ -569,7 +570,7 @@ Content-Type: application/json-patch+json
                   <div className="p-2 bg-green-50 rounded">GET /products?category=electronics</div>
                 </div>
               </div>
-              <div className="bg-white p-4 rounded-lg border border-indigo-300">
+              <div className={`bg-white p-4 rounded-lg border ${getColorClass('border-indigo-300')}`}>
                 <h3 className="font-semibold text-red-700 mb-3">❌ 나쁜 예시</h3>
                 <div className="space-y-2 font-mono text-sm">
                   <div className="p-2 bg-red-50 rounded">GET /getUsers</div>
@@ -581,8 +582,8 @@ Content-Type: application/json-patch+json
                 </div>
               </div>
             </div>
-            <div className="mt-4 p-4 bg-indigo-100 rounded-lg">
-              <h4 className="font-semibold text-indigo-800 mb-2">💡 설계 팁</h4>
+            <div className={`mt-4 p-4 ${getColorClass('bg-indigo-100')} rounded-lg`}>
+              <h4 className={`font-semibold ${getColorClass('text-indigo-800')} mb-2`}>💡 설계 팁</h4>
               <ul className="space-y-1 text-sm text-gray-700">
                 <li>• 명사를 사용하고 동사는 피하세요 (리소스 중심)</li>
                 <li>• 복수형을 사용하세요 (/users, /products)</li>
@@ -614,7 +615,7 @@ Content-Type: application/json-patch+json
                             method === "POST" ? "bg-green-500 text-white" :
                             method === "PUT" ? "bg-orange-500 text-white" :
                             method === "DELETE" ? "bg-red-500 text-white" :
-                            "bg-purple-500 text-white"
+                            `${getColorClass('bg-purple-500')} text-white`
                           : "bg-gray-200 text-gray-700"
                       }`}
                     >
@@ -670,7 +671,7 @@ Content-Type: application/json-patch+json
               {/* 요청 보내기 버튼 */}
               <button
                 onClick={testApi}
-                className="w-full py-3 bg-indigo-500 text-white rounded-lg font-medium hover:bg-indigo-600 transition-colors"
+                className={`w-full py-3 ${getColorClass('bg-indigo-500')} text-white rounded-lg font-medium ${getColorClass('hover:bg-indigo-600')} transition-colors`}
               >
                 요청 보내기
               </button>

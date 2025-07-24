@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { getColorClass } from "@/utils/colors";
 
 const CorsLanding = () => {
   const [activeTab, setActiveTab] = useState<"concept" | "simulator" | "demo">(
@@ -233,13 +234,13 @@ const CorsLanding = () => {
           </div>
 
           {/* CORS 동작 방식 */}
-          <div className="bg-purple-50 rounded-lg p-6 border border-purple-200">
-            <h2 className="text-2xl font-bold text-purple-800 mb-4">
+          <div className={`${getColorClass('purple', 50, 'bg')} rounded-lg p-6 border ${getColorClass('purple', 200, 'border')}`}>
+            <h2 className={`text-2xl font-bold ${getColorClass('purple', 800, 'text')} mb-4`}>
               ⚙️ CORS 동작 방식
             </h2>
             <div className="space-y-4">
-              <div className="bg-white p-4 rounded-lg border border-purple-300">
-                <h3 className="font-semibold text-purple-700 mb-2">
+              <div className={`bg-white p-4 rounded-lg border ${getColorClass('purple', 300, 'border')}`}>
+                <h3 className={`font-semibold ${getColorClass('purple', 700, 'text')} mb-2`}>
                   1. 단순 요청 (Simple Request)
                 </h3>
                 <p className="text-sm text-gray-600 mb-2">
@@ -254,8 +255,8 @@ const CorsLanding = () => {
                 </div>
               </div>
 
-              <div className="bg-white p-4 rounded-lg border border-purple-300">
-                <h3 className="font-semibold text-purple-700 mb-2">
+              <div className={`bg-white p-4 rounded-lg border ${getColorClass('purple', 300, 'border')}`}>
+                <h3 className={`font-semibold ${getColorClass('purple', 700, 'text')} mb-2`}>
                   2. 프리플라이트 요청 (Preflight Request)
                 </h3>
                 <p className="text-sm text-gray-600 mb-2">
@@ -318,7 +319,7 @@ const CorsLanding = () => {
                   onClick={() => setSelectedScenario("preflight")}
                   className={`px-4 py-2 rounded-lg font-medium transition-all ${
                     selectedScenario === "preflight"
-                      ? "bg-purple-500 text-white"
+                      ? `${getColorClass('purple', 500, 'bg')} text-white`
                       : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                   }`}
                 >
@@ -363,7 +364,7 @@ const CorsLanding = () => {
                       )}
                     </div>
                     {requestPhase === "preflight" && (
-                      <div className="absolute -top-8 left-1/4 transform -translate-x-1/2 text-xs bg-purple-100 px-2 py-1 rounded">
+                      <div className={`absolute -top-8 left-1/4 transform -translate-x-1/2 text-xs ${getColorClass('purple', 100, 'bg')} px-2 py-1 rounded`}>
                         OPTIONS
                       </div>
                     )}

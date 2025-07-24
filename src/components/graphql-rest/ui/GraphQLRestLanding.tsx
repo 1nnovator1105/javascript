@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { StudyPageLayout } from "@/components/share/ui/StudyPageLayout";
+import { getColorClass } from "@/utils/colorMigration";
 
 interface APIRequest {
   id: string;
@@ -490,7 +491,7 @@ const GraphQLRestLanding = () => {
                 <div className="text-xs text-gray-500 mt-1">{stats.type}</div>
               </div>
               <div className="text-center p-4 bg-gray-50 rounded">
-                <div className="text-3xl font-bold text-purple-600">
+                <div className={`text-3xl font-bold ${getColorClass('text-purple-600')}`}>
                   {stats.totalSize}
                 </div>
                 <div className="text-sm text-gray-600 mt-1">

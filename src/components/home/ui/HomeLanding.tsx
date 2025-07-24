@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getColorClass, getColorClasses } from "@/utils/colorMigration";
 
 const HomeLanding = () => {
   const learningPaths = [
@@ -425,13 +426,13 @@ const HomeLanding = () => {
   const getCardColors = (colorTheme: string | undefined) => {
     switch (colorTheme) {
       case "indigo":
-        return "from-indigo-50 to-blue-50 border-indigo-200 hover:border-indigo-300";
+        return `${getColorClass('from-indigo-50 to-purple-50')} ${getColorClasses('border-indigo-200', 'hover:border-indigo-300')}`;
       case "emerald":
         return "from-emerald-50 to-teal-50 border-emerald-200 hover:border-emerald-300";
       case "orange":
         return "from-orange-50 to-amber-50 border-orange-200 hover:border-orange-300";
       case "purple":
-        return "from-purple-50 to-pink-50 border-purple-200 hover:border-purple-300";
+        return `${getColorClass('from-purple-50 to-pink-50')} ${getColorClasses('border-purple-200', 'hover:border-purple-300')}`;
       case "cyan":
         return "from-cyan-50 to-blue-50 border-cyan-200 hover:border-cyan-300";
       case "rose":
@@ -439,7 +440,7 @@ const HomeLanding = () => {
       case "amber":
         return "from-amber-50 to-yellow-50 border-amber-200 hover:border-amber-300";
       case "blue":
-        return "from-blue-50 to-indigo-50 border-blue-200 hover:border-blue-300";
+        return `${getColorClass('from-blue-50 to-indigo-50')} border-blue-200 hover:border-blue-300`;
       case "slate":
         return "from-slate-50 to-gray-50 border-slate-200 hover:border-slate-300";
       case "pink":
@@ -447,7 +448,7 @@ const HomeLanding = () => {
       case "red":
         return "from-red-50 to-rose-50 border-red-200 hover:border-red-300";
       case "violet":
-        return "from-violet-50 to-purple-50 border-violet-200 hover:border-violet-300";
+        return `${getColorClass('from-violet-50 to-purple-50')} ${getColorClasses('border-violet-200', 'hover:border-violet-300')}`;
       case "teal":
         return "from-teal-50 to-cyan-50 border-teal-200 hover:border-teal-300";
       case "lime":
@@ -457,20 +458,20 @@ const HomeLanding = () => {
       case "green":
         return "from-green-50 to-emerald-50 border-green-200 hover:border-green-300";
       default:
-        return "from-slate-50 to-slate-100 border-slate-200 hover:border-indigo-300";
+        return `${getColorClass('from-slate-50 to-slate-100')} border-slate-200 ${getColorClass('hover:border-indigo-300')}`;
     }
   };
 
   const getTopicColors = (colorTheme: string | undefined) => {
     switch (colorTheme) {
       case "indigo":
-        return "bg-indigo-100 text-indigo-700";
+        return `${getColorClasses('bg-indigo-100', 'text-indigo-700')}`;
       case "emerald":
         return "bg-emerald-100 text-emerald-700";
       case "orange":
         return "bg-orange-100 text-orange-700";
       case "purple":
-        return "bg-purple-100 text-purple-700";
+        return `${getColorClasses('bg-purple-100', 'text-purple-700')}`;
       case "cyan":
         return "bg-cyan-100 text-cyan-700";
       case "rose":
@@ -486,7 +487,7 @@ const HomeLanding = () => {
       case "red":
         return "bg-red-100 text-red-700";
       case "violet":
-        return "bg-violet-100 text-violet-700";
+        return `${getColorClasses('bg-violet-100', 'text-violet-700')}`;
       case "teal":
         return "bg-teal-100 text-teal-700";
       case "lime":
@@ -496,14 +497,16 @@ const HomeLanding = () => {
       case "green":
         return "bg-green-100 text-green-700";
       default:
-        return "bg-indigo-100 text-indigo-700";
+        return `${getColorClasses('bg-indigo-100', 'text-indigo-700')}`;
     }
   };
 
   return (
     <div>
       {/* 소개 섹션 */}
-      <div className="mb-12 bg-gradient-to-r from-blue-50 to-indigo-50 p-8 rounded-xl border border-blue-200">
+      <div className={`mb-12 bg-gradient-to-r ${getColorClasses(
+        'from-blue-50 to-indigo-50'
+      )} p-8 rounded-xl border border-blue-200`}>
         <h1 className="text-4xl font-bold text-blue-900 mb-4">
           Interactive JavaScript
         </h1>
@@ -533,7 +536,7 @@ const HomeLanding = () => {
           <div key={path.phase}>
             <div className="mb-6">
               <div className="flex items-center gap-4 mb-3">
-                <div className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-lg">
+                <div className={`bg-gradient-to-r ${getColorClass('from-indigo-500 to-purple-600')} text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-lg`}>
                   {path.phase}
                 </div>
                 <h2 className="text-3xl font-bold text-gray-800">
@@ -556,7 +559,7 @@ const HomeLanding = () => {
                     <div className="flex items-center gap-3">
                       <div className="text-3xl">{course.icon}</div>
                       <div>
-                        <h3 className="text-lg font-semibold text-gray-800 group-hover:text-indigo-600 transition-colors">
+                        <h3 className={`text-lg font-semibold text-gray-800 ${getColorClass('group-hover:text-indigo-600')} transition-colors`}>
                           {course.title}
                         </h3>
                         <span
@@ -568,7 +571,10 @@ const HomeLanding = () => {
                         </span>
                       </div>
                     </div>
-                    <div className="text-indigo-500 group-hover:text-indigo-700 transition-colors">
+                    <div className={`${getColorClasses(
+                      'text-indigo-500',
+                      'group-hover:text-indigo-700'
+                    )} transition-colors`}>
                       <svg
                         className="w-5 h-5"
                         fill="none"
@@ -649,7 +655,10 @@ const HomeLanding = () => {
           <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded">
             Next.js
           </span>
-          <span className="px-2 py-1 bg-purple-100 text-purple-700 rounded">
+          <span className={`px-2 py-1 ${getColorClasses(
+            'bg-purple-100',
+            'text-purple-700'
+          )} rounded`}>
             TypeScript
           </span>
           <span className="px-2 py-1 bg-cyan-100 text-cyan-700 rounded">

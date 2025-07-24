@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { getColorClass } from "@/utils/colorMigration";
 
 const GitWorkflowLanding = () => {
   const [selectedWorkflow, setSelectedWorkflow] = useState<string>("solo");
@@ -117,7 +118,7 @@ const GitWorkflowLanding = () => {
 
   const getWorkflowColor = (workflow: string) => {
     const colors = {
-      solo: "from-blue-50 to-indigo-50 border-blue-200",
+      solo: `${getColorClass('from-blue-50 to-indigo-50')} border-blue-200`,
       team: "from-green-50 to-emerald-50 border-green-200"
     };
     return colors[workflow as keyof typeof colors] || colors.solo;
@@ -243,13 +244,13 @@ const GitWorkflowLanding = () => {
       </div>
 
       {/* 실습 체크리스트 */}
-      <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl border border-purple-200 p-6">
-        <h3 className="text-xl font-bold text-purple-900 mb-4">
+      <div className={`bg-gradient-to-r ${getColorClass('from-purple-50 to-pink-50')} rounded-xl border ${getColorClass('border-purple-200')} p-6`}>
+        <h3 className={`text-xl font-bold ${getColorClass('text-purple-900')} mb-4`}>
           ✅ 실습 체크리스트
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="font-semibold text-purple-800 mb-3">혼자 개발 연습</h4>
+            <h4 className={`font-semibold ${getColorClass('text-purple-800')} mb-3`}>혼자 개발 연습</h4>
             <div className="space-y-2 text-sm">
               <label className="flex items-center gap-2">
                 <input type="checkbox" className="rounded" />
@@ -270,7 +271,7 @@ const GitWorkflowLanding = () => {
             </div>
           </div>
           <div>
-            <h4 className="font-semibold text-purple-800 mb-3">팀 협업 연습</h4>
+            <h4 className={`font-semibold ${getColorClass('text-purple-800')} mb-3`}>팀 협업 연습</h4>
             <div className="space-y-2 text-sm">
               <label className="flex items-center gap-2">
                 <input type="checkbox" className="rounded" />

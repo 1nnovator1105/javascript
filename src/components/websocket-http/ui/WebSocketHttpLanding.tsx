@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef } from "react";
+import { getColorClass } from "@/utils/colorMigration";
 
 const WebSocketHttpLanding = () => {
   const [activeTab, setActiveTab] = useState<"concept" | "comparison" | "demo">(
@@ -198,10 +199,10 @@ const WebSocketHttpLanding = () => {
               </div>
             </div>
 
-            <div className="bg-purple-50 rounded-lg p-6 border border-purple-200">
+            <div className={`${getColorClass('bg-purple-50')} rounded-lg p-6 border ${getColorClass('border-purple-200')}`}>
               <div className="flex items-center gap-3 mb-4">
                 <div className="text-3xl">🔌</div>
-                <h2 className="text-2xl font-bold text-purple-800">
+                <h2 className={`text-2xl font-bold ${getColorClass('text-purple-800')}`}>
                   WebSocket
                 </h2>
               </div>
@@ -283,32 +284,32 @@ const WebSocketHttpLanding = () => {
           </div>
 
           {/* 실시간 통신이 필요한 경우 */}
-          <div className="bg-purple-50 rounded-lg p-6 border border-purple-200">
-            <h2 className="text-2xl font-bold text-purple-800 mb-6">
+          <div className={`${getColorClass('bg-purple-50')} rounded-lg p-6 border ${getColorClass('border-purple-200')}`}>
+            <h2 className={`text-2xl font-bold ${getColorClass('text-purple-800')} mb-6`}>
               💡 언제 WebSocket을 사용할까?
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-white p-4 rounded-lg border border-purple-300">
+              <div className={`bg-white p-4 rounded-lg border ${getColorClass('border-purple-300')}`}>
                 <div className="text-2xl mb-2">💬</div>
-                <h3 className="font-semibold text-purple-700 mb-2">
+                <h3 className={`font-semibold ${getColorClass('text-purple-700')} mb-2`}>
                   실시간 채팅
                 </h3>
                 <p className="text-sm text-gray-600">
                   메시지 즉시 전달, 타이핑 상태 표시, 온라인 상태 업데이트
                 </p>
               </div>
-              <div className="bg-white p-4 rounded-lg border border-purple-300">
+              <div className={`bg-white p-4 rounded-lg border ${getColorClass('border-purple-300')}`}>
                 <div className="text-2xl mb-2">📈</div>
-                <h3 className="font-semibold text-purple-700 mb-2">
+                <h3 className={`font-semibold ${getColorClass('text-purple-700')} mb-2`}>
                   실시간 데이터
                 </h3>
                 <p className="text-sm text-gray-600">
                   주식 시세, 스포츠 중계, 실시간 모니터링 대시보드
                 </p>
               </div>
-              <div className="bg-white p-4 rounded-lg border border-purple-300">
+              <div className={`bg-white p-4 rounded-lg border ${getColorClass('border-purple-300')}`}>
                 <div className="text-2xl mb-2">🎮</div>
-                <h3 className="font-semibold text-purple-700 mb-2">
+                <h3 className={`font-semibold ${getColorClass('text-purple-700')} mb-2`}>
                   온라인 게임
                 </h3>
                 <p className="text-sm text-gray-600">
@@ -365,7 +366,7 @@ const WebSocketHttpLanding = () => {
                 onClick={() => setConnectionType("websocket")}
                 className={`px-4 py-2 rounded-lg font-medium transition-all ${
                   connectionType === "websocket"
-                    ? "bg-purple-500 text-white"
+                    ? `${getColorClass('bg-purple-500')} text-white`
                     : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                 }`}
               >
@@ -499,7 +500,7 @@ eventSource.onerror = () => {
 
               {connectionType === "websocket" && (
                 <div>
-                  <h3 className="text-xl font-bold text-purple-800 mb-4">
+                  <h3 className={`text-xl font-bold ${getColorClass('text-purple-800')} mb-4`}>
                     🔌 WebSocket
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -510,7 +511,7 @@ eventSource.onerror = () => {
                           <div>1. HTTP로 핸드셰이크</div>
                           <div>2. 프로토콜 업그레이드</div>
                           <div>3. 양방향 통신 채널 수립</div>
-                          <div className="text-purple-600">
+                          <div className={getColorClass('text-purple-600')}>
                             ✅ 완전한 양방향 통신
                           </div>
                         </div>
@@ -518,7 +519,7 @@ eventSource.onerror = () => {
                     </div>
                     <div>
                       <h4 className="font-semibold mb-2">구현 예시</h4>
-                      <pre className="bg-gray-900 text-purple-400 p-3 rounded text-sm">
+                      <pre className={`bg-gray-900 ${getColorClass('text-purple-400')} p-3 rounded text-sm`}>
                         {`// 양방향 실시간 통신
 const ws = new WebSocket('ws://localhost:8080');
 
@@ -540,7 +541,7 @@ ws.send(JSON.stringify({
                       </pre>
                     </div>
                   </div>
-                  <div className="mt-4 p-4 bg-purple-100 rounded-lg border border-purple-300">
+                  <div className={`mt-4 p-4 ${getColorClass('bg-purple-100')} rounded-lg border ${getColorClass('border-purple-300')}`}>
                     <p className="text-sm">
                       <strong>장점:</strong> 완전한 양방향, 낮은 지연시간,
                       효율적
@@ -744,7 +745,7 @@ ws.send(JSON.stringify({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <h3 className="font-semibold mb-3">클라이언트 (JavaScript)</h3>
-                <pre className="bg-gray-900 text-purple-400 p-4 rounded-lg text-sm overflow-x-auto">
+                <pre className={`bg-gray-900 ${getColorClass('text-purple-400')} p-4 rounded-lg text-sm overflow-x-auto`}>
                   {`class ChatClient {
   constructor(url) {
     this.ws = new WebSocket(url);

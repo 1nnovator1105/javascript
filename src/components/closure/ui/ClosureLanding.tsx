@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useCallback } from "react";
+import { getColorClass } from "@/utils/colorMigration";
 
 interface TimeoutInfo {
   id: string;
@@ -121,7 +122,7 @@ const ClosureLanding = () => {
       {/* 메인 시뮬레이터 섹션 */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         {/* 카운터 및 컨트롤 */}
-        <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl p-6 border-2 border-blue-200 shadow-lg">
+        <div className={`bg-gradient-to-br ${getColorClass('from-blue-50 to-indigo-100')} rounded-xl p-6 border-2 border-blue-200 shadow-lg`}>
           <div className="text-center mb-6">
             <div className="text-6xl font-bold text-blue-600 mb-2">{count}</div>
             <div className="text-sm text-blue-500 font-medium">현재 Count</div>
@@ -167,10 +168,10 @@ const ClosureLanding = () => {
         </div>
 
         {/* 실행 중인 setTimeout 표시 */}
-        <div className="bg-gradient-to-br from-purple-50 to-pink-100 rounded-xl p-6 border-2 border-purple-200 shadow-lg">
-          <h3 className="text-xl font-semibold mb-4 text-purple-800 flex items-center gap-2">
+        <div className={`bg-gradient-to-br ${getColorClass('from-purple-50 to-pink-100')} rounded-xl p-6 border-2 ${getColorClass('border-purple-200')} shadow-lg`}>
+          <h3 className={`text-xl font-semibold mb-4 ${getColorClass('text-purple-800')} flex items-center gap-2`}>
             ⏳ 실행 중인 setTimeout
-            <span className="text-sm bg-purple-500 text-white px-2 py-1 rounded-full">
+            <span className={`text-sm ${getColorClass('bg-purple-500')} text-white px-2 py-1 rounded-full`}>
               {pendingTimeouts.length}개
             </span>
           </h3>
@@ -184,14 +185,14 @@ const ClosureLanding = () => {
               {pendingTimeouts.map((timeout) => (
                 <div
                   key={timeout.id}
-                  className="bg-white p-4 rounded-lg border border-purple-200 animate-pulse"
+                  className={`bg-white p-4 rounded-lg border ${getColorClass('border-purple-200')} animate-pulse`}
                 >
                   <div className="flex justify-between items-center">
                     <div>
-                      <div className="font-medium text-purple-800">
+                      <div className={`font-medium ${getColorClass('text-purple-800')}`}>
                         {timeout.id}
                       </div>
-                      <div className="text-sm text-purple-600">
+                      <div className={`text-sm ${getColorClass('text-purple-600')}`}>
                         캡처된 값: {timeout.capturedValue}
                       </div>
                     </div>
@@ -249,7 +250,7 @@ const ClosureLanding = () => {
                       <div className="text-sm text-gray-600">
                         {log.beforeValue} → {log.afterValue}
                         {log.capturedValue !== undefined && (
-                          <span className="ml-2 text-purple-600 font-medium">
+                          <span className={`ml-2 ${getColorClass('text-purple-600')} font-medium`}>
                             (캡처된 값: {log.capturedValue})
                           </span>
                         )}
@@ -304,7 +305,7 @@ const ClosureLanding = () => {
       {/* 학습 가이드 섹션 */}
       <div className="border-t border-gray-200 pt-8">
         <div className="text-center mb-8">
-          <h2 className="font-bold bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent mb-2 text-2xl md:text-3xl">
+          <h2 className={`font-bold bg-gradient-to-r ${getColorClass('from-indigo-500 to-purple-600')} bg-clip-text text-transparent mb-2 text-2xl md:text-3xl`}>
             📚 학습 가이드: JavaScript Scope & Closure
           </h2>
           <p className="text-gray-500 font-normal m-0 text-sm md:text-base">
@@ -357,7 +358,7 @@ const ClosureLanding = () => {
         </div>
 
         {/* 핵심 개념 설명 */}
-        <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl p-6 border-2 border-blue-200 mb-8">
+        <div className={`bg-gradient-to-br ${getColorClass('from-blue-50 to-indigo-100')} rounded-xl p-6 border-2 border-blue-200 mb-8`}>
           <h3 className="text-xl font-semibold mb-4 text-blue-800">
             🧠 핵심 개념 이해
           </h3>
@@ -407,17 +408,17 @@ const ClosureLanding = () => {
         </div>
 
         {/* 클로저 패턴 활용 가이드 */}
-        <div className="bg-gradient-to-br from-purple-50 to-pink-100 rounded-xl p-6 border-2 border-purple-200 mb-8">
-          <h3 className="text-xl font-semibold mb-4 text-purple-800">
+        <div className={`bg-gradient-to-br ${getColorClass('from-purple-50 to-pink-100')} rounded-xl p-6 border-2 ${getColorClass('border-purple-200')} mb-8`}>
+          <h3 className={`text-xl font-semibold mb-4 ${getColorClass('text-purple-800')}`}>
             💡 클로저 패턴을 사용하는 이유
           </h3>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div className="space-y-4">
-              <div className="bg-white p-4 rounded-lg border border-purple-200">
-                <h4 className="font-semibold text-purple-800 mb-2 flex items-center gap-2">
+              <div className={`bg-white p-4 rounded-lg border ${getColorClass('border-purple-200')}`}>
+                <h4 className={`font-semibold ${getColorClass('text-purple-800')} mb-2 flex items-center gap-2`}>
                   🔒 1. 데이터 캡슐화
                 </h4>
-                <p className="text-sm text-purple-700 mb-2">
+                <p className={`text-sm ${getColorClass('text-purple-700')} mb-2`}>
                   외부에서 직접 접근할 수 없는 프라이빗 변수를 만들 수 있습니다.
                 </p>
                 <div className="bg-gray-100 p-2 rounded text-xs font-mono">
@@ -431,11 +432,11 @@ const ClosureLanding = () => {
                 </div>
               </div>
 
-              <div className="bg-white p-4 rounded-lg border border-purple-200">
-                <h4 className="font-semibold text-purple-800 mb-2 flex items-center gap-2">
+              <div className={`bg-white p-4 rounded-lg border ${getColorClass('border-purple-200')}`}>
+                <h4 className={`font-semibold ${getColorClass('text-purple-800')} mb-2 flex items-center gap-2`}>
                   🏭 2. 팩토리 함수
                 </h4>
-                <p className="text-sm text-purple-700 mb-2">
+                <p className={`text-sm ${getColorClass('text-purple-700')} mb-2`}>
                   설정값을 기억하는 맞춤형 함수를 생성할 수 있습니다.
                 </p>
                 <div className="bg-gray-100 p-2 rounded text-xs font-mono">
@@ -449,11 +450,11 @@ const triple = createMultiplier(3);`}</pre>
             </div>
 
             <div className="space-y-4">
-              <div className="bg-white p-4 rounded-lg border border-purple-200">
-                <h4 className="font-semibold text-purple-800 mb-2 flex items-center gap-2">
+              <div className={`bg-white p-4 rounded-lg border ${getColorClass('border-purple-200')}`}>
+                <h4 className={`font-semibold ${getColorClass('text-purple-800')} mb-2 flex items-center gap-2`}>
                   🔧 3. 모듈 패턴
                 </h4>
-                <p className="text-sm text-purple-700 mb-2">
+                <p className={`text-sm ${getColorClass('text-purple-700')} mb-2`}>
                   네임스페이스를 만들고 전역 변수 오염을 방지할 수 있습니다.
                 </p>
                 <div className="bg-gray-100 p-2 rounded text-xs font-mono">
@@ -467,11 +468,11 @@ const triple = createMultiplier(3);`}</pre>
                 </div>
               </div>
 
-              <div className="bg-white p-4 rounded-lg border border-purple-200">
-                <h4 className="font-semibold text-purple-800 mb-2 flex items-center gap-2">
+              <div className={`bg-white p-4 rounded-lg border ${getColorClass('border-purple-200')}`}>
+                <h4 className={`font-semibold ${getColorClass('text-purple-800')} mb-2 flex items-center gap-2`}>
                   ⚡ 4. 콜백 컨텍스트 유지
                 </h4>
-                <p className="text-sm text-purple-700 mb-2">
+                <p className={`text-sm ${getColorClass('text-purple-700')} mb-2`}>
                   이벤트 핸들러나 비동기 함수에서 특정 값을 기억할 수 있습니다.
                 </p>
                 <div className="bg-gray-100 p-2 rounded text-xs font-mono">

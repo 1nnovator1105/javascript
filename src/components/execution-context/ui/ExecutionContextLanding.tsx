@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { getColorClass } from "@/utils/colorMigration";
 
 // 개념 섹션 인터페이스
 interface ConceptSection {
@@ -160,7 +161,7 @@ console.log(hoistedFunc());`,
   return (
     <div className="space-y-12">
       {/* 인트로 섹션 */}
-      <div className="text-center bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-8 border-2 border-blue-200">
+      <div className={`text-center bg-gradient-to-r ${getColorClass('from-blue-50 to-indigo-50')} rounded-xl p-8 border-2 border-blue-200`}>
         <h1 className="text-3xl font-bold text-blue-800 mb-4">
           🧠 JavaScript 실행 컨텍스트 완벽 이해하기
         </h1>
@@ -179,8 +180,8 @@ console.log(hoistedFunc());`,
       </div>
 
       {/* 개념 이해 섹션 */}
-      <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-6 border-2 border-purple-200">
-        <h2 className="text-2xl font-semibold mb-6 text-purple-800 flex items-center gap-2">
+      <div className={`bg-gradient-to-br ${getColorClass('from-purple-50 to-pink-50')} rounded-xl p-6 border-2 ${getColorClass('border-purple-200')}`}>
+        <h2 className={`text-2xl font-semibold mb-6 ${getColorClass('text-purple-800')} flex items-center gap-2`}>
           🎯 핵심 개념 이해하기
         </h2>
 
@@ -191,20 +192,20 @@ console.log(hoistedFunc());`,
               onClick={() => setSelectedConcept(index)}
               className={`p-4 rounded-lg border-2 transition-all text-left cursor-pointer ${
                 selectedConcept === index
-                  ? "border-purple-500 bg-purple-100 shadow-lg"
-                  : "border-purple-200 hover:border-purple-300 bg-white"
+                  ? `${getColorClass('border-purple-500')} ${getColorClass('bg-purple-100')} shadow-lg`
+                  : `${getColorClass('border-purple-200')} ${getColorClass('hover:border-purple-300')} bg-white`
               }`}
             >
               <div className="text-3xl mb-2">{concept.visual}</div>
-              <div className="font-semibold text-purple-800 mb-1">
+              <div className={`font-semibold ${getColorClass('text-purple-800')} mb-1`}>
                 {concept.title}
               </div>
             </button>
           ))}
         </div>
 
-        <div className="bg-white rounded-lg border-2 border-purple-200 p-6">
-          <h3 className="text-xl font-semibold mb-4 text-purple-800 flex items-center gap-2">
+        <div className={`bg-white rounded-lg border-2 ${getColorClass('border-purple-200')} p-6`}>
+          <h3 className={`text-xl font-semibold mb-4 ${getColorClass('text-purple-800')} flex items-center gap-2`}>
             {concepts[selectedConcept].visual} {concepts[selectedConcept].title}
           </h3>
           <p className="text-gray-700 leading-relaxed">
@@ -363,15 +364,15 @@ console.log(hoistedFunc());`,
       </div>
 
       {/* 단계별 학습 섹션 */}
-      <div className="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-xl p-6 border-2 border-indigo-200">
-        <h2 className="text-2xl font-semibold mb-6 text-indigo-800 flex items-center gap-2">
+      <div className={`bg-gradient-to-br ${getColorClass('from-indigo-50 to-blue-50')} rounded-xl p-6 border-2 ${getColorClass('border-indigo-200')}`}>
+        <h2 className={`text-2xl font-semibold mb-6 ${getColorClass('text-indigo-800')} flex items-center gap-2`}>
           📚 단계별 학습
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* 예제 선택 */}
           <div className="space-y-2">
-            <h3 className="text-lg font-semibold text-indigo-700 mb-3">
+            <h3 className={`text-lg font-semibold ${getColorClass('text-indigo-700')} mb-3`}>
               학습 단계
             </h3>
             {practiceExamples.map((example, index) => (
@@ -380,12 +381,12 @@ console.log(hoistedFunc());`,
                 onClick={() => setSelectedExample(index)}
                 className={`w-full text-left p-3 rounded-lg border-2 transition-all cursor-pointer ${
                   selectedExample === index
-                    ? "border-indigo-500 bg-indigo-50 text-indigo-800"
-                    : "border-indigo-200 hover:border-indigo-300 text-indigo-700"
+                    ? `${getColorClass('border-indigo-500')} ${getColorClass('bg-indigo-50')} ${getColorClass('text-indigo-800')}`
+                    : `${getColorClass('border-indigo-200')} ${getColorClass('hover:border-indigo-300')} ${getColorClass('text-indigo-700')}`
                 }`}
               >
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="w-6 h-6 bg-indigo-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                  <span className={`w-6 h-6 ${getColorClass('bg-indigo-600')} text-white rounded-full flex items-center justify-center text-sm font-bold`}>
                     {index + 1}
                   </span>
                   <span className="font-medium">{example.title}</span>
@@ -399,8 +400,8 @@ console.log(hoistedFunc());`,
 
           {/* 코드 예제 */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-lg border-2 border-indigo-200 p-4">
-              <h3 className="text-lg font-semibold text-indigo-700 mb-4">
+            <div className={`bg-white rounded-lg border-2 ${getColorClass('border-indigo-200')} p-4`}>
+              <h3 className={`text-lg font-semibold ${getColorClass('text-indigo-700')} mb-4`}>
                 코드 예제
               </h3>
               <div className="bg-gray-900 text-gray-100 p-4 rounded-lg text-sm font-mono overflow-x-auto">
@@ -409,7 +410,7 @@ console.log(hoistedFunc());`,
             </div>
 
             <div className="mt-4 bg-white rounded-lg border-2 border-indigo-200 p-4">
-              <h3 className="text-lg font-semibold mb-3 text-indigo-700">
+              <h3 className={`text-lg font-semibold mb-3 ${getColorClass('text-indigo-700')}`}>
                 실행 결과
               </h3>
               <div className="bg-green-50 border border-green-200 rounded-lg p-3">
@@ -422,8 +423,8 @@ console.log(hoistedFunc());`,
 
           {/* 설명 및 핵심 포인트 */}
           <div className="space-y-4">
-            <div className="bg-white rounded-lg border-2 border-indigo-200 p-4">
-              <h3 className="text-lg font-semibold mb-3 text-indigo-700">
+            <div className={`bg-white rounded-lg border-2 ${getColorClass('border-indigo-200')} p-4`}>
+              <h3 className={`text-lg font-semibold mb-3 ${getColorClass('text-indigo-700')}`}>
                 설명
               </h3>
               <p className="text-sm text-gray-700 leading-relaxed">
@@ -431,8 +432,8 @@ console.log(hoistedFunc());`,
               </p>
             </div>
 
-            <div className="bg-white rounded-lg border-2 border-indigo-200 p-4">
-              <h3 className="text-lg font-semibold mb-3 text-indigo-700">
+            <div className={`bg-white rounded-lg border-2 ${getColorClass('border-indigo-200')} p-4`}>
+              <h3 className={`text-lg font-semibold mb-3 ${getColorClass('text-indigo-700')}`}>
                 핵심 포인트
               </h3>
               <div className="space-y-2">
@@ -440,12 +441,12 @@ console.log(hoistedFunc());`,
                   (point, index) => (
                     <div
                       key={index}
-                      className="flex items-start gap-2 p-2 bg-indigo-50 rounded"
+                      className={`flex items-start gap-2 p-2 ${getColorClass('bg-indigo-50')} rounded`}
                     >
-                      <span className="w-5 h-5 bg-indigo-500 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5">
+                      <span className={`w-5 h-5 ${getColorClass('bg-indigo-500')} text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5`}>
                         {index + 1}
                       </span>
-                      <span className="text-sm text-indigo-800">{point}</span>
+                      <span className={`text-sm ${getColorClass('text-indigo-800')}`}>{point}</span>
                     </div>
                   )
                 )}
@@ -547,14 +548,14 @@ console.log(hoistedFunc());`,
       </div>
 
       {/* 핵심 포인트 */}
-      <div className="bg-gradient-to-br from-violet-50 to-purple-50 rounded-xl p-6 border-2 border-violet-200">
-        <h2 className="text-2xl font-semibold mb-6 text-violet-800 flex items-center gap-2">
+      <div className={`bg-gradient-to-br ${getColorClass('from-violet-50 to-purple-50')} rounded-xl p-6 border-2 ${getColorClass('border-violet-200')}`}>
+        <h2 className={`text-2xl font-semibold mb-6 ${getColorClass('text-violet-800')} flex items-center gap-2`}>
           🎯 핵심 포인트
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-white rounded-lg border-2 border-violet-200 p-4">
-            <h3 className="text-lg font-semibold mb-4 text-violet-700 flex items-center gap-2">
+          <div className={`bg-white rounded-lg border-2 ${getColorClass('border-violet-200')} p-4`}>
+            <h3 className={`text-lg font-semibold mb-4 ${getColorClass('text-violet-700')} flex items-center gap-2`}>
               ⚠️ 주의할 점
             </h3>
             <div className="space-y-3">
@@ -592,8 +593,8 @@ console.log(hoistedFunc());`,
             </div>
           </div>
 
-          <div className="bg-white rounded-lg border-2 border-violet-200 p-4">
-            <h3 className="text-lg font-semibold mb-4 text-violet-700 flex items-center gap-2">
+          <div className={`bg-white rounded-lg border-2 ${getColorClass('border-violet-200')} p-4`}>
+            <h3 className={`text-lg font-semibold mb-4 ${getColorClass('text-violet-700')} flex items-center gap-2`}>
               💡 핵심 기억할 점
             </h3>
             <div className="space-y-3">

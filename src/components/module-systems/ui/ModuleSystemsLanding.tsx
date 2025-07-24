@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { StudyPageLayout } from "@/components/share/ui/StudyPageLayout";
+import { getColorClass } from "@/utils/colorMigration";
 
 interface Module {
   id: string;

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { getColorClass } from "@/utils/colorMigration";
 
 interface StorageItem {
   key: string;
@@ -241,7 +242,7 @@ export const WebStorageLanding = () => {
           onClick={() => setActiveTab("concept")}
           className={`px-4 py-2 rounded-lg font-medium transition-all ${
             activeTab === "concept"
-              ? "bg-indigo-500 text-white"
+              ? `${getColorClass('bg-indigo-500')} text-white`
               : "bg-gray-100 text-gray-700 hover:bg-gray-200"
           }`}
         >
@@ -251,7 +252,7 @@ export const WebStorageLanding = () => {
           onClick={() => setActiveTab("visual")}
           className={`px-4 py-2 rounded-lg font-medium transition-all ${
             activeTab === "visual"
-              ? "bg-indigo-500 text-white"
+              ? `${getColorClass('bg-indigo-500')} text-white`
               : "bg-gray-100 text-gray-700 hover:bg-gray-200"
           }`}
         >
@@ -261,7 +262,7 @@ export const WebStorageLanding = () => {
           onClick={() => setActiveTab("practice")}
           className={`px-4 py-2 rounded-lg font-medium transition-all ${
             activeTab === "practice"
-              ? "bg-indigo-500 text-white"
+              ? `${getColorClass('bg-indigo-500')} text-white`
               : "bg-gray-100 text-gray-700 hover:bg-gray-200"
           }`}
         >
@@ -272,7 +273,7 @@ export const WebStorageLanding = () => {
       {/* 개념 이해 탭 */}
       {activeTab === "concept" && (
         <div className="space-y-8">
-          <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-6">
+          <div className={`bg-gradient-to-r ${getColorClass('from-indigo-50 to-purple-50')} rounded-xl p-6`}>
             <h3 className="text-xl font-bold mb-4">웹 스토리지란?</h3>
             <p className="text-gray-700 mb-4">
               웹 애플리케이션에서 클라이언트 측에 데이터를 저장하는
@@ -291,7 +292,7 @@ export const WebStorageLanding = () => {
                 </p>
               </div>
               <div className="bg-white rounded-lg p-4 shadow-sm">
-                <h4 className="font-semibold text-purple-600 mb-2">
+                <h4 className={`font-semibold ${getColorClass('text-purple-600')} mb-2`}>
                   비동기식 스토리지
                 </h4>
                 <p className="text-sm text-gray-600">
@@ -432,8 +433,8 @@ export const WebStorageLanding = () => {
                 </li>
               </ul>
             </div>
-            <div className="bg-purple-50 rounded-xl p-6">
-              <h3 className="text-lg font-semibold mb-3 text-purple-800">
+            <div className={`${getColorClass('bg-purple-50')} rounded-xl p-6`}>
+              <h3 className={`text-lg font-semibold mb-3 ${getColorClass('text-purple-800')}`}>
                 IndexedDB 사용 시나리오
               </h3>
               <ul className="space-y-2 text-sm">
@@ -606,8 +607,8 @@ export const WebStorageLanding = () => {
               </div>
 
               {/* IndexedDB 플로우 */}
-              <div className="bg-purple-50 rounded-lg p-4">
-                <h4 className="font-semibold mb-3 text-purple-800">
+              <div className={`${getColorClass('bg-purple-50')} rounded-lg p-4`}>
+                <h4 className={`font-semibold mb-3 ${getColorClass('text-purple-800')}`}>
                   IndexedDB
                 </h4>
                 <div className="flex items-center gap-4 flex-wrap">
@@ -615,7 +616,7 @@ export const WebStorageLanding = () => {
                     JavaScript
                   </div>
                   <span className="w-5 h-5 text-gray-400">→</span>
-                  <div className="bg-purple-100 rounded-lg px-4 py-2 shadow-sm">
+                  <div className={`${getColorClass('bg-purple-100')} rounded-lg px-4 py-2 shadow-sm`}>
                     IndexedDB API
                   </div>
                   <span className="w-5 h-5 text-gray-400">→</span>

@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect, useMemo } from "react";
+import { getColorClass } from "@/utils/colorMigration";
 
 const ArrayMethodsLanding = () => {
   const [selectedMethod, setSelectedMethod] = useState<string>("map");
@@ -220,9 +221,9 @@ const ArrayMethodsLanding = () => {
 
   const getMethodColor = (method: string) => {
     const colors = {
-      map: "from-blue-50 to-indigo-50 border-blue-200",
+      map: `${getColorClass('from-blue-50 to-indigo-50')} border-blue-200`,
       filter: "from-green-50 to-emerald-50 border-green-200",
-      reduce: "from-purple-50 to-violet-50 border-purple-200",
+      reduce: `${getColorClass('from-purple-50 to-violet-50')} ${getColorClass('border-purple-200')}`,
       find: "from-orange-50 to-amber-50 border-orange-200",
       some: "from-emerald-50 to-teal-50 border-emerald-200",
       sort: "from-red-50 to-rose-50 border-red-200",
@@ -256,31 +257,31 @@ const ArrayMethodsLanding = () => {
   return (
     <div className="space-y-8">
       {/* 소개 섹션 */}
-      <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-xl border border-purple-200">
-        <h2 className="text-2xl font-bold text-purple-900 mb-3">
+      <div className={`bg-gradient-to-r ${getColorClass('from-purple-50 to-pink-50')} p-6 rounded-xl border ${getColorClass('border-purple-200')}`}>
+        <h2 className={`text-2xl font-bold ${getColorClass('text-purple-900')} mb-3`}>
           🎯 JavaScript 배열 메서드 완전 정복
         </h2>
-        <p className="text-purple-800 mb-4">
+        <p className={`${getColorClass('text-purple-800')} mb-4`}>
           실무에서 가장 많이 사용하는 배열 메서드들을 인터랙티브 실습으로
           마스터하세요. 각 메서드의 특징과 실제 사용 사례를 통해 함수형
           프로그래밍의 기초를 다집니다.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
           <div className="bg-white/60 rounded-lg p-3">
-            <h3 className="font-semibold text-purple-900 mb-1">🔄 변환</h3>
-            <p className="text-purple-700">map, flatMap</p>
+            <h3 className={`font-semibold ${getColorClass('text-purple-900')} mb-1`}>🔄 변환</h3>
+            <p className={getColorClass('text-purple-700')}>map, flatMap</p>
           </div>
           <div className="bg-white/60 rounded-lg p-3">
-            <h3 className="font-semibold text-purple-900 mb-1">🔍 필터링</h3>
-            <p className="text-purple-700">filter, find</p>
+            <h3 className={`font-semibold ${getColorClass('text-purple-900')} mb-1`}>🔍 필터링</h3>
+            <p className={getColorClass('text-purple-700')}>filter, find</p>
           </div>
           <div className="bg-white/60 rounded-lg p-3">
-            <h3 className="font-semibold text-purple-900 mb-1">📊 집계</h3>
-            <p className="text-purple-700">reduce, sort</p>
+            <h3 className={`font-semibold ${getColorClass('text-purple-900')} mb-1`}>📊 집계</h3>
+            <p className={getColorClass('text-purple-700')}>reduce, sort</p>
           </div>
           <div className="bg-white/60 rounded-lg p-3">
-            <h3 className="font-semibold text-purple-900 mb-1">✅ 검증</h3>
-            <p className="text-purple-700">some, every</p>
+            <h3 className={`font-semibold ${getColorClass('text-purple-900')} mb-1`}>✅ 검증</h3>
+            <p className={getColorClass('text-purple-700')}>some, every</p>
           </div>
         </div>
       </div>
@@ -479,14 +480,14 @@ const result = users
       </div>
 
       {/* 최신 배열 메서드 */}
-      <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl border border-indigo-200 p-6">
-        <h3 className="text-xl font-bold text-indigo-900 mb-4">
+      <div className={`bg-gradient-to-r ${getColorClass('from-indigo-50 to-purple-50')} rounded-xl border ${getColorClass('border-indigo-200')} p-6`}>
+        <h3 className={`text-xl font-bold ${getColorClass('text-indigo-900')} mb-4`}>
           ⚡ 최신 배열 메서드
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {modernMethods.map((method, index) => (
             <div key={index} className="bg-white/70 rounded-lg p-4">
-              <h4 className="font-semibold text-indigo-800 mb-2">
+              <h4 className={`font-semibold ${getColorClass('text-indigo-800')} mb-2`}>
                 {method.name}
               </h4>
               <p className="text-sm text-gray-600 mb-3">{method.description}</p>

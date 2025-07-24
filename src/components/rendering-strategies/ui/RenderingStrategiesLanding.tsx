@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef } from "react";
+import { getColorClass } from "@/utils/colorMigration";
 
 interface RenderingStrategy {
   id: string;
@@ -494,7 +495,7 @@ const RenderingStrategiesLanding: React.FC = () => {
         case "server":
           return `${baseStyles} bg-green-100 text-green-800 border-2 border-green-300 hover:shadow-md`;
         case "database":
-          return `${baseStyles} bg-purple-100 text-purple-800 border-2 border-purple-300 hover:shadow-md`;
+          return `${baseStyles} ${getColorClass('bg-purple-100')} ${getColorClass('text-purple-800')} border-2 ${getColorClass('border-purple-300')} hover:shadow-md`;
         case "cdn":
           return `${baseStyles} bg-orange-100 text-orange-800 border-2 border-orange-300 hover:shadow-md`;
         case "cache":
@@ -502,7 +503,7 @@ const RenderingStrategiesLanding: React.FC = () => {
         case "api":
           return `${baseStyles} bg-pink-100 text-pink-800 border-2 border-pink-300 hover:shadow-md`;
         case "build":
-          return `${baseStyles} bg-indigo-100 text-indigo-800 border-2 border-indigo-300 hover:shadow-md`;
+          return `${baseStyles} ${getColorClass('bg-indigo-100')} ${getColorClass('text-indigo-800')} border-2 ${getColorClass('border-indigo-300')} hover:shadow-md`;
         default:
           return baseStyles;
       }
@@ -629,7 +630,7 @@ const RenderingStrategiesLanding: React.FC = () => {
   return (
     <div className="space-y-8">
       {/* 개요 섹션 */}
-      <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-xl border border-blue-200">
+      <div className={`bg-gradient-to-r ${getColorClass('from-blue-50 to-purple-50')} p-6 rounded-xl border border-blue-200`}>
         <h2 className="text-2xl font-bold mb-4 text-gray-800">
           🌐 웹 렌더링 전략이란?
         </h2>
@@ -919,7 +920,7 @@ const RenderingStrategiesLanding: React.FC = () => {
           </h3>
           <button
             onClick={() => setComparisonMode(!comparisonMode)}
-            className="px-4 py-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 transition-colors"
+            className={`px-4 py-2 ${getColorClass('bg-indigo-500')} text-white rounded-lg ${getColorClass('hover:bg-indigo-600')} transition-colors`}
           >
             {comparisonMode ? "차트 보기" : "표 보기"}
           </button>

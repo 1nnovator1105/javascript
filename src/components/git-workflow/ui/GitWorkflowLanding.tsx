@@ -244,7 +244,7 @@ const GitWorkflowLanding = () => {
       </div>
 
       {/* 실습 체크리스트 */}
-      <div className={`bg-gradient-to-r ${getColorClass('from-purple-50 to-pink-50')} rounded-xl border ${getColorClass('border-purple-200')} p-6`}>
+      <div className={`bg-gradient-to-r ${getColorClass('from-purple-50')} ${getColorClass('to-pink-50')} rounded-xl border ${getColorClass('border-purple-200')} p-6`}>
         <h3 className={`text-xl font-bold ${getColorClass('text-purple-900')} mb-4`}>
           ✅ 실습 체크리스트
         </h3>

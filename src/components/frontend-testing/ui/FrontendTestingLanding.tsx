@@ -495,7 +495,7 @@ Time:        3.45s`}
       </div>
 
       {/* 테스팅 베스트 프랙티스 */}
-      <div className={`bg-gradient-to-br ${getColorClass('from-blue-50 to-indigo-50')} rounded-xl p-6 border border-blue-200`}>
+      <div className={`bg-gradient-to-br ${getColorClass('from-blue-50')} ${getColorClass('to-indigo-50')} rounded-xl p-6 border border-blue-200`}>
         <h3 className="text-xl font-bold text-blue-900 mb-4">💡 테스팅 베스트 프랙티스</h3>
         
         <div className="grid md:grid-cols-2 gap-4">

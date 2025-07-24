@@ -620,11 +620,11 @@ export const WebStorageLanding = () => {
                     IndexedDB API
                   </div>
                   <span className="w-5 h-5 text-gray-400">→</span>
-                  <div className="bg-purple-200 rounded-lg px-4 py-2 shadow-sm">
+                  <div className={`${getColorClass('bg-purple-200')} rounded-lg px-4 py-2 shadow-sm`}>
                     트랜잭션
                   </div>
                   <span className="w-5 h-5 text-gray-400">→</span>
-                  <div className="bg-purple-300 rounded-lg px-4 py-2 shadow-sm">
+                  <div className={`${getColorClass('bg-purple-300')} rounded-lg px-4 py-2 shadow-sm`}>
                     객체 저장소
                   </div>
                 </div>
@@ -696,7 +696,7 @@ export const WebStorageLanding = () => {
                       value={inputKey}
                       onChange={(e) => setInputKey(e.target.value)}
                       placeholder="예: userName"
-                      className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      className={`w-full px-3 py-2 border rounded-lg focus:ring-2 ${getColorClass('focus:ring-indigo-500')} ${getColorClass('focus:border-indigo-500')}`}
                     />
                   </div>
                   <div>
@@ -708,7 +708,7 @@ export const WebStorageLanding = () => {
                       value={inputValue}
                       onChange={(e) => setInputValue(e.target.value)}
                       placeholder="예: John Doe"
-                      className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      className={`w-full px-3 py-2 border rounded-lg focus:ring-2 ${getColorClass('focus:ring-indigo-500')} ${getColorClass('focus:border-indigo-500')}`}
                     />
                   </div>
                 </div>
@@ -724,7 +724,7 @@ export const WebStorageLanding = () => {
                       onChange={(e) => setCookieExpiry(Number(e.target.value))}
                       min="0"
                       max="365"
-                      className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      className={`w-full px-3 py-2 border rounded-lg focus:ring-2 ${getColorClass('focus:ring-indigo-500')} ${getColorClass('focus:border-indigo-500')}`}
                     />
                   </div>
                 )}
@@ -732,7 +732,7 @@ export const WebStorageLanding = () => {
                 <button
                   onClick={saveToStorage}
                   disabled={!inputKey || !inputValue}
-                  className="px-4 py-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className={`px-4 py-2 ${getColorClass('bg-indigo-500')} text-white rounded-lg ${getColorClass('hover:bg-indigo-600')} transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
                 >
                   저장하기
                 </button>
@@ -838,7 +838,7 @@ const getCookie = (name) => {
 
               {/* IndexedDB 예제 */}
               <div>
-                <h4 className="text-lg font-semibold mb-2 text-purple-400">
+                <h4 className={`text-lg font-semibold mb-2 ${getColorClass('text-purple-400')}`}>
                   IndexedDB
                 </h4>
                 <pre className="bg-gray-800 rounded-lg p-4 overflow-x-auto text-sm">

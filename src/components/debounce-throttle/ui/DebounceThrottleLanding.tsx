@@ -268,17 +268,17 @@ const DebounceThrottleLanding = () => {
               </tr>
             </thead>
             <tbody className="text-gray-700">
-              <tr className="border-b border-purple-100">
+              <tr className={`border-b ${getColorClass('border-purple-100')}`}>
                 <td className="p-3 font-medium">실행 패턴</td>
                 <td className="p-3">마지막 이벤트만 실행</td>
                 <td className="p-3">일정 간격으로 실행</td>
               </tr>
-              <tr className="border-b border-purple-100">
+              <tr className={`border-b ${getColorClass('border-purple-100')}`}>
                 <td className="p-3 font-medium">타이머 처리</td>
                 <td className="p-3">매번 타이머 재설정</td>
                 <td className="p-3">일정 시간 후 재활성화</td>
               </tr>
-              <tr className="border-b border-purple-100">
+              <tr className={`border-b ${getColorClass('border-purple-100')}`}>
                 <td className="p-3 font-medium">연속 입력 시</td>
                 <td className="p-3">입력이 끝날 때까지 실행 지연</td>
                 <td className="p-3">일정 간격으로 중간 실행</td>

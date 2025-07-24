@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { StudyPageLayout } from "@/components/share/ui";
+import { getColorClass } from "@/utils/colorMigration";
 
 export const metadata = {
   title: "404 - 페이지를 찾을 수 없습니다",
@@ -53,7 +54,7 @@ export default function NotFound() {
           <div className="mb-12">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors"
+              className={`inline-flex items-center gap-2 px-6 py-3 ${getColorClass('bg-indigo-600')} text-white rounded-lg font-medium ${getColorClass('hover:bg-indigo-700')} transition-colors`}
             >
               🏠 홈으로 돌아가기
             </Link>
@@ -68,10 +69,10 @@ export default function NotFound() {
               {/* Variable 카드 */}
               <Link
                 href="/variable"
-                className="group p-4 bg-white rounded-lg border-2 border-purple-200 hover:border-purple-400 transition-all duration-200 hover:shadow-lg"
+                className={`group p-4 bg-white rounded-lg border-2 ${getColorClass('border-purple-200')} ${getColorClass('hover:border-purple-400')} transition-all duration-200 hover:shadow-lg`}
               >
                 <div className="text-2xl mb-2">📝</div>
-                <div className="font-semibold text-purple-800 mb-1">
+                <div className={`font-semibold ${getColorClass('text-purple-800')} mb-1`}>
                   Variable
                 </div>
                 <div className="text-sm text-gray-600">
@@ -126,10 +127,10 @@ export default function NotFound() {
               {/* Prototype 카드 */}
               <Link
                 href="/prototype"
-                className="group p-4 bg-white rounded-lg border-2 border-purple-200 hover:border-purple-400 transition-all duration-200 hover:shadow-lg"
+                className={`group p-4 bg-white rounded-lg border-2 ${getColorClass('border-purple-200')} ${getColorClass('hover:border-purple-400')} transition-all duration-200 hover:shadow-lg`}
               >
                 <div className="text-2xl mb-2">🧬</div>
-                <div className="font-semibold text-purple-800 mb-1">
+                <div className={`font-semibold ${getColorClass('text-purple-800')} mb-1`}>
                   Prototype
                 </div>
                 <div className="text-sm text-gray-600">프로토타입 상속</div>

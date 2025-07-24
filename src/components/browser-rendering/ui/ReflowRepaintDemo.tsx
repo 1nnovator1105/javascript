@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef } from "react";
+import { getColorClass } from "@/utils/colorMigration";
 
 interface PerformanceLog {
   id: string;
@@ -401,7 +402,7 @@ const ReflowRepaintDemo = () => {
 
               {/* Transform 데모 요소 */}
               <div
-                className="demo-transform bg-purple-500 text-white p-4 rounded-lg inline-block transition-transform duration-300"
+                className={`demo-transform ${getColorClass('bg-purple-500')} text-white p-4 rounded-lg inline-block transition-transform duration-300`}
                 style={{ transform: "translateX(0) rotate(0deg) scale(1)" }}
               >
                 Transform 데모
@@ -500,8 +501,8 @@ const ReflowRepaintDemo = () => {
       </div>
 
       {/* 성능 비교 가이드 */}
-      <div className="mt-8 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-6 border border-indigo-200">
-        <h3 className="text-lg font-bold text-indigo-800 mb-4">
+      <div className={`mt-8 bg-gradient-to-r ${getColorClass('from-indigo-50')} ${getColorClass('to-purple-50')} rounded-xl p-6 border ${getColorClass('border-indigo-200')}`}>
+        <h3 className={`text-lg font-bold ${getColorClass('text-indigo-800')} mb-4`}>
           📚 성능 최적화 핵심 원리
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useCallback, useEffect } from "react";
+import { getColorClass } from "@/utils/colorMigration";
 
 interface TodoItem {
   id: string;
@@ -284,15 +285,15 @@ const EventDelegationLanding = () => {
   return (
     <div>
       {/* 모드 선택 및 컨트롤 */}
-      <div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-6 rounded-xl border border-indigo-200 mb-8">
+      <div className={`bg-gradient-to-r ${getColorClass('from-indigo-50 to-purple-50')} p-6 rounded-xl border ${getColorClass('border-indigo-200')} mb-8`}>
         <div className="flex flex-col gap-6">
           {/* 이벤트 처리 모드 */}
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div>
-              <h3 className="text-xl font-semibold text-indigo-800 mb-2">
+              <h3 className={`text-xl font-semibold ${getColorClass('text-indigo-800')} mb-2`}>
                 🎯 이벤트 처리 모드
               </h3>
-              <p className="text-indigo-600 text-sm">
+              <p className={`${getColorClass('text-indigo-600')} text-sm`}>
                 다른 방식으로 이벤트를 처리해보고 차이점을 확인해보세요
               </p>
             </div>
@@ -318,12 +319,12 @@ const EventDelegationLanding = () => {
           </div>
 
           {/* 이벤트 전파 모드 */}
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pt-4 border-t border-indigo-200">
+          <div className={`flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pt-4 border-t ${getColorClass('border-indigo-200')}`}>
             <div>
-              <h3 className="text-lg font-semibold text-purple-800 mb-2">
+              <h3 className={`text-lg font-semibold ${getColorClass('text-purple-800')} mb-2`}>
                 🔄 이벤트 전파 시뮬레이션
               </h3>
-              <p className="text-purple-600 text-sm">
+              <p className={`${getColorClass('text-purple-600')} text-sm`}>
                 Event Capturing과 Bubbling 단계를 시각적으로 확인하세요
               </p>
             </div>
@@ -333,7 +334,7 @@ const EventDelegationLanding = () => {
                 onClick={() => setPropagationMode("bubbling")}
                 className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
                   propagationMode === "bubbling"
-                    ? "bg-purple-500 text-white"
+                    ? `${getColorClass('bg-purple-500')} text-white`
                     : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                 }`}
               >
@@ -343,7 +344,7 @@ const EventDelegationLanding = () => {
                 onClick={() => setPropagationMode("capturing-bubbling")}
                 className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
                   propagationMode === "capturing-bubbling"
-                    ? "bg-purple-500 text-white"
+                    ? `${getColorClass('bg-purple-500')} text-white`
                     : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                 }`}
               >
@@ -360,7 +361,7 @@ const EventDelegationLanding = () => {
 
           {/* 현재 이벤트 단계 표시 */}
           {currentPhase && (
-            <div className="flex items-center justify-center gap-4 py-3 bg-white rounded-lg border border-purple-200">
+            <div className={`flex items-center justify-center gap-4 py-3 bg-white rounded-lg border ${getColorClass('border-purple-200')}`}>
               <span className="text-sm font-medium text-gray-600">
                 현재 단계:
               </span>
@@ -426,7 +427,7 @@ const EventDelegationLanding = () => {
       {/* 메인 시뮬레이터 */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
         {/* DOM 트리 시각화 */}
-        <div className="lg:col-span-2 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl p-6 border-2 border-blue-200 shadow-lg">
+        <div className={`lg:col-span-2 bg-gradient-to-br ${getColorClass('from-blue-50 to-indigo-100')} rounded-xl p-6 border-2 border-blue-200 shadow-lg`}>
           <h3 className="text-xl font-semibold mb-4 text-blue-800 flex items-center gap-2">
             🏠 DOM 구조 시각화
             {isSimulating && (
@@ -631,10 +632,10 @@ const EventDelegationLanding = () => {
       </div>
 
       {/* 이벤트 로그 */}
-      <div className="bg-gradient-to-br from-purple-50 to-pink-100 rounded-xl p-6 border-2 border-purple-200 shadow-lg mb-8">
-        <h3 className="text-xl font-semibold mb-4 text-purple-800 flex items-center gap-2">
+      <div className={`bg-gradient-to-br ${getColorClass('from-purple-50 to-pink-100')} rounded-xl p-6 border-2 ${getColorClass('border-purple-200')} shadow-lg mb-8`}>
+        <h3 className={`text-xl font-semibold mb-4 ${getColorClass('text-purple-800')} flex items-center gap-2`}>
           📝 실시간 이벤트 로그
-          <span className="text-sm bg-purple-500 text-white px-2 py-1 rounded-full">
+          <span className={`text-sm ${getColorClass('bg-purple-500')} text-white px-2 py-1 rounded-full`}>
             {eventLogs.length}개
           </span>
         </h3>
@@ -756,7 +757,7 @@ const EventDelegationLanding = () => {
       {/* 학습 가이드 섹션 */}
       <div className="border-t border-gray-200 pt-8">
         <div className="text-center mb-8">
-          <h2 className="font-bold bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent mb-2 text-2xl md:text-3xl">
+          <h2 className={`font-bold bg-gradient-to-r ${getColorClass('from-indigo-500 to-purple-600')} bg-clip-text text-transparent mb-2 text-2xl md:text-3xl`}>
             📚 학습 가이드: Event Delegation
           </h2>
           <p className="text-gray-500 font-normal m-0 text-sm md:text-base">
@@ -769,7 +770,7 @@ const EventDelegationLanding = () => {
           <h3 className="text-xl font-semibold mb-4 text-gray-800">
             🔍 이벤트 전파와 위임의 작동 원리
           </h3>
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-200">
+          <div className={`bg-gradient-to-br ${getColorClass('from-blue-50 to-indigo-50')} p-6 rounded-xl border border-blue-200`}>
             <div className="mb-6">
               <h4 className="text-lg font-semibold text-blue-800 mb-3">
                 📊 이벤트 전파 3단계
@@ -938,16 +939,16 @@ todoContainer.addEventListener('click', (e) => {
                 확인합니다.
               </p>
             </div>
-            <div className="bg-gradient-to-br from-purple-50 to-violet-50 p-6 rounded-xl border border-purple-200 shadow-sm">
-              <h4 className="font-semibold text-purple-800 mb-3 flex items-center gap-2">
+            <div className={`bg-gradient-to-br ${getColorClass('from-purple-50')} ${getColorClass('to-violet-50')} p-6 rounded-xl border ${getColorClass('border-purple-200')} shadow-sm`}>
+              <h4 className={`font-semibold ${getColorClass('text-purple-800')} mb-3 flex items-center gap-2`}>
                 ⚡ 성능 최적화
               </h4>
-              <p className="text-sm text-purple-700">
+              <p className={`text-sm ${getColorClass('text-purple-700')}`}>
                 하나의 이벤트 리스너로 여러 요소의 이벤트를 처리하여 메모리
                 사용량을 줄이고 성능을 향상시킬 수 있습니다.
               </p>
             </div>
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-200 shadow-sm">
+            <div className={`bg-gradient-to-br from-blue-50 ${getColorClass('to-indigo-50')} p-6 rounded-xl border border-blue-200 shadow-sm`}>
               <h4 className="font-semibold text-blue-800 mb-3 flex items-center gap-2">
                 🔄 동적 요소 처리
               </h4>
@@ -956,11 +957,11 @@ todoContainer.addEventListener('click', (e) => {
                 자동으로 이벤트 처리가 가능합니다.
               </p>
             </div>
-            <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-6 rounded-xl border border-indigo-200 shadow-sm">
-              <h4 className="font-semibold text-indigo-800 mb-3 flex items-center gap-2">
+            <div className={`bg-gradient-to-br ${getColorClass('from-indigo-50 to-purple-50')} p-6 rounded-xl border ${getColorClass('border-indigo-200')} shadow-sm`}>
+              <h4 className={`font-semibold ${getColorClass('text-indigo-800')} mb-3 flex items-center gap-2`}>
                 🎪 useCapture 매개변수
               </h4>
-              <p className="text-sm text-indigo-700">
+              <p className={`text-sm ${getColorClass('text-indigo-700')}`}>
                 addEventListener(event, handler, useCapture)에서 useCapture가
                 true면 Capturing 단계, false면 Bubbling 단계에서 처리됩니다.
               </p>
@@ -973,14 +974,14 @@ todoContainer.addEventListener('click', (e) => {
           <h3 className="text-xl font-semibold mb-4 text-gray-800">
             🌟 실제 사용 사례
           </h3>
-          <div className="bg-gradient-to-br from-indigo-50 to-purple-100 rounded-xl p-6 border-2 border-indigo-200">
+          <div className={`bg-gradient-to-br ${getColorClass('from-indigo-50 to-purple-100')} rounded-xl p-6 border-2 ${getColorClass('border-indigo-200')}`}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-4">
-                <div className="bg-white p-4 rounded-lg border border-indigo-200">
-                  <h4 className="font-semibold text-indigo-800 mb-2 flex items-center gap-2">
+                <div className={`bg-white p-4 rounded-lg border ${getColorClass('border-indigo-200')}`}>
+                  <h4 className={`font-semibold ${getColorClass('text-indigo-800')} mb-2 flex items-center gap-2`}>
                     📋 1. Todo 리스트
                   </h4>
-                  <p className="text-sm text-indigo-700 mb-2">
+                  <p className={`text-sm ${getColorClass('text-indigo-700')} mb-2`}>
                     동적으로 추가/삭제되는 Todo 아이템들의 이벤트를 효율적으로
                     처리
                   </p>
@@ -994,11 +995,11 @@ table.addEventListener('click', (e) => {
                   </div>
                 </div>
 
-                <div className="bg-white p-4 rounded-lg border border-indigo-200">
-                  <h4 className="font-semibold text-indigo-800 mb-2 flex items-center gap-2">
+                <div className={`bg-white p-4 rounded-lg border ${getColorClass('border-indigo-200')}`}>
+                  <h4 className={`font-semibold ${getColorClass('text-indigo-800')} mb-2 flex items-center gap-2`}>
                     📊 2. 데이터 테이블
                   </h4>
-                  <p className="text-sm text-indigo-700 mb-2">
+                  <p className={`text-sm ${getColorClass('text-indigo-700')} mb-2`}>
                     대량의 테이블 행에서 편집, 삭제 버튼 이벤트 처리
                   </p>
                   <div className="bg-gray-100 p-2 rounded text-xs font-mono">
@@ -1013,11 +1014,11 @@ nav.addEventListener('click', (e) => {
               </div>
 
               <div className="space-y-4">
-                <div className="bg-white p-4 rounded-lg border border-indigo-200">
-                  <h4 className="font-semibold text-indigo-800 mb-2 flex items-center gap-2">
+                <div className={`bg-white p-4 rounded-lg border ${getColorClass('border-indigo-200')}`}>
+                  <h4 className={`font-semibold ${getColorClass('text-indigo-800')} mb-2 flex items-center gap-2`}>
                     🎮 3. 게임 인터페이스
                   </h4>
-                  <p className="text-sm text-indigo-700 mb-2">
+                  <p className={`text-sm ${getColorClass('text-indigo-700')} mb-2`}>
                     게임 보드의 여러 타일이나 버튼들의 클릭 이벤트 처리
                   </p>
                   <div className="bg-gray-100 p-2 rounded text-xs font-mono">
@@ -1029,11 +1030,11 @@ gameBoard.addEventListener('click', (e) => {
                   </div>
                 </div>
 
-                <div className="bg-white p-4 rounded-lg border border-indigo-200">
-                  <h4 className="font-semibold text-indigo-800 mb-2 flex items-center gap-2">
+                <div className={`bg-white p-4 rounded-lg border ${getColorClass('border-indigo-200')}`}>
+                  <h4 className={`font-semibold ${getColorClass('text-indigo-800')} mb-2 flex items-center gap-2`}>
                     🏪 4. 쇼핑몰 상품 목록
                   </h4>
-                  <p className="text-sm text-indigo-700 mb-2">
+                  <p className={`text-sm ${getColorClass('text-indigo-700')} mb-2`}>
                     상품 카드의 장바구니 추가, 찜하기 등의 버튼 이벤트 처리
                   </p>
                   <div className="bg-gray-100 p-2 rounded text-xs font-mono">

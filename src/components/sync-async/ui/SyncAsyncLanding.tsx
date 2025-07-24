@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { getColorClass } from "@/utils/colorMigration";
 
 const SyncAsyncLanding = () => {
   const [activeTab, setActiveTab] = useState<
@@ -222,13 +223,13 @@ const SyncAsyncLanding = () => {
           </div>
 
           {/* JavaScript의 비동기 처리 메커니즘 */}
-          <div className="bg-purple-50 rounded-lg p-6 border border-purple-200">
-            <h2 className="text-2xl font-bold text-purple-800 mb-4">
+          <div className={`${getColorClass('bg-purple-50')} rounded-lg p-6 border ${getColorClass('border-purple-200')}`}>
+            <h2 className={`text-2xl font-bold ${getColorClass('text-purple-800')} mb-4`}>
               ⚙️ JavaScript의 비동기 처리 메커니즘
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-white p-4 rounded-lg border border-purple-300">
-                <h3 className="font-semibold text-purple-700 mb-2">
+              <div className={`bg-white p-4 rounded-lg border ${getColorClass('border-purple-300')}`}>
+                <h3 className={`font-semibold ${getColorClass('text-purple-700')} mb-2`}>
                   📚 Call Stack
                 </h3>
                 <p className="text-sm text-gray-600">
@@ -236,8 +237,8 @@ const SyncAsyncLanding = () => {
                   동작.
                 </p>
               </div>
-              <div className="bg-white p-4 rounded-lg border border-purple-300">
-                <h3 className="font-semibold text-purple-700 mb-2">
+              <div className={`bg-white p-4 rounded-lg border ${getColorClass('border-purple-300')}`}>
+                <h3 className={`font-semibold ${getColorClass('text-purple-700')} mb-2`}>
                   🔄 Event Loop
                 </h3>
                 <p className="text-sm text-gray-600">
@@ -245,8 +246,8 @@ const SyncAsyncLanding = () => {
                   이동.
                 </p>
               </div>
-              <div className="bg-white p-4 rounded-lg border border-purple-300">
-                <h3 className="font-semibold text-purple-700 mb-2">
+              <div className={`bg-white p-4 rounded-lg border ${getColorClass('border-purple-300')}`}>
+                <h3 className={`font-semibold ${getColorClass('text-purple-700')} mb-2`}>
                   📋 Task Queue
                 </h3>
                 <p className="text-sm text-gray-600">
@@ -1256,8 +1257,8 @@ const SyncAsyncLanding = () => {
                     </div>
                   </div>
 
-                  <div className="mt-4 bg-purple-100 p-3 rounded border border-purple-300">
-                    <h4 className="font-semibold text-purple-800 mb-1">
+                  <div className={`mt-4 ${getColorClass('bg-purple-100')} p-3 rounded border ${getColorClass('border-purple-300')}`}>
+                    <h4 className={`font-semibold ${getColorClass('text-purple-800')} mb-1`}>
                       ✨ Promise 유틸리티
                     </h4>
                     <ul className="text-sm text-gray-700 space-y-1">

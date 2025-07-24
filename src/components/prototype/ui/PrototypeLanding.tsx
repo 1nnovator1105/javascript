@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { getColorClass } from "@/utils/colorMigration";
 
 // 프로토타입 체인 노드 인터페이스
 interface PrototypeNode {
@@ -306,15 +307,15 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
   return (
     <div className="space-y-12">
       {/* 인트로 섹션 */}
-      <div className="text-center bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-8 border-2 border-purple-200">
-        <h1 className="text-3xl font-bold text-purple-800 mb-4">
+      <div className={`text-center bg-gradient-to-r ${getColorClass('from-purple-50 to-pink-50')} rounded-xl p-8 border-2 ${getColorClass('border-purple-200')}`}>
+        <h1 className={`text-3xl font-bold ${getColorClass('text-purple-800')} mb-4`}>
           🧬 JavaScript 프로토타입 쉽게 이해하기
         </h1>
-        <p className="text-lg text-purple-600 mb-6">
+        <p className={`text-lg ${getColorClass('text-purple-600')} mb-6`}>
           복잡해 보이는 프로토타입을 실생활 예시와 시각적 설명으로 쉽게
           배워보세요!
         </p>
-        <div className="flex justify-center items-center gap-4 text-purple-700">
+        <div className={`flex justify-center items-center gap-4 ${getColorClass('text-purple-700')}`}>
           <span className="text-2xl">👨‍👩‍👧‍👦</span>
           <span className="text-xl">→</span>
           <span className="text-2xl">🔗</span>
@@ -324,7 +325,7 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
       </div>
 
       {/* 개념 이해 섹션 */}
-      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border-2 border-blue-200">
+      <div className={`bg-gradient-to-br ${getColorClass('from-blue-50 to-indigo-50')} rounded-xl p-6 border-2 border-blue-200`}>
         <h2 className="text-2xl font-semibold mb-6 text-blue-800 flex items-center gap-2">
           🤔 개념 이해하기
         </h2>
@@ -449,8 +450,8 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
       </div>
 
       {/* 프로토타입 체인 시각화 */}
-      <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-6 border-2 border-purple-200">
-        <h2 className="text-2xl font-semibold mb-6 text-purple-800 flex items-center gap-2">
+      <div className={`bg-gradient-to-br ${getColorClass('from-purple-50 to-pink-50')} rounded-xl p-6 border-2 ${getColorClass('border-purple-200')}`}>
+        <h2 className={`text-2xl font-semibold mb-6 ${getColorClass('text-purple-800')} flex items-center gap-2`}>
           🔍 프로토타입 체인 탐색 체험하기
         </h2>
 
@@ -479,8 +480,8 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* 체인 시각화 */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-lg border-2 border-purple-200 p-4">
-              <h3 className="text-lg font-semibold mb-4 text-purple-700">
+            <div className={`bg-white rounded-lg border-2 ${getColorClass('border-purple-200')} p-4`}>
+              <h3 className={`text-lg font-semibold mb-4 ${getColorClass('text-purple-700')}`}>
                 프로토타입 체인 구조
               </h3>
               <div className="space-y-4">
@@ -504,7 +505,7 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
                           ? "border-green-500 bg-green-100 scale-105 shadow-lg"
                           : isPreviousStep
                           ? "border-gray-400 bg-gray-50"
-                          : "border-gray-200 hover:border-purple-300"
+                          : `border-gray-200 ${getColorClass('hover:border-purple-300')}`
                       }`}
                     >
                       {/* 연결선 */}
@@ -516,7 +517,7 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
                                 ? "text-blue-500 animate-pulse"
                                 : isHighlighted
                                 ? "text-green-500"
-                                : "text-purple-400"
+                                : getColorClass('text-purple-400')
                             }`}
                           >
                             ↑
@@ -533,13 +534,13 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
                               ? "bg-green-500 text-white"
                               : isPreviousStep
                               ? "bg-gray-400 text-white"
-                              : "bg-purple-100 text-purple-700"
+                              : `${getColorClass('bg-purple-100')} ${getColorClass('text-purple-700')}`
                           }`}
                         >
                           {index + 1}
                         </div>
                         <div className="flex-1">
-                          <h4 className="font-semibold text-purple-800 mb-1 flex items-center gap-2">
+                          <h4 className={`font-semibold ${getColorClass('text-purple-800')} mb-1 flex items-center gap-2`}>
                             {node.name}
                             {isCurrentStep && (
                               <span className="text-blue-600 animate-spin text-lg">
@@ -564,7 +565,7 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
                                       : ""
                                   }`}
                                 >
-                                  <span className="font-mono text-purple-600">
+                                  <span className={`font-mono ${getColorClass('text-purple-600')}`}>
                                     {key}:
                                   </span>
                                   <span className="text-gray-700 truncate">
@@ -585,8 +586,8 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
 
           {/* 탐색 컨트롤 */}
           <div className="space-y-4">
-            <div className="bg-white rounded-lg border-2 border-purple-200 p-4">
-              <h3 className="text-lg font-semibold mb-4 text-purple-700">
+            <div className={`bg-white rounded-lg border-2 ${getColorClass('border-purple-200')} p-4`}>
+              <h3 className={`text-lg font-semibold mb-4 ${getColorClass('text-purple-700')}`}>
                 프로퍼티 탐색하기
               </h3>
 
@@ -600,7 +601,7 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
                     value={searchProperty}
                     onChange={(e) => setSearchProperty(e.target.value)}
                     placeholder="예: name, bark, breathe"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    className={`w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 ${getColorClass('focus:ring-purple-500')}`}
                   />
                 </div>
 
@@ -612,7 +613,7 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
                   disabled={
                     animationState.isSearching || !searchProperty.trim()
                   }
-                  className="w-full px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className={`w-full px-4 py-2 ${getColorClass('bg-purple-600')} text-white rounded-lg ${getColorClass('hover:bg-purple-700')} disabled:opacity-50 disabled:cursor-not-allowed transition-colors`}
                 >
                   {animationState.isSearching
                     ? "🔍 탐색 중..."
@@ -626,7 +627,7 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
                       key={prop}
                       onClick={() => searchWithAnimation(prop)}
                       disabled={animationState.isSearching}
-                      className="px-3 py-1 text-sm bg-purple-100 text-purple-700 rounded-full hover:bg-purple-200 disabled:opacity-50 transition-colors"
+                      className={`px-3 py-1 text-sm ${getColorClass('bg-purple-100')} ${getColorClass('text-purple-700')} rounded-full ${getColorClass('hover:bg-purple-200')} disabled:opacity-50 transition-colors`}
                     >
                       {prop}
                     </button>
@@ -637,8 +638,8 @@ console.log(myDog.hasOwnProperty('bark'));  // false (프로토타입 메서드)
 
             {/* 탐색 결과 */}
             {searchResult && (
-              <div className="bg-white rounded-lg border-2 border-purple-200 p-4">
-                <h3 className="text-lg font-semibold mb-3 text-purple-700">
+              <div className={`bg-white rounded-lg border-2 ${getColorClass('border-purple-200')} p-4`}>
+                <h3 className={`text-lg font-semibold mb-3 ${getColorClass('text-purple-700')}`}>
                   탐색 결과
                 </h3>
                 <div

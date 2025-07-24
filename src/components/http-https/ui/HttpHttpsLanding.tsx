@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { getColorClass } from "@/utils/colorMigration";
 
 const HttpHttpsLanding = () => {
   const [activeTab, setActiveTab] = useState<"concept" | "encryption" | "security">("concept");
@@ -302,7 +303,7 @@ const HttpHttpsLanding = () => {
 
               {/* Step 3: Client Verification */}
               <div className={`p-4 rounded-lg border-2 transition-all ${
-                handshakeStep >= 3 ? "border-purple-400 bg-purple-50" : "border-gray-200"
+                handshakeStep >= 3 ? `${getColorClass('border-purple-400')} ${getColorClass('bg-purple-50')}` : "border-gray-200"
               }`}>
                 <h3 className="font-semibold mb-2">3. Certificate Verification</h3>
                 <p className="text-sm text-gray-600">

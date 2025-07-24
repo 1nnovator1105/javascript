@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { getColorClass } from "@/utils/colorMigration";
 
 interface FlexItem {
   id: number;
@@ -464,8 +465,8 @@ export const FlexboxPlayground: React.FC<FlexboxPlaygroundProps> = ({
       )}
 
       {/* Common Patterns */}
-      <div className="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-lg p-6 border border-indigo-200">
-        <h4 className="text-lg font-bold text-indigo-900 mb-4">자주 사용하는 Flexbox 패턴</h4>
+      <div className={`bg-gradient-to-br ${getColorClass('from-indigo-50')} to-blue-50 rounded-lg p-6 border ${getColorClass('border-indigo-200')}`}>
+        <h4 className={`text-lg font-bold ${getColorClass('text-indigo-900')} mb-4`}>자주 사용하는 Flexbox 패턴</h4>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <button
@@ -475,9 +476,9 @@ export const FlexboxPlayground: React.FC<FlexboxPlaygroundProps> = ({
               handleAlignItemsChange("center");
               handleFlexWrapChange("nowrap");
             }}
-            className="p-4 bg-white rounded-lg border border-indigo-200 hover:bg-indigo-50 transition-colors text-left"
+            className={`p-4 bg-white rounded-lg border ${getColorClass('border-indigo-200')} ${getColorClass('hover:bg-indigo-50')} transition-colors text-left`}
           >
-            <h5 className="font-semibold text-indigo-800 mb-1">네비게이션 바</h5>
+            <h5 className={`font-semibold ${getColorClass('text-indigo-800')} mb-1`}>네비게이션 바</h5>
             <p className="text-sm text-gray-600">space-between을 사용한 가로 레이아웃</p>
           </button>
 
@@ -489,9 +490,9 @@ export const FlexboxPlayground: React.FC<FlexboxPlaygroundProps> = ({
               handleFlexWrapChange("wrap");
               handleGapChange(16);
             }}
-            className="p-4 bg-white rounded-lg border border-indigo-200 hover:bg-indigo-50 transition-colors text-left"
+            className={`p-4 bg-white rounded-lg border ${getColorClass('border-indigo-200')} ${getColorClass('hover:bg-indigo-50')} transition-colors text-left`}
           >
-            <h5 className="font-semibold text-indigo-800 mb-1">카드 그리드</h5>
+            <h5 className={`font-semibold ${getColorClass('text-indigo-800')} mb-1`}>카드 그리드</h5>
             <p className="text-sm text-gray-600">wrap과 가운데 정렬</p>
           </button>
 
@@ -502,9 +503,9 @@ export const FlexboxPlayground: React.FC<FlexboxPlaygroundProps> = ({
               handleAlignItemsChange("stretch");
               handleFlexWrapChange("nowrap");
             }}
-            className="p-4 bg-white rounded-lg border border-indigo-200 hover:bg-indigo-50 transition-colors text-left"
+            className={`p-4 bg-white rounded-lg border ${getColorClass('border-indigo-200')} ${getColorClass('hover:bg-indigo-50')} transition-colors text-left`}
           >
-            <h5 className="font-semibold text-indigo-800 mb-1">사이드바 레이아웃</h5>
+            <h5 className={`font-semibold ${getColorClass('text-indigo-800')} mb-1`}>사이드바 레이아웃</h5>
             <p className="text-sm text-gray-600">stretch를 사용한 세로 레이아웃</p>
           </button>
 
@@ -519,9 +520,9 @@ export const FlexboxPlayground: React.FC<FlexboxPlaygroundProps> = ({
                 updateItem(items[0].id, { flex: "1 1 auto" });
               }
             }}
-            className="p-4 bg-white rounded-lg border border-indigo-200 hover:bg-indigo-50 transition-colors text-left"
+            className={`p-4 bg-white rounded-lg border ${getColorClass('border-indigo-200')} ${getColorClass('hover:bg-indigo-50')} transition-colors text-left`}
           >
-            <h5 className="font-semibold text-indigo-800 mb-1">Holy Grail 레이아웃</h5>
+            <h5 className={`font-semibold ${getColorClass('text-indigo-800')} mb-1`}>Holy Grail 레이아웃</h5>
             <p className="text-sm text-gray-600">메인 콘텐츠와 사이드바</p>
           </button>
         </div>

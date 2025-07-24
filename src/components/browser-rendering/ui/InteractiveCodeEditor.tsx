@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { getColorClass } from "@/utils/colorMigration";
 
 interface CodeState {
   html: string;
@@ -316,7 +317,7 @@ document.getElementById('animatedBox').addEventListener('click', startAnimation)
         </button>
         <button
           onClick={() => loadExample("animation")}
-          className="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors"
+          className={`px-4 py-2 ${getColorClass('bg-purple-500')} text-white rounded-lg ${getColorClass('hover:bg-purple-600')} transition-colors`}
         >
           🟣 애니메이션 예제
         </button>

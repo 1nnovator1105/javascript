@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useCallback, useRef, useEffect } from "react";
+import { getColorClass } from "@/utils/colorMigration";
 
 // Debounce 함수 구현
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -209,22 +210,22 @@ const DebounceThrottleLanding = () => {
       </div>
 
       {/* 어원과 기억법 */}
-      <div className="bg-gradient-to-r from-indigo-50 to-cyan-50 p-6 rounded-xl border border-indigo-200">
-        <h3 className="text-xl font-semibold mb-4 text-indigo-800 text-center">
+      <div className={`bg-gradient-to-r ${getColorClass('from-indigo-50 to-blue-50')} p-6 rounded-xl border ${getColorClass('border-indigo-200')}`}>
+        <h3 className={`text-xl font-semibold mb-4 ${getColorClass('text-indigo-800')} text-center`}>
           📚 어원과 기억법
         </h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-indigo-200">
-                <th className="text-left p-3 text-indigo-700">단어</th>
-                <th className="text-left p-3 text-indigo-700">원래 의미</th>
-                <th className="text-left p-3 text-indigo-700">동작 방식</th>
-                <th className="text-left p-3 text-indigo-700">기억법 요약</th>
+              <tr className={`border-b ${getColorClass('border-indigo-200')}`}>
+                <th className={`text-left p-3 ${getColorClass('text-indigo-700')}`}>단어</th>
+                <th className={`text-left p-3 ${getColorClass('text-indigo-700')}`}>원래 의미</th>
+                <th className={`text-left p-3 ${getColorClass('text-indigo-700')}`}>동작 방식</th>
+                <th className={`text-left p-3 ${getColorClass('text-indigo-700')}`}>기억법 요약</th>
               </tr>
             </thead>
             <tbody className="text-gray-700">
-              <tr className="border-b border-indigo-100">
+              <tr className={`border-b ${getColorClass('border-indigo-100')}`}>
                 <td className="p-3 font-medium text-blue-600">Debounce</td>
                 <td className="p-3">bounce(튀다) + de(제거)</td>
                 <td className="p-3">마지막 입력만 처리</td>
@@ -243,8 +244,8 @@ const DebounceThrottleLanding = () => {
             </tbody>
           </table>
         </div>
-        <div className="mt-4 p-3 bg-indigo-100 rounded-lg">
-          <p className="text-sm text-indigo-700">
+        <div className={`mt-4 p-3 ${getColorClass('bg-indigo-100')} rounded-lg`}>
+          <p className={`text-sm ${getColorClass('text-indigo-700')}`}>
             💡 <strong>쉬운 기억법:</strong> Debounce는 &quot;공이 튀는 것을
             막아서 마지막에 한 번만&quot;, Throttle은 &quot;자동차 가속을
             조절해서 일정하게&quot;
@@ -253,31 +254,31 @@ const DebounceThrottleLanding = () => {
       </div>
 
       {/* 비교 차트 */}
-      <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-xl border border-purple-200">
-        <h3 className="text-xl font-semibold mb-4 text-purple-800 text-center">
+      <div className={`bg-gradient-to-r ${getColorClass('from-purple-50 to-pink-50')} p-6 rounded-xl border ${getColorClass('border-purple-200')}`}>
+        <h3 className={`text-xl font-semibold mb-4 ${getColorClass('text-purple-800')} text-center`}>
           📊 Debounce vs Throttle 비교
         </h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-purple-200">
-                <th className="text-left p-3 text-purple-700">구분</th>
+              <tr className={`border-b ${getColorClass('border-purple-200')}`}>
+                <th className={`text-left p-3 ${getColorClass('text-purple-700')}`}>구분</th>
                 <th className="text-left p-3 text-blue-700">Debounce</th>
                 <th className="text-left p-3 text-green-700">Throttle</th>
               </tr>
             </thead>
             <tbody className="text-gray-700">
-              <tr className="border-b border-purple-100">
+              <tr className={`border-b ${getColorClass('border-purple-100')}`}>
                 <td className="p-3 font-medium">실행 패턴</td>
                 <td className="p-3">마지막 이벤트만 실행</td>
                 <td className="p-3">일정 간격으로 실행</td>
               </tr>
-              <tr className="border-b border-purple-100">
+              <tr className={`border-b ${getColorClass('border-purple-100')}`}>
                 <td className="p-3 font-medium">타이머 처리</td>
                 <td className="p-3">매번 타이머 재설정</td>
                 <td className="p-3">일정 시간 후 재활성화</td>
               </tr>
-              <tr className="border-b border-purple-100">
+              <tr className={`border-b ${getColorClass('border-purple-100')}`}>
                 <td className="p-3 font-medium">연속 입력 시</td>
                 <td className="p-3">입력이 끝날 때까지 실행 지연</td>
                 <td className="p-3">일정 간격으로 중간 실행</td>
@@ -540,16 +541,16 @@ window.addEventListener('scroll', throttledScroll);`}
       </div>
 
       {/* 실무 활용 팁 */}
-      <div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-6 rounded-xl border border-indigo-200">
-        <h3 className="text-xl font-semibold mb-4 text-indigo-800">
+      <div className={`bg-gradient-to-r ${getColorClass('from-indigo-50 to-purple-50')} p-6 rounded-xl border ${getColorClass('border-indigo-200')}`}>
+        <h3 className={`text-xl font-semibold mb-4 ${getColorClass('text-indigo-800')}`}>
           🚀 실무 활용 팁
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="font-semibold text-indigo-700 mb-3">
+            <h4 className={`font-semibold ${getColorClass('text-indigo-700')} mb-3`}>
               ✅ 적절한 사용
             </h4>
-            <ul className="space-y-2 text-sm text-indigo-600">
+            <ul className={`space-y-2 text-sm ${getColorClass('text-indigo-600')}`}>
               <li>
                 • <strong>Debounce:</strong> 사용자 입력 완료 후 처리 (검색,
                 검증)
@@ -563,8 +564,8 @@ window.addEventListener('scroll', throttledScroll);`}
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold text-indigo-700 mb-3">⚠️ 주의사항</h4>
-            <ul className="space-y-2 text-sm text-indigo-600">
+            <h4 className={`font-semibold ${getColorClass('text-indigo-700')} mb-3`}>⚠️ 주의사항</h4>
+            <ul className={`space-y-2 text-sm ${getColorClass('text-indigo-600')}`}>
               <li>• 너무 긴 지연 시간은 사용자 경험 저하</li>
               <li>• 메모리 누수 방지를 위한 cleanup 필요</li>
               <li>• React에서는 useCallback과 함께 사용</li>

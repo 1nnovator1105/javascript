@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { getColorClass } from "@/utils/colorMigration";
 
 interface PerformanceMetric {
   name: string;
@@ -357,11 +358,11 @@ module.exports = {
       )}
 
       {/* 성능 모니터링 도구 */}
-      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-200">
+      <div className={`bg-gradient-to-br ${getColorClass('from-blue-50')} ${getColorClass('to-indigo-50')} rounded-xl p-6 border ${getColorClass('border-indigo-200')}`}>
         <h3 className="text-xl font-bold text-blue-900 mb-4">🔧 성능 모니터링 도구</h3>
         
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-white rounded-lg p-4 border border-blue-200">
+          <div className={`bg-white rounded-lg p-4 border ${getColorClass('border-indigo-200')}`}>
             <h4 className="font-semibold text-blue-800 mb-2">Chrome DevTools</h4>
             <ul className="space-y-1 text-blue-700 text-sm">
               <li>• Lighthouse 성능 감사</li>
@@ -371,7 +372,7 @@ module.exports = {
             </ul>
           </div>
           
-          <div className="bg-white rounded-lg p-4 border border-blue-200">
+          <div className={`bg-white rounded-lg p-4 border ${getColorClass('border-indigo-200')}`}>
             <h4 className="font-semibold text-blue-800 mb-2">온라인 도구</h4>
             <ul className="space-y-1 text-blue-700 text-sm">
               <li>• PageSpeed Insights</li>

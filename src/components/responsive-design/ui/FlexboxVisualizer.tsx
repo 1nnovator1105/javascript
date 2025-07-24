@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { getColorClass } from "@/utils/colorMigration";
 
 interface FlexboxVisualizerProps {
   flexDirection?: "row" | "row-reverse" | "column" | "column-reverse";
@@ -47,8 +48,8 @@ export const FlexboxVisualizer: React.FC<FlexboxVisualizerProps> = ({
   const axisStyles = getAxisStyles();
 
   return (
-    <div className="bg-white rounded-lg p-6 border border-purple-200">
-      <h4 className="text-lg font-bold text-purple-900 mb-4">Flexbox 축 시각화</h4>
+    <div className={`bg-white rounded-lg p-6 border ${getColorClass('border-purple-200')}`}>
+      <h4 className={`text-lg font-bold ${getColorClass('text-purple-900')} mb-4`}>Flexbox 축 시각화</h4>
       
       <div className="space-y-4">
         {/* Controls */}
@@ -135,27 +136,27 @@ export const FlexboxVisualizer: React.FC<FlexboxVisualizerProps> = ({
               minHeight: "200px"
             }}
           >
-            <div className="bg-purple-400 text-white p-4 rounded flex-shrink-0 relative">
+            <div className={`${getColorClass('bg-purple-400')} text-white p-4 rounded flex-shrink-0 relative`}>
               <div className="text-center">
                 아이템 1
               </div>
-              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 text-xs bg-purple-600 text-white px-1 rounded">
+              <div className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 text-xs ${getColorClass('bg-purple-600')} text-white px-1 rounded`}>
                 1
               </div>
             </div>
-            <div className="bg-purple-500 text-white p-4 rounded flex-shrink-0 relative">
+            <div className={`${getColorClass('bg-purple-500')} text-white p-4 rounded flex-shrink-0 relative`}>
               <div className="text-center">
                 아이템 2
               </div>
-              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 text-xs bg-purple-600 text-white px-1 rounded">
+              <div className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 text-xs ${getColorClass('bg-purple-600')} text-white px-1 rounded`}>
                 2
               </div>
             </div>
-            <div className="bg-purple-600 text-white p-4 rounded flex-shrink-0 relative">
+            <div className={`${getColorClass('bg-purple-600')} text-white p-4 rounded flex-shrink-0 relative`}>
               <div className="text-center">
                 아이템 3
               </div>
-              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 text-xs bg-purple-600 text-white px-1 rounded">
+              <div className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 text-xs ${getColorClass('bg-purple-600')} text-white px-1 rounded`}>
                 3
               </div>
             </div>

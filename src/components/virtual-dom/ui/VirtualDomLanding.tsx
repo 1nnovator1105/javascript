@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from "react";
+import { getColorClass, getColorClasses } from "@/utils/colorMigration";
 
 interface DOMNode {
   type: string;
@@ -57,14 +58,14 @@ const DOMNodeVisualization: React.FC<{
       `}
     >
       <div className="font-mono text-sm">
-        <span className="text-purple-600 font-bold">&lt;{node.type}</span>
+        <span className={`${getColorClass('text-purple-600')} font-bold`}>&lt;{node.type}</span>
         {Object.entries(node.props).map(([key, value]) => (
           <span key={key} className="text-orange-600">
             {" "}
             {key}=&quot;{value}&quot;
           </span>
         ))}
-        <span className="text-purple-600 font-bold">&gt;</span>
+        <span className={`${getColorClass('text-purple-600')} font-bold`}>&gt;</span>
       </div>
       <div className="ml-4 mt-2">
         {node.children.map((child, idx) => (
@@ -89,7 +90,7 @@ const DOMNodeVisualization: React.FC<{
         ))}
       </div>
       <div className="font-mono text-sm mt-1">
-        <span className="text-purple-600 font-bold">&lt;/{node.type}&gt;</span>
+        <span className={`${getColorClass('text-purple-600')} font-bold`}>&lt;/{node.type}&gt;</span>
       </div>
     </div>
   );
@@ -311,17 +312,17 @@ const VirtualDomLanding: React.FC = () => {
   return (
     <div className="space-y-8">
       {/* 개념 설명 섹션 */}
-      <div className="bg-gradient-to-r from-purple-50 to-blue-50 p-6 rounded-xl border border-purple-200">
-        <h2 className="text-xl font-semibold mb-4 text-purple-800">
+      <div className={`bg-gradient-to-r ${getColorClasses('from-purple-50 to-blue-50')} p-6 rounded-xl border ${getColorClass('border-purple-200')}`}>
+        <h2 className={`text-xl font-semibold mb-4 ${getColorClass('text-purple-800')}`}>
           🧠 Virtual DOM이란? (쉽게 이해하기)
         </h2>
 
         {/* 쉬운 비유 설명 */}
-        <div className="mb-6 p-4 bg-white rounded-lg border border-purple-200">
-          <h3 className="font-semibold mb-3 text-purple-700 flex items-center gap-2">
+        <div className={`mb-6 p-4 bg-white rounded-lg border ${getColorClass('border-purple-200')}`}>
+          <h3 className={`font-semibold mb-3 ${getColorClass('text-purple-700')} flex items-center gap-2`}>
             🏠 쉬운 비유로 이해하기
           </h3>
-          <div className="text-sm text-purple-600 space-y-2">
+          <div className={`text-sm ${getColorClass('text-purple-600')} space-y-2`}>
             <p>
               <strong>🎨 건축 설계도 vs 실제 건물:</strong>
             </p>
@@ -344,10 +345,10 @@ const VirtualDomLanding: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h3 className="font-semibold mb-2 text-purple-700">
+            <h3 className={`font-semibold mb-2 ${getColorClass('text-purple-700')}`}>
               📱 실생활 예시
             </h3>
-            <div className="space-y-2 text-sm text-purple-600">
+            <div className={`space-y-2 text-sm ${getColorClass('text-purple-600')}`}>
               <p>
                 <strong>Instagram 좋아요 버튼을 눌렀을 때:</strong>
               </p>
@@ -363,10 +364,10 @@ const VirtualDomLanding: React.FC = () => {
             </div>
           </div>
           <div>
-            <h3 className="font-semibold mb-2 text-purple-700">
+            <h3 className={`font-semibold mb-2 ${getColorClass('text-purple-700')}`}>
               🎯 왜 빠를까?
             </h3>
-            <div className="space-y-2 text-sm text-purple-600">
+            <div className={`space-y-2 text-sm ${getColorClass('text-purple-600')}`}>
               <p>
                 <strong>Real DOM 조작은 느려요:</strong>
               </p>
@@ -386,14 +387,14 @@ const VirtualDomLanding: React.FC = () => {
       </div>
 
       {/* 시뮬레이션 가이드 */}
-      <div className="bg-gradient-to-r from-indigo-50 to-blue-50 p-6 rounded-xl border border-indigo-200">
-        <h2 className="text-xl font-semibold mb-4 text-indigo-800">
+      <div className={`bg-gradient-to-r ${getColorClasses('from-indigo-50 to-blue-50')} p-6 rounded-xl border ${getColorClass('border-indigo-200')}`}>
+        <h2 className={`text-xl font-semibold mb-4 ${getColorClass('text-indigo-800')}`}>
           🎮 지금부터 실험해볼 것들
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-white p-4 rounded-lg border border-indigo-200">
+          <div className={`bg-white p-4 rounded-lg border ${getColorClass('border-indigo-200')}`}>
             <div className="text-lg mb-2">🏁 성능 비교</div>
-            <div className="text-sm text-indigo-600">
+            <div className={`text-sm ${getColorClass('text-indigo-600')}`}>
               <p className="font-semibold mb-1">무엇을 보여주나요?</p>
               <p>
                 똑같은 작업을 할 때 Real DOM과 Virtual DOM 중 누가 더 빠른지
@@ -401,9 +402,9 @@ const VirtualDomLanding: React.FC = () => {
               </p>
             </div>
           </div>
-          <div className="bg-white p-4 rounded-lg border border-indigo-200">
+          <div className={`bg-white p-4 rounded-lg border ${getColorClass('border-indigo-200')}`}>
             <div className="text-lg mb-2">🌳 DOM 트리</div>
-            <div className="text-sm text-indigo-600">
+            <div className={`text-sm ${getColorClass('text-indigo-600')}`}>
               <p className="font-semibold mb-1">무엇을 보여주나요?</p>
               <p>
                 웹페이지의 구조를 나무 형태로 보여주고, 어느 부분이 바뀌는지
@@ -411,9 +412,9 @@ const VirtualDomLanding: React.FC = () => {
               </p>
             </div>
           </div>
-          <div className="bg-white p-4 rounded-lg border border-indigo-200">
+          <div className={`bg-white p-4 rounded-lg border ${getColorClass('border-indigo-200')}`}>
             <div className="text-lg mb-2">🔍 변경사항 찾기</div>
-            <div className="text-sm text-indigo-600">
+            <div className={`text-sm ${getColorClass('text-indigo-600')}`}>
               <p className="font-semibold mb-1">무엇을 보여주나요?</p>
               <p>
                 이전 상태와 새로운 상태를 비교해서 정확히 어떤 부분이 바뀌었는지
@@ -447,7 +448,7 @@ const VirtualDomLanding: React.FC = () => {
               group flex-1 p-3 rounded-md text-sm font-medium cursor-pointer transition-all duration-200 border-2
               ${
                 selectedDemo === tab.id
-                  ? "bg-white text-indigo-600 shadow-lg border-indigo-300 "
+                  ? `bg-white ${getColorClass('text-indigo-600')} shadow-lg ${getColorClass('border-indigo-300')} `
                   : "text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:shadow-md hover:scale-102 border-transparent hover:border-gray-200"
               }
             `}
@@ -768,7 +769,7 @@ const VirtualDomLanding: React.FC = () => {
       {selectedDemo === "explanation" && (
         <div className="space-y-6">
           {/* Virtual DOM 개념 설명 */}
-          <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-xl border border-blue-200">
+          <div className={`bg-gradient-to-r ${getColorClasses('from-blue-50 to-purple-50')} p-6 rounded-xl border border-blue-200`}>
             <h3 className="text-xl font-bold mb-4 text-gray-800">
               💡 Virtual DOM이란?
             </h3>
@@ -844,7 +845,7 @@ const VirtualDomLanding: React.FC = () => {
 
             <div className="space-y-4">
               <div className="bg-white p-4 rounded-lg border border-gray-200">
-                <h4 className="font-semibold text-purple-800 mb-2">
+                <h4 className={`font-semibold ${getColorClass('text-purple-800')} mb-2`}>
                   🕵️ 탐정이 되어보기
                 </h4>
                 <div className="text-sm space-y-2">
@@ -882,7 +883,7 @@ const VirtualDomLanding: React.FC = () => {
               </div>
 
               <div className="bg-white p-4 rounded-lg border border-gray-200">
-                <h4 className="font-semibold text-indigo-800 mb-2">
+                <h4 className={`font-semibold ${getColorClass('text-indigo-800')} mb-2`}>
                   ⚙️ Diffing 과정 단계별 설명
                 </h4>
                 <div className="space-y-3 text-sm">
@@ -920,7 +921,7 @@ const VirtualDomLanding: React.FC = () => {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <span className="bg-purple-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
+                    <span className={`${getColorClass('bg-purple-500')} text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold`}>
                       4
                     </span>
                     <div>
@@ -978,7 +979,7 @@ const VirtualDomLanding: React.FC = () => {
           </div>
 
           {/* 핵심 정리 */}
-          <div className="bg-gradient-to-r from-gray-50 to-indigo-50 p-6 rounded-xl border border-gray-200">
+          <div className={`bg-gradient-to-r ${getColorClasses('from-gray-50 to-indigo-50')} p-6 rounded-xl border border-gray-200`}>
             <h3 className="text-xl font-bold mb-4 text-gray-800">
               📚 핵심 정리
             </h3>
@@ -1000,8 +1001,8 @@ const VirtualDomLanding: React.FC = () => {
                   이전과 현재 Virtual DOM을 비교해서 변경사항 찾기
                 </p>
               </div>
-              <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm hover:shadow-lg hover:border-purple-300  transition-all duration-300 cursor-default group">
-                <h4 className="font-semibold text-purple-800 mb-2 group-hover:text-purple-900 transition-colors">
+              <div className={`bg-white p-4 rounded-lg border border-gray-200 shadow-sm hover:shadow-lg ${getColorClass('hover:border-purple-300')}  transition-all duration-300 cursor-default group`}>
+                <h4 className={`font-semibold ${getColorClass('text-purple-800')} mb-2 ${getColorClass('group-hover:text-purple-900')} transition-colors`}>
                   ⚡ 성능
                 </h4>
                 <p className="text-sm group-hover:text-gray-700 transition-colors">

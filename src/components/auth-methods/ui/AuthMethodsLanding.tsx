@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { getColorClass } from "@/utils/colors";
 
 const AuthMethodsLanding = () => {
   const [activeTab, setActiveTab] = useState<
@@ -206,10 +207,10 @@ const AuthMethodsLanding = () => {
             </div>
 
             {/* JWT */}
-            <div className="bg-purple-50 rounded-lg p-6 border border-purple-200">
+            <div className={`${getColorClass('purple', 50, 'bg')} rounded-lg p-6 border ${getColorClass('purple', 200, 'border')}`}>
               <div className="flex items-center gap-3 mb-4">
                 <div className="text-3xl">🎫</div>
-                <h2 className="text-xl font-bold text-purple-800">JWT</h2>
+                <h2 className={`text-xl font-bold ${getColorClass('purple', 800, 'text')}`}>JWT</h2>
               </div>
               <p className="text-gray-700 mb-4">
                 자체 포함적(self-contained) 토큰으로, 서명된 JSON 형태의 인증
@@ -268,7 +269,7 @@ const AuthMethodsLanding = () => {
                 onClick={() => setSelectedMethod("jwt")}
                 className={`px-4 py-2 rounded-lg font-medium transition-all ${
                   selectedMethod === "jwt"
-                    ? "bg-purple-500 text-white"
+                    ? `${getColorClass('purple', 500, 'bg')} text-white`
                     : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                 }`}
               >
@@ -282,9 +283,9 @@ const AuthMethodsLanding = () => {
                 {/* 클라이언트 */}
                 <div className="text-center w-40">
                   <div
-                    className={`w-32 h-32 mx-auto bg-indigo-500 rounded-lg flex items-center justify-center text-white text-5xl mb-2 transition-all ${
+                    className={`w-32 h-32 mx-auto ${getColorClass('indigo', 500, 'bg')} rounded-lg flex items-center justify-center text-white text-5xl mb-2 transition-all ${
                       clientStepIndex <= flowStepIndex
-                        ? "ring-4 ring-indigo-300"
+                        ? `ring-4 ${getColorClass('indigo', 300, 'ring')}`
                         : ""
                     } ${
                       clientStepIndex === flowStepIndex ? "animate-pulse" : ""
@@ -295,7 +296,7 @@ const AuthMethodsLanding = () => {
                   <h3 className="font-semibold">클라이언트</h3>
                   <div className="h-20 mt-2 flex items-center justify-center">
                     {clientStepIndex <= flowStepIndex ? (
-                      <div className="p-2 rounded shadow-lg bg-indigo-100 text-sm w-full">
+                      <div className={`p-2 rounded shadow-lg ${getColorClass('indigo', 100, 'bg')} text-sm w-full`}>
                         {clientStep?.text}
                       </div>
                     ) : (
@@ -322,7 +323,7 @@ const AuthMethodsLanding = () => {
                             ? "bg-orange-100"
                             : selectedMethod === "session"
                             ? "bg-blue-100"
-                            : "bg-purple-100"
+                            : getColorClass('purple', 100, 'bg')
                         } ${
                           arrowToServerStepIndex === flowStepIndex
                             ? "animate-pulse"
@@ -344,7 +345,7 @@ const AuthMethodsLanding = () => {
                             ? "bg-orange-100"
                             : selectedMethod === "session"
                             ? "bg-blue-100"
-                            : "bg-purple-100"
+                            : getColorClass('purple', 100, 'bg')
                         } ${
                           arrowToClientStepIndex === flowStepIndex
                             ? "animate-pulse"
@@ -396,7 +397,7 @@ const AuthMethodsLanding = () => {
                 className={`mt-6 w-full py-3 rounded-lg font-medium transition-all ${
                   flowStepIndex > -1 && flowStepIndex < currentFlow.length
                     ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                    : "bg-indigo-500 text-white hover:bg-indigo-600"
+                    : `${getColorClass('indigo', 500, 'bg')} text-white hover:${getColorClass('indigo', 600, 'bg')}`
                 }`}
               >
                 {flowStepIndex > -1 && flowStepIndex < currentFlow.length
@@ -431,7 +432,7 @@ const AuthMethodsLanding = () => {
                     <th className="px-6 py-3 text-left text-sm font-medium text-blue-700">
                       💾 Session
                     </th>
-                    <th className="px-6 py-3 text-left text-sm font-medium text-purple-700">
+                    <th className={`px-6 py-3 text-left text-sm font-medium ${getColorClass('purple', 700, 'text')}`}>
                       🎫 JWT
                     </th>
                   </tr>
@@ -546,8 +547,8 @@ const AuthMethodsLanding = () => {
                 </ul>
               </div>
 
-              <div className="bg-purple-100 p-6 rounded-lg border border-purple-300">
-                <h3 className="font-bold text-purple-800 mb-3">
+              <div className={`${getColorClass('purple', 100, 'bg')} p-6 rounded-lg border ${getColorClass('purple', 300, 'border')}`}>
+                <h3 className={`font-bold ${getColorClass('purple', 800, 'text')} mb-3`}>
                   JWT 추천 상황
                 </h3>
                 <ul className="space-y-2 text-sm">
@@ -573,8 +574,8 @@ const AuthMethodsLanding = () => {
           </div>
 
           {/* JWT 디코딩 도구 */}
-          <div className="bg-purple-50 rounded-lg p-6 border border-purple-200">
-            <h2 className="text-2xl font-bold text-purple-800 mb-6">
+          <div className={`${getColorClass('purple', 50, 'bg')} rounded-lg p-6 border ${getColorClass('purple', 200, 'border')}`}>
+            <h2 className={`text-2xl font-bold ${getColorClass('purple', 800, 'text')} mb-6`}>
               🔍 JWT 디코더
             </h2>
             <div className="space-y-4">
@@ -592,7 +593,7 @@ const AuthMethodsLanding = () => {
 
               <button
                 onClick={() => setJwtDecoded(!jwtDecoded)}
-                className="px-6 py-2 bg-purple-500 text-white rounded-lg font-medium hover:bg-purple-600 transition-colors"
+                className={`px-6 py-2 ${getColorClass('purple', 500, 'bg')} text-white rounded-lg font-medium hover:${getColorClass('purple', 600, 'bg')} transition-colors`}
               >
                 {jwtDecoded ? "원본 보기" : "디코딩하기"}
               </button>
@@ -757,14 +758,14 @@ fetch('/api/logout', {
           </div>
 
           {/* JWT 구현 */}
-          <div className="bg-purple-50 rounded-lg p-6 border border-purple-200">
-            <h3 className="text-xl font-bold text-purple-800 mb-4">
+          <div className={`${getColorClass('purple', 50, 'bg')} rounded-lg p-6 border ${getColorClass('purple', 200, 'border')}`}>
+            <h3 className={`text-xl font-bold ${getColorClass('purple', 800, 'text')} mb-4`}>
               🎫 JWT 구현 예제
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <h4 className="font-semibold mb-2">서버 (Express.js)</h4>
-                <pre className="bg-gray-900 text-purple-400 p-4 rounded-lg text-sm overflow-x-auto">
+                <pre className={`bg-gray-900 ${getColorClass('purple', 400, 'text')} p-4 rounded-lg text-sm overflow-x-auto`}>
                   {`const jwt = require('jsonwebtoken');
 
 // JWT 생성
@@ -802,7 +803,7 @@ app.get('/profile', verifyToken, (req, res) => {
               </div>
               <div>
                 <h4 className="font-semibold mb-2">클라이언트</h4>
-                <pre className="bg-gray-900 text-purple-400 p-4 rounded-lg text-sm overflow-x-auto">
+                <pre className={`bg-gray-900 ${getColorClass('purple', 400, 'text')} p-4 rounded-lg text-sm overflow-x-auto`}>
                   {`// JWT 저장 (LocalStorage 또는 메모리)
 const login = async () => {
   const res = await fetch('/api/login', {

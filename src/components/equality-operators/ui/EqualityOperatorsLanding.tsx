@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useCallback } from "react";
+import { getColorClass } from "@/utils/colorMigration";
 
 interface ComparisonResult {
   id: string;
@@ -241,7 +242,7 @@ const EqualityOperatorsLanding = () => {
             }
             className={`flex-1 min-w-[120px] px-4 py-2 rounded-md font-medium transition-all duration-200 ${
               selectedTab === tab.key
-                ? "bg-white text-indigo-600 shadow-sm border border-indigo-200"
+                ? `bg-white ${getColorClass('text-indigo-600')} shadow-sm border ${getColorClass('border-indigo-200')}`
                 : "text-gray-600 hover:text-gray-800 hover:bg-gray-50"
             }`}
           >
@@ -300,11 +301,11 @@ const EqualityOperatorsLanding = () => {
           </div>
 
           {/* 권장사항 */}
-          <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-6">
-            <h3 className="text-lg font-bold text-indigo-800 mb-3 flex items-center gap-2">
+          <div className={`${getColorClass('bg-indigo-50')} border ${getColorClass('border-indigo-200')} rounded-lg p-6`}>
+            <h3 className={`text-lg font-bold ${getColorClass('text-indigo-800')} mb-3 flex items-center gap-2`}>
               💡 권장사항
             </h3>
-            <div className="text-sm text-indigo-700 space-y-2">
+            <div className={`text-sm ${getColorClass('text-indigo-700')} space-y-2`}>
               <p>
                 • <strong>일반적으로 === 사용을 권장합니다</strong>
               </p>
@@ -334,7 +335,7 @@ const EqualityOperatorsLanding = () => {
                   value={leftValue}
                   onChange={(e) => setLeftValue(e.target.value)}
                   placeholder='예: 5, "5", true, null, []'
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                  className={`w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 ${getColorClass('focus:ring-indigo-500')} focus:border-transparent`}
                 />
                 <p className="text-xs text-gray-500 mt-1">
                   타입:{" "}
@@ -356,7 +357,7 @@ const EqualityOperatorsLanding = () => {
                   value={rightValue}
                   onChange={(e) => setRightValue(e.target.value)}
                   placeholder='예: 5, "5", true, null, []'
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                  className={`w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 ${getColorClass('focus:ring-indigo-500')} focus:border-transparent`}
                 />
                 <p className="text-xs text-gray-500 mt-1">
                   타입:{" "}
@@ -373,7 +374,7 @@ const EqualityOperatorsLanding = () => {
             <button
               onClick={compareValues}
               disabled={!leftValue || !rightValue}
-              className="w-full px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors duration-200"
+              className={`w-full px-4 py-2 ${getColorClass('bg-indigo-600')} text-white rounded-md ${getColorClass('hover:bg-indigo-700')} disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors duration-200`}
             >
               비교하기
             </button>
@@ -470,7 +471,7 @@ const EqualityOperatorsLanding = () => {
               {testCases.map((testCase, index) => (
                 <div
                   key={index}
-                  className="bg-white border border-gray-200 rounded-lg p-4 hover:border-indigo-300 hover:shadow-sm transition-all duration-200"
+                  className={`bg-white border border-gray-200 rounded-lg p-4 ${getColorClass('hover:border-indigo-300')} hover:shadow-sm transition-all duration-200`}
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
@@ -483,7 +484,7 @@ const EqualityOperatorsLanding = () => {
                     </div>
                     <button
                       onClick={() => runTestCase(testCase)}
-                      className="px-3 py-1 bg-indigo-100 text-indigo-600 rounded hover:bg-indigo-200 text-sm font-medium transition-colors duration-200"
+                      className={`px-3 py-1 ${getColorClass('bg-indigo-100')} ${getColorClass('text-indigo-600')} rounded ${getColorClass('hover:bg-indigo-200')} text-sm font-medium transition-colors duration-200`}
                     >
                       테스트
                     </button>

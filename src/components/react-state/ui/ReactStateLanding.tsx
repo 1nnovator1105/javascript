@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef, useReducer, createContext, useContext } from "react";
 import { StudyPageLayout } from "@/components/share/ui/StudyPageLayout";
+import { getColorClass } from "@/utils/colorMigration";
 
 // 단계별 학습을 위한 레벨 시스템
 type LearningLevel = "beginner" | "intermediate" | "advanced";
@@ -192,7 +193,7 @@ const ReactStateLanding = () => {
       <div className="space-y-8">
         
         {/* 학습 진행도 및 난이도 선택 */}
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-200">
+        <div className={`bg-gradient-to-r from-blue-50 ${getColorClass('to-indigo-50')} rounded-xl p-6 border ${getColorClass('border-indigo-200')}`}>
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
             <h2 className="text-2xl font-bold text-blue-900 mb-4 md:mb-0">학습 로드맵</h2>
             <div className="flex gap-2">
@@ -324,26 +325,26 @@ const ReactStateLanding = () => {
                 </div>
 
                 {/* 보기/숨기기 토글 */}
-                <div className="p-4 bg-purple-50 rounded-lg border border-purple-200">
-                  <h3 className="font-bold text-purple-800 mb-3 flex items-center gap-2">
+                <div className={`p-4 ${getColorClass('bg-purple-50')} rounded-lg border ${getColorClass('border-purple-200')}`}>
+                  <h3 className={`font-bold ${getColorClass('text-purple-800')} mb-3 flex items-center gap-2`}>
                     👁️ 보기/숨기기 토글
                   </h3>
                   <div className="text-center">
                     <button
                       onClick={() => setIsVisible(!isVisible)}
-                      className="px-6 py-3 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors text-lg font-semibold mb-4"
+                      className={`px-6 py-3 ${getColorClass('bg-purple-500')} text-white rounded-lg ${getColorClass('hover:bg-purple-600')} transition-colors text-lg font-semibold mb-4`}
                     >
                       {isVisible ? "🙈 숨기기" : "👀 보기"}
                     </button>
                     {isVisible && (
-                      <div className="p-4 bg-white rounded-lg border-2 border-purple-300 transition-all">
+                      <div className={`p-4 bg-white rounded-lg border-2 ${getColorClass('border-purple-300')} transition-all`}>
                         <p className="text-2xl">🎉 짜잔! 나타났어요!</p>
-                        <p className="text-purple-600 mt-2">이것이 조건부 렌더링입니다</p>
+                        <p className={`${getColorClass('text-purple-600')} mt-2`}>이것이 조건부 렌더링입니다</p>
                       </div>
                     )}
                   </div>
                   <div className="mt-4 p-3 bg-white rounded-lg">
-                    <code className="text-sm text-purple-700">
+                    <code className={`text-sm ${getColorClass('text-purple-700')}`}>
                       const [isVisible, setIsVisible] = useState(true);
                     </code>
                   </div>
@@ -393,7 +394,7 @@ const ReactStateLanding = () => {
                     상태 변수를 그대로 사용하면 됩니다 (예: <code className="bg-white px-2 py-1 rounded">count</code>)
                   </p>
                   <p>
-                    <span className="font-bold text-purple-600">3. 변경:</span> 
+                    <span className={`font-bold ${getColorClass('text-purple-600')}`}>3. 변경:</span> 
                     설정 함수를 호출합니다 (예: <code className="bg-white px-2 py-1 rounded">setCount(5)</code>)
                   </p>
                   <p>
@@ -559,24 +560,24 @@ const ReactStateLanding = () => {
         {/* 3. useEffect */}
         {currentStep === "useEffect" && (
           <div className="space-y-6">
-            <div className="bg-white rounded-xl p-6 shadow-lg border border-purple-200">
-              <h2 className="text-2xl font-bold text-purple-800 mb-4 flex items-center gap-2">
+            <div className={`bg-white rounded-xl p-6 shadow-lg border ${getColorClass('border-purple-200')}`}>
+              <h2 className={`text-2xl font-bold ${getColorClass('text-purple-800')} mb-4 flex items-center gap-2`}>
                 ⚡ useEffect - 사이드 이펙트 다루기
               </h2>
               <p className="text-gray-700 mb-6">
-                useEffect는 컴포넌트의 <span className="bg-purple-100 px-2 py-1 rounded font-mono">생명주기</span>를 관리합니다.
+                useEffect는 컴포넌트의 <span className={`${getColorClass('bg-purple-100')} px-2 py-1 rounded font-mono`}>생명주기</span>를 관리합니다.
                 데이터를 가져오거나, 타이머를 설정하거나, 이벤트를 듣는 등의 작업을 할 수 있어요! 🎯
               </p>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 
                 {/* 타이머 예제 */}
-                <div className="p-4 bg-purple-50 rounded-lg border border-purple-200">
-                  <h3 className="font-bold text-purple-800 mb-3 flex items-center gap-2">
+                <div className={`p-4 ${getColorClass('bg-purple-50')} rounded-lg border ${getColorClass('border-purple-200')}`}>
+                  <h3 className={`font-bold ${getColorClass('text-purple-800')} mb-3 flex items-center gap-2`}>
                     ⏰ 스톱워치
                   </h3>
                   <div className="text-center">
-                    <div className="text-6xl font-bold text-purple-600 mb-4">
+                    <div className={`text-6xl font-bold ${getColorClass('text-purple-600')} mb-4`}>
                       {Math.floor(timer / 60)}:{(timer % 60).toString().padStart(2, "0")}
                     </div>
                     <div className="flex justify-center gap-3">
@@ -604,15 +605,15 @@ const ReactStateLanding = () => {
                 </div>
 
                 {/* 윈도우 크기 감지 */}
-                <div className="p-4 bg-indigo-50 rounded-lg border border-indigo-200">
-                  <h3 className="font-bold text-indigo-800 mb-3 flex items-center gap-2">
+                <div className={`p-4 ${getColorClass('bg-indigo-50')} rounded-lg border ${getColorClass('border-indigo-200')}`}>
+                  <h3 className={`font-bold ${getColorClass('text-indigo-800')} mb-3 flex items-center gap-2`}>
                     📱 화면 크기 감지
                   </h3>
                   <div className="text-center">
-                    <div className="text-4xl font-bold text-indigo-600 mb-2">
+                    <div className={`text-4xl font-bold ${getColorClass('text-indigo-600')} mb-2`}>
                       {windowWidth}px
                     </div>
-                    <p className="text-indigo-700 mb-4">
+                    <p className={`${getColorClass('text-indigo-700')} mb-4`}>
                       {windowWidth > 1024 ? "🖥️ 데스크톱" : 
                        windowWidth > 768 ? "📱 태블릿" : "📱 모바일"}
                     </p>
@@ -653,11 +654,11 @@ const ReactStateLanding = () => {
               </div>
 
               {/* useEffect 패턴 설명 */}
-              <div className="mt-6 p-6 bg-gradient-to-r from-purple-100 to-indigo-100 rounded-lg">
+              <div className={`mt-6 p-6 bg-gradient-to-r ${getColorClass('from-purple-100')} ${getColorClass('to-indigo-100')} rounded-lg`}>
                 <h3 className="font-bold text-lg mb-3 text-gray-800">📚 useEffect 패턴들</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="p-4 bg-white rounded-lg border">
-                    <h4 className="font-bold text-purple-600 mb-2">매번 실행</h4>
+                    <h4 className={`font-bold ${getColorClass('text-purple-600')} mb-2`}>매번 실행</h4>
                     <code className="text-sm block">useEffect(() =&gt; {`{}`})</code>
                     <p className="text-xs text-gray-600 mt-1">의존성 배열 없음</p>
                   </div>
@@ -786,20 +787,20 @@ const ReactStateLanding = () => {
         {/* 5. useReducer */}
         {currentStep === "useReducer" && (
           <div className="space-y-6">
-            <div className="bg-white rounded-xl p-6 shadow-lg border border-violet-200">
-              <h2 className="text-2xl font-bold text-violet-800 mb-4 flex items-center gap-2">
+            <div className={`bg-white rounded-xl p-6 shadow-lg border ${getColorClass('border-violet-200')}`}>
+              <h2 className={`text-2xl font-bold ${getColorClass('text-violet-800')} mb-4 flex items-center gap-2`}>
                 🏗️ useReducer - 복잡한 상태 로직 관리하기
               </h2>
               <p className="text-gray-700 mb-6">
-                useReducer는 <span className="bg-violet-100 px-2 py-1 rounded font-mono">복잡한 상태 로직</span>을 관리할 때 사용합니다.
+                useReducer는 <span className={`${getColorClass('bg-violet-100')} px-2 py-1 rounded font-mono`}>복잡한 상태 로직</span>을 관리할 때 사용합니다.
                 여러 상태가 서로 연관되어 있거나, 상태 업데이트 규칙이 복잡할 때 유용해요! 🎮
               </p>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 
                 {/* Todo 앱 */}
-                <div className="p-4 bg-violet-50 rounded-lg border border-violet-200">
-                  <h3 className="font-bold text-violet-800 mb-3 flex items-center gap-2">
+                <div className={`p-4 ${getColorClass('bg-violet-50')} rounded-lg border ${getColorClass('border-violet-200')}`}>
+                  <h3 className={`font-bold ${getColorClass('text-violet-800')} mb-3 flex items-center gap-2`}>
                     📋 Todo 앱 (useReducer로 관리)
                   </h3>
                   
@@ -816,7 +817,7 @@ const ReactStateLanding = () => {
                         }
                       }}
                       placeholder="할 일을 입력하세요"
-                      className="flex-1 px-3 py-2 border border-violet-300 rounded-lg focus:ring-2 focus:ring-violet-500"
+                      className={`flex-1 px-3 py-2 border ${getColorClass('border-violet-300')} rounded-lg focus:ring-2 ${getColorClass('focus:ring-violet-500')}`}
                     />
                     <button
                       onClick={() => {
@@ -825,7 +826,7 @@ const ReactStateLanding = () => {
                           setTodoInput("");
                         }
                       }}
-                      className="px-4 py-2 bg-violet-500 text-white rounded-lg hover:bg-violet-600 transition-colors"
+                      className={`px-4 py-2 ${getColorClass('bg-violet-500')} text-white rounded-lg ${getColorClass('hover:bg-violet-600')} transition-colors`}
                     >
                       ➕
                     </button>
@@ -839,7 +840,7 @@ const ReactStateLanding = () => {
                         onClick={() => dispatch({ type: "SET_FILTER", filter })}
                         className={`px-3 py-1 rounded-lg text-sm font-medium transition-colors ${
                           todoState.filter === filter
-                            ? "bg-violet-500 text-white"
+                            ? `${getColorClass('bg-violet-500')} text-white`
                             : "bg-gray-200 hover:bg-gray-300"
                         }`}
                       >
@@ -892,8 +893,8 @@ const ReactStateLanding = () => {
                 </div>
 
                 {/* Reducer 로직 설명 */}
-                <div className="p-4 bg-indigo-50 rounded-lg border border-indigo-200">
-                  <h3 className="font-bold text-indigo-800 mb-3 flex items-center gap-2">
+                <div className={`p-4 ${getColorClass('bg-indigo-50')} rounded-lg border ${getColorClass('border-indigo-200')}`}>
+                  <h3 className={`font-bold ${getColorClass('text-indigo-800')} mb-3 flex items-center gap-2`}>
                     ⚙️ Reducer 함수 동작 방식
                   </h3>
                   
@@ -913,7 +914,7 @@ const ReactStateLanding = () => {
                     <div className="text-center text-2xl">⬇️</div>
                     
                     <div className="p-3 bg-white rounded-lg border">
-                      <h4 className="font-semibold text-purple-600 mb-1">3. 새 상태 반환</h4>
+                      <h4 className={`font-semibold ${getColorClass('text-purple-600')} mb-1`}>3. 새 상태 반환</h4>
                       <code className="text-sm">return {`{...state, todos: [...todos, newTodo]}`}</code>
                     </div>
                     
@@ -928,7 +929,7 @@ const ReactStateLanding = () => {
               </div>
 
               {/* useState vs useReducer 비교 */}
-              <div className="mt-6 p-6 bg-gradient-to-r from-violet-100 to-indigo-100 rounded-lg">
+              <div className={`mt-6 p-6 bg-gradient-to-r ${getColorClass('from-violet-100')} ${getColorClass('to-indigo-100')} rounded-lg`}>
                 <h3 className="font-bold text-lg mb-3 text-gray-800">🤷‍♂️ 언제 useReducer를 사용하나요?</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
@@ -940,8 +941,8 @@ const ReactStateLanding = () => {
                       <li>✅ 초보자에게 친숙함</li>
                     </ul>
                   </div>
-                  <div className="p-4 bg-violet-50 rounded-lg border border-violet-200">
-                    <h4 className="font-bold text-violet-600 mb-2">useReducer 사용</h4>
+                  <div className={`p-4 ${getColorClass('bg-violet-50')} rounded-lg border ${getColorClass('border-violet-200')}`}>
+                    <h4 className={`font-bold ${getColorClass('text-violet-600')} mb-2`}>useReducer 사용</h4>
                     <ul className="text-sm space-y-1">
                       <li>✅ 복잡한 상태 (객체, 배열)</li>
                       <li>✅ 여러 상태가 연관됨</li>
@@ -1094,8 +1095,8 @@ function ChildComponent() {
         )}
 
         {/* 마무리 및 다음 단계 */}
-        <div className="bg-gradient-to-r from-purple-100 to-pink-100 rounded-xl p-6 border border-purple-200">
-          <h2 className="text-2xl font-bold text-purple-800 mb-4 flex items-center gap-2">
+        <div className={`bg-gradient-to-r ${getColorClass('from-purple-100')} to-pink-100 rounded-xl p-6 border ${getColorClass('border-purple-200')}`}>
+          <h2 className={`text-2xl font-bold ${getColorClass('text-purple-800')} mb-4 flex items-center gap-2`}>
             🎉 축하합니다! React 상태 관리를 배웠어요!
           </h2>
           
@@ -1125,8 +1126,8 @@ function ChildComponent() {
             </div>
           </div>
 
-          <div className="p-4 bg-white rounded-lg border border-purple-200">
-            <h3 className="font-bold text-purple-700 mb-2">🚀 다음 학습 추천</h3>
+          <div className={`p-4 bg-white rounded-lg border ${getColorClass('border-purple-200')}`}>
+            <h3 className={`font-bold ${getColorClass('text-purple-700')} mb-2`}>🚀 다음 학습 추천</h3>
             <ul className="text-sm space-y-1 text-gray-700">
               <li>• <strong>성능 최적화:</strong> React.memo, useMemo, useCallback</li>
               <li>• <strong>커스텀 훅:</strong> 로직 재사용하기</li>

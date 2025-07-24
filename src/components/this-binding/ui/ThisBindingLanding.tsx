@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { StudyPageLayout } from "@/components/share/ui/StudyPageLayout";
+import { getColorClass } from "@/utils/colorMigration";
 
 interface CodeExample {
   code: string;
@@ -36,7 +37,7 @@ const ThisBindingLanding = () => {
       title: "명시적 바인딩",
       description: "call, apply, bind로 this를 명시적으로 지정",
       priority: 2,
-      color: "purple",
+      color: "blue",
     },
     new: {
       title: "new 바인딩",
@@ -228,7 +229,9 @@ boundArrow();`,
                 }}
                 className={`p-4 rounded-lg border-2 transition-all ${
                   selectedRule === key
-                    ? `border-${rule.color}-500 bg-${rule.color}-50`
+                    ? key === 'explicit' 
+                      ? `border-blue-500 ${getColorClass('bg-purple-50')}`
+                      : `border-${rule.color}-500 bg-${rule.color}-50`
                     : "border-gray-200 hover:border-gray-300"
                 }`}
               >
@@ -429,7 +432,7 @@ obj.method(); // 출력 결과는?`}</pre>
                     : index === 1
                     ? "bg-green-50"
                     : index === 2
-                    ? "bg-purple-50"
+                    ? getColorClass('bg-purple-50')
                     : index === 3
                     ? "bg-blue-50"
                     : "bg-gray-50"

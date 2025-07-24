@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { getColorClass } from "@/utils/colorMigration";
 
 interface RenderingStep {
   id: string;
@@ -200,9 +201,9 @@ const RenderingProcessVisualizer = () => {
           : "bg-gray-200",
       purple:
         status === "active"
-          ? "bg-purple-500"
+          ? getColorClass('bg-purple-500')
           : status === "completed"
-          ? "bg-purple-400"
+          ? getColorClass('bg-purple-400')
           : "bg-gray-200",
       emerald:
         status === "active"
@@ -224,9 +225,9 @@ const RenderingProcessVisualizer = () => {
           : "bg-gray-200",
       violet:
         status === "active"
-          ? "bg-violet-500"
+          ? getColorClass('bg-violet-500')
           : status === "completed"
-          ? "bg-violet-400"
+          ? getColorClass('bg-violet-400')
           : "bg-gray-200",
     };
     return colors[step.color as keyof typeof colors] || colors.blue;
@@ -248,9 +249,9 @@ const RenderingProcessVisualizer = () => {
           : "border-gray-300",
       purple:
         status === "active"
-          ? "border-purple-600"
+          ? getColorClass('border-purple-600')
           : status === "completed"
-          ? "border-purple-500"
+          ? getColorClass('border-purple-500')
           : "border-gray-300",
       emerald:
         status === "active"
@@ -272,9 +273,9 @@ const RenderingProcessVisualizer = () => {
           : "border-gray-300",
       violet:
         status === "active"
-          ? "border-violet-600"
+          ? getColorClass('border-violet-600')
           : status === "completed"
-          ? "border-violet-500"
+          ? getColorClass('border-violet-500')
           : "border-gray-300",
     };
     return colors[step.color as keyof typeof colors] || colors.blue;

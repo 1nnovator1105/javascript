@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { getColorClass, getColorClasses } from "@/utils/colorMigration";
 
 interface StudyPageLayoutProps {
   title: string;
@@ -28,7 +29,7 @@ const StudyPageLayout: React.FC<StudyPageLayoutProps> = ({
   };
 
   return (
-    <main className="font-sans min-h-screen mx-auto bg-gradient-to-br from-indigo-500 to-purple-600 p-4 md:p-6 max-w-full">
+    <main className={`font-sans min-h-screen mx-auto bg-gradient-to-br ${getColorClass('from-indigo-500 to-purple-600')} p-4 md:p-6 max-w-full`}>
       <div
         className={`bg-white/95 backdrop-blur-lg shadow-2xl rounded-xl md:rounded-2xl p-5 md:p-8 ${getMaxWidthClass()} mx-auto`}
       >
@@ -37,7 +38,13 @@ const StudyPageLayout: React.FC<StudyPageLayoutProps> = ({
           <div className="mb-6">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-indigo-600 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 hover:border-indigo-300 rounded-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
+              className={`inline-flex items-center gap-2 px-4 py-2 text-sm font-medium ${getColorClasses(
+                'text-indigo-600',
+                'bg-indigo-50',
+                'hover:bg-indigo-100',
+                'border-indigo-200',
+                'hover:border-indigo-300'
+              )} border rounded-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md`}
             >
               <svg
                 className="w-4 h-4"
@@ -58,7 +65,7 @@ const StudyPageLayout: React.FC<StudyPageLayoutProps> = ({
         )}
 
         <div className="text-center mb-8">
-          <h1 className="font-bold bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent mb-2 text-2xl md:text-3xl">
+          <h1 className={`font-bold bg-gradient-to-r ${getColorClass('from-indigo-500 to-purple-600')} bg-clip-text text-transparent mb-2 text-2xl md:text-3xl`}>
             {title}
           </h1>
           <p className="text-gray-500 font-normal m-0 text-sm md:text-base">
@@ -72,8 +79,11 @@ const StudyPageLayout: React.FC<StudyPageLayoutProps> = ({
         <div className="mt-12 pt-8 border-t border-gray-200">
           <div className="text-center">
             <div className="flex items-center justify-center gap-2 mb-4">
-              <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-full border border-indigo-200">
-                <div className="w-8 h-8 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full flex items-center justify-center">
+              <div className={`flex items-center gap-2 px-4 py-2 bg-gradient-to-r ${getColorClasses(
+                'from-indigo-50 to-purple-50',
+                'border-indigo-200'
+              )} rounded-full border`}>
+                <div className={`w-8 h-8 bg-gradient-to-r ${getColorClass('from-indigo-500 to-purple-600')} rounded-full flex items-center justify-center`}>
                   <span className="text-white font-bold text-sm">🧑‍💻</span>
                 </div>
                 <div className="text-left">
@@ -92,7 +102,7 @@ const StudyPageLayout: React.FC<StudyPageLayoutProps> = ({
                 href="https://1nnovator.tistory.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1 hover:text-indigo-600 transition-colors duration-200"
+                className={`flex items-center gap-1 ${getColorClass('hover:text-indigo-600')} transition-colors duration-200`}
               >
                 <svg
                   className="w-4 h-4"

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { getColorClass, getColorClasses } from "@/utils/colorMigration";
 
 interface Block {
   type: "sync" | "task" | "microtask" | "await";
@@ -98,14 +99,14 @@ const EventLoopVisualizer: React.FC<{
           bg-gradient-to-br from-slate-50 to-slate-200 rounded-xl p-4 border-2 border-slate-300 relative overflow-hidden
           ${
             visualState.webApis.length > 0
-              ? "bg-gradient-to-br from-violet-100 to-violet-500 border-violet-500 animate-pulse shadow-lg shadow-violet-500/30"
+              ? `bg-gradient-to-br ${getColorClass('from-violet-100 to-violet-500')} ${getColorClass('border-violet-500')} animate-pulse shadow-lg ${getColorClass('shadow-violet-500/30')}`
               : ""
           }
         `}
         >
-          <div className="text-base font-semibold mb-3 flex items-center gap-2 text-violet-800">
+          <div className={`text-base font-semibold mb-3 flex items-center gap-2 ${getColorClass('text-violet-800')}`}>
             🌐 Web APIs
-            <span className="text-xs bg-violet-500 text-white px-2 py-1 rounded">
+            <span className={`text-xs ${getColorClass('bg-violet-500')} text-white px-2 py-1 rounded`}>
               {visualState.webApis.length}
             </span>
           </div>
@@ -118,7 +119,7 @@ const EventLoopVisualizer: React.FC<{
               <div
                 key={idx}
                 className={`
-                  bg-violet-500 text-white px-3 py-2 rounded-md my-1 border border-slate-200 text-sm font-mono shadow-sm
+                  ${getColorClass('bg-violet-500')} text-white px-3 py-2 rounded-md my-1 border border-slate-200 text-sm font-mono shadow-sm
                   ${
                     visualState.isRunning
                       ? "animate-[slideIn_0.3s_ease-out]"
@@ -519,7 +520,7 @@ const EventLoopLanding: React.FC = () => {
     codeBlock:
       "bg-slate-50 text-gray-700 border-2 border-slate-200 font-mono hover:bg-slate-100 hover:border-gray-400 hover:-translate-y-0.5 hover:shadow-lg",
     primary:
-      "bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg shadow-indigo-500/30 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-indigo-500/40",
+      `bg-gradient-to-r ${getColorClasses('from-indigo-500 to-purple-600')} text-white shadow-lg ${getColorClass('shadow-indigo-500/30')} hover:-translate-y-0.5 hover:shadow-xl ${getColorClass('hover:shadow-indigo-500/40')}`,
     success:
       "bg-gradient-to-r from-emerald-500 to-green-600 text-white shadow-lg shadow-emerald-500/30 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-emerald-500/40",
     secondary:
@@ -531,14 +532,14 @@ const EventLoopLanding: React.FC = () => {
   return (
     <div>
       {/* Event Loop 개념 설명 섹션 */}
-      <div className="mb-8 p-6 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 rounded-xl border border-indigo-200">
-        <h2 className="text-2xl font-bold text-indigo-900 mb-6 flex items-center gap-2">
+      <div className={`mb-8 p-6 bg-gradient-to-br ${getColorClass('from-indigo-50 via-purple-50 to-pink-50')} rounded-xl border ${getColorClass('border-indigo-200')}`}>
+        <h2 className={`text-2xl font-bold ${getColorClass('text-indigo-900')} mb-6 flex items-center gap-2`}>
           🔄 Event Loop 개념 이해하기
         </h2>
 
         <div className="grid gap-6 md:grid-cols-2 mb-6">
-          <div className="bg-white p-5 rounded-lg border border-indigo-100 shadow-sm">
-            <h3 className="text-lg font-semibold text-indigo-800 mb-3 flex items-center gap-2">
+          <div className={`bg-white p-5 rounded-lg border ${getColorClass('border-indigo-100')} shadow-sm`}>
+            <h3 className={`text-lg font-semibold ${getColorClass('text-indigo-800')} mb-3 flex items-center gap-2`}>
               🤔 Event Loop란 무엇인가요?
             </h3>
             <p className="text-gray-700 text-sm leading-relaxed mb-3">
@@ -552,8 +553,8 @@ const EventLoopLanding: React.FC = () => {
             </p>
           </div>
 
-          <div className="bg-white p-5 rounded-lg border border-indigo-100 shadow-sm">
-            <h3 className="text-lg font-semibold text-indigo-800 mb-3 flex items-center gap-2">
+          <div className={`bg-white p-5 rounded-lg border ${getColorClass('border-indigo-100')} shadow-sm`}>
+            <h3 className={`text-lg font-semibold ${getColorClass('text-indigo-800')} mb-3 flex items-center gap-2`}>
               ⚡ 왜 중요한가요?
             </h3>
             <ul className="text-gray-700 text-sm space-y-2">
@@ -581,8 +582,8 @@ const EventLoopLanding: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-5 rounded-lg border border-indigo-100 shadow-sm">
-          <h3 className="text-lg font-semibold text-indigo-800 mb-4 flex items-center gap-2">
+        <div className={`bg-white p-5 rounded-lg border ${getColorClass('border-indigo-100')} shadow-sm`}>
+          <h3 className={`text-lg font-semibold ${getColorClass('text-indigo-800')} mb-4 flex items-center gap-2`}>
             🏗️ Event Loop 구성 요소
           </h3>
 
@@ -597,11 +598,11 @@ const EventLoopLanding: React.FC = () => {
               </p>
             </div>
 
-            <div className="p-4 bg-gradient-to-br from-violet-50 to-violet-100 rounded-lg border border-violet-200">
-              <div className="text-violet-700 font-semibold mb-2 flex items-center gap-2">
+            <div className={`p-4 bg-gradient-to-br ${getColorClass('from-violet-50 to-violet-100')} rounded-lg border ${getColorClass('border-violet-200')}`}>
+              <div className={`${getColorClass('text-violet-700')} font-semibold mb-2 flex items-center gap-2`}>
                 🌐 Web APIs
               </div>
-              <p className="text-violet-800 text-xs leading-relaxed">
+              <p className={`${getColorClass('text-violet-800')} text-xs leading-relaxed`}>
                 브라우저 제공 API들(setTimeout, fetch 등)이 백그라운드에서
                 작업을 처리하는 영역입니다.
               </p>
@@ -629,7 +630,7 @@ const EventLoopLanding: React.FC = () => {
           </div>
         </div>
 
-        <div className="mt-6 p-4 bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 rounded-lg border border-blue-200">
+        <div className={`mt-6 p-4 bg-gradient-to-r ${getColorClass('from-blue-100 via-purple-100 to-pink-100')} rounded-lg border border-blue-200`}>
           <h4 className="text-base font-semibold text-blue-900 mb-3 flex items-center gap-2">
             🔄 Event Loop 동작 원리
           </h4>

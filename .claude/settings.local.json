@@ -14,7 +14,9 @@
       "WebFetch(domain:1nnovator-js-study.vercel.app)",
       "Bash(find:*)",
       "Bash(grep:*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(yarn dev)",
+      "Bash(yarn install)"
     ],
     "deny": []
   }

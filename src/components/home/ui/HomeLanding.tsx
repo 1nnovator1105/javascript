@@ -5,9 +5,9 @@ const HomeLanding = () => {
   const learningPaths = [
     {
       phase: 0,
-      title: "Phase 0: 실무 도구 기초",
+      title: "Phase 0: 실무 워크플로우 재정비",
       description:
-        "개발 환경 설정과 협업 도구 사용법을 학습하여 실무에 바로 적용할 수 있습니다.",
+        "매일 사용하는 도구와 기술을 더 깊이 이해하고, 협업과 생산성을 극대화하는 실무 워크플로우를 완성합니다.",
       courses: [
         {
           title: "📁 Git & GitHub 실무 워크플로우",
@@ -18,6 +18,36 @@ const HomeLanding = () => {
           topics: ["브랜치 전략", "충돌 해결", "PR 작성", "이슈 관리"],
           icon: "📁",
           colorTheme: "orange",
+        },
+        {
+          title: "🐛 에러 핸들링 & 고급 디버깅",
+          description:
+            "비동기 에러 처리, 소스맵 분석 등 복잡한 버그를 체계적으로 추적하고 해결하는 전략을 익힙니다",
+          path: "/error-handling",
+          difficulty: "실무 필수",
+          topics: ["에러 바운더리", "소스맵 분석", "비동기 에러", "디버깅 전략"],
+          icon: "🐛",
+          colorTheme: "red",
+        },
+        {
+          title: "🛡️ 웹 보안 기초 (XSS & CSRF)",
+          description:
+            "가장 흔한 웹 취약점의 원리를 이해하고, 프론트엔드 관점에서 효과적인 방어 기법을 적용합니다",
+          path: "/web-security",
+          difficulty: "실무 필수",
+          topics: ["XSS 방어", "CSRF 토큰", "보안 헤더", "입력 검증"],
+          icon: "🛡️",
+          colorTheme: "red",
+        },
+        {
+          title: "♿ 웹 접근성(A11y) 기초",
+          description:
+            "시맨틱 마크업과 WAI-ARIA를 활용하여 모두를 위한 웹 서비스를 만드는 실용적인 방법을 학습합니다",
+          path: "/accessibility",
+          difficulty: "실무 필수",
+          topics: ["시맨틱 HTML", "WAI-ARIA", "키보드 탐색", "스크린 리더"],
+          icon: "♿",
+          colorTheme: "green",
         },
       ],
     },
@@ -407,6 +437,8 @@ const HomeLanding = () => {
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
+      case "실무 필수":
+        return "bg-red-100 text-red-800 border-red-200";
       case "기초 실무":
         return "bg-blue-100 text-blue-800 border-blue-200";
       case "초급":
@@ -417,7 +449,7 @@ const HomeLanding = () => {
       case "중급":
         return "bg-yellow-100 text-yellow-800 border-yellow-200";
       case "고급":
-        return "bg-red-100 text-red-800 border-red-200";
+        return "bg-purple-100 text-purple-800 border-purple-200";
       default:
         return "bg-gray-100 text-gray-800 border-gray-200";
     }

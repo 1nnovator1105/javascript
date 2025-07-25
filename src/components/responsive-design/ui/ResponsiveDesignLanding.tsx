@@ -88,7 +88,7 @@ const ResponsiveDesignLanding = () => {
             <input
               type="range"
               min="320"
-              max="1920"
+              max="2560"
               value={viewportSize.width}
               onChange={(e) => setViewportSize({
                 ...viewportSize,
@@ -115,13 +115,15 @@ const ResponsiveDesignLanding = () => {
             </span>
           </div>
           
-          <div className="h-full overflow-auto p-4" style={{ maxHeight: "350px" }}>
-            <div className={`transition-all duration-300 mx-auto`} 
-                 style={{ width: `${Math.min(viewportSize.width, 1200)}px` }}>
+          <div className="h-full overflow-y-scroll p-4" style={{ maxHeight: "350px" }}>
+            <div className={`transition-all duration-300`} 
+                 style={{ width: `${viewportSize.width}px`, maxWidth: "100%" }}>
               {/* 반응형 데모 컨텐츠 */}
               <div className={`grid gap-4 ${
                 viewportSize.width < 640 ? "grid-cols-1" :
-                viewportSize.width < 1024 ? "grid-cols-2" : "grid-cols-3"
+                viewportSize.width < 768 ? "grid-cols-2" :
+                viewportSize.width < 1024 ? "grid-cols-3" :
+                viewportSize.width < 1920 ? "grid-cols-4" : "grid-cols-6"
               }`}>
                 {[1, 2, 3, 4, 5, 6].map((item) => (
                   <div key={item} className={`bg-gradient-to-br ${getColorClass('from-blue-100')} ${getColorClass('to-indigo-100')} rounded-lg p-4 border ${getColorClass('border-indigo-200')}`}>
